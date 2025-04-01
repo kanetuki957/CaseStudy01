@@ -4,63 +4,52 @@ using UnityEngine;
 
 public class GameDirector : MonoBehaviour
 {
-    public static GameDirector Instance; // シングルトンインスタンス
+    // シングルトンパターン（他のスクリプトから `GameDirector.Instance` でアクセスできる）
+    public static GameDirector Instance;
 
-    //ＨＰバーの管理クラス（HealthBar）を参照する
     [SerializeField]
-    private HealthBar m_healthbar;
+    private GameObject[] textureObjects; // **順番に変更するオブジェクトの配列**
 
-    private float m_fHealth;           //現在のＨＰを管理する変数（0.0f～1.0fの範囲）
-    private bool isDecreasing = false; //ＨＰ減少処理が実行中かどうか
+    [SerializeField]
+    private Sprite[] textureStages; // **変更するテクスチャの配列**
+
+    private int currentStage = 0; // **現在のオブジェクトインデックス（どのオブジェクトを変更するか管理）**
+    public float scaleMultiplier; // **スケールの拡大率（変更後のサイズを決める）**
 
     void Awake()
     {
-        // シングルトンの設定
+        // **シングルトンの設定（既に存在する場合は削除）**
         if (Instance == null)
         {
             Instance = this;
         }
-    }
-
-    //ゲーム開始時に呼ばれる関数（初期設定）
-    void Start()
-    {
-        //ＨＰを最大（1.0f）に設定
-        m_fHealth = 1.0f;
-        m_healthbar.SetSize(m_fHealth);
-    }
-
-    // **敵と衝突した時にHPをゆっくり減らす関数**
-    public void DecreaseHealth(float amount, float duration)
-    {
-        if (!isDecreasing) // すでに減少処理中ならスキップ
+        else
         {
-            StartCoroutine(SlowDecreaseHealth(amount, duration));
+            Destroy(gameObject);
         }
     }
 
-    // **HPを徐々に減らすコルーチン**
-    private IEnumerator SlowDecreaseHealth(float amount, float duration)
+    // **1回の衝突ごとに1つのオブジェクトのテクスチャを変更する関数**
+    public void ChangeTexture()
     {
-        isDecreasing = true;
-        float startHealth = m_fHealth;
-        float endHealth = Mathf.Max(m_fHealth - amount, 0.0f); // 最小値 0.0 にする
-        float elapsedTime = 0f;
-
-        while (elapsedTime < duration)
+        // **まだ変更できるオブジェクトがある場合のみ実行**
+        if (currentStage < textureObjects.Length)
         {
-            elapsedTime += Time.deltaTime;
-            m_fHealth = Mathf.Lerp(startHealth, endHealth, elapsedTime / duration);
-            m_healthbar.SetSize(m_fHealth);
-            yield return null;
+            GameObject obj = textureObjects[currentStage]; // **次に変更するオブジェクトを取得**
+
+            if (obj != null)
+            {
+                SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
+                if (sr != null)
+                {
+                    sr.sprite = textureStages[currentStage]; // **対応するテクスチャに変更**
+
+                    // **スケールを拡大（元のサイズ × scaleMultiplier）**
+                    obj.transform.localScale *= scaleMultiplier;
+                }
+
+                currentStage++; // **次のオブジェクトへ進める**
+            }
         }
-
-        m_fHealth = endHealth; // 最終値を正確に設定
-        isDecreasing = false;
-    }
-
-    public float GetHealth()
-    {
-        return m_fHealth;
     }
 }
