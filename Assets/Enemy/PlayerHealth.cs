@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameDirector : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
     // シングルトンパターン（他のスクリプトから `GameDirector.Instance` でアクセスできる）
-    public static GameDirector Instance;
+    public static PlayerHealth Instance;
 
     [SerializeField]
     private GameObject[] textureObjects; // **順番に変更するオブジェクトの配列**

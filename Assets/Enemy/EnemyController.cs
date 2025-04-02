@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAutoMove : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
     public float speed = 3f;      // **移動速度（単位: ユニット/秒）**
     public float leftLimit = -5f; // **左端の位置（この座標に達すると右へ移動）**
     public float rightLimit = 5f; // **右端の位置（この座標に達すると左へ移動）**
     private int direction = 1;    // **移動方向（1: 右, -1: 左）**
+
+    public GameObject[] playerTextureObjects; // プレイヤーのテクスチャ変更オブジェクト
+    public Sprite[] playerTextureStages; // プレイヤーのテクスチャ一覧
+    public float scaleMultiplier = 1.2f; // スケール倍率
+    private int playerCurrentStage = 0; // 現在のテクスチャ段階
 
     // プレイヤーのオブジェクト名
     public string playerObjectName;
@@ -34,13 +39,35 @@ public class EnemyAutoMove : MonoBehaviour
         // 衝突したオブジェクトなら処理を実行
         if (collision.gameObject.name == playerObjectName)
         {
-            if (GameDirector.Instance != null)
+
+            if (PlayerHealth.Instance != null)
             {
                 // **テクスチャを変更**
-                GameDirector.Instance.ChangeTexture();
+                PlayerHealth.Instance.ChangeTexture();
+                ChangePlayerTexture(); // プレイヤーのテクスチャ変更
             }
 
             direction = 1; // **敵の移動方向を右に固定**
+        }
+    }
+
+    // **プレイヤーのテクスチャを変更**
+    private void ChangePlayerTexture()
+    {
+        if (playerCurrentStage < playerTextureObjects.Length)
+        {
+            GameObject obj = playerTextureObjects[playerCurrentStage];
+
+            if (obj != null)
+            {
+                SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
+                if (sr != null)
+                {
+                    sr.sprite = playerTextureStages[playerCurrentStage];
+                    obj.transform.localScale *= scaleMultiplier;
+                }
+                playerCurrentStage++;
+            }
         }
     }
 }
