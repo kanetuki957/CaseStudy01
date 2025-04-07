@@ -8,17 +8,16 @@ public class PlayerHealth : MonoBehaviour
     public static PlayerHealth Instance;
 
     [SerializeField]
-    private GameObject[] textureObjects; // **順番に変更するオブジェクトの配列**
+    private GameObject[] textureObjects; // 順番に変更するオブジェクトの配列
 
     [SerializeField]
-    private Sprite[] textureStages; // **変更するテクスチャの配列**
-
-    private int currentStage = 0; // **現在のオブジェクトインデックス（どのオブジェクトを変更するか管理）**
-    public float scaleMultiplier; // **スケールの拡大率（変更後のサイズを決める）**
+    private Sprite[] textureStages; // 変更するテクスチャの配列
+    private int currentStage = 0;   // 現在のオブジェクトインデックス（どのオブジェクトを変更するか管理）
+    public float scaleMultiplier;   // スケールの拡大率（変更後のサイズを決める）
 
     void Awake()
     {
-        // **シングルトンの設定（既に存在する場合は削除）**
+        // シングルトンの設定（既に存在する場合は削除）
         if (Instance == null)
         {
             Instance = this;
@@ -29,26 +28,27 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    // **1回の衝突ごとに1つのオブジェクトのテクスチャを変更する関数**
-    public void ChangeTexture()
+    // プレイヤー側のテクスチャを指定回数変更する関数
+    public void ChangePlayerTexture(int steps)
     {
-        // **まだ変更できるオブジェクトがある場合のみ実行**
-        if (currentStage < textureObjects.Length)
+        for (int i = 0; i < steps; i++)
         {
-            GameObject obj = textureObjects[currentStage]; // **次に変更するオブジェクトを取得**
-
-            if (obj != null)
+            // テクスチャがまだ残っている場合のみ変更
+            if (currentStage < textureObjects.Length)
             {
-                SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
-                if (sr != null)
+                GameObject obj = textureObjects[currentStage];
+
+                if (obj != null)
                 {
-                    sr.sprite = textureStages[currentStage]; // **対応するテクスチャに変更**
-
-                    // **スケールを拡大（元のサイズ × scaleMultiplier）**
-                    obj.transform.localScale *= scaleMultiplier;
+                    // スプライトレンダラーを取得し、テクスチャ変更
+                    SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
+                    if (sr != null)
+                    {
+                        sr.sprite = textureStages[currentStage];    // テクスチャを更新
+                        obj.transform.localScale *= scaleMultiplier;// スケールを拡大
+                    }
+                    currentStage++;// 次の段階へ
                 }
-
-                currentStage++; // **次のオブジェクトへ進める**
             }
         }
     }
