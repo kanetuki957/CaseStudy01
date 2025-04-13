@@ -21,7 +21,7 @@ public class ClickDetector2D : MonoBehaviour
                 // 名前で判定（またはスクリプトで判定）
                 if (hit.collider.gameObject.name == "Switch")
                 {
-                    player.GetComponent<PlayerMover2D>().StartMoving();
+                    player.GetComponent<PlayerMover2D>().ToggleMove();
                 }
             }
         }
