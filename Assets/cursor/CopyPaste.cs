@@ -13,13 +13,15 @@ public class CopyPaste : MonoBehaviour
         HandleCopyPaste();
     }
 
-    // マウスクリックで選択
+    // オブジェクトをクリックして選択（2D対応）
     void HandleSelection()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+
+            if (hit.collider != null)
             {
                 selectedObject = hit.collider.gameObject;
                 Debug.Log("Selected: " + selectedObject.name);
@@ -27,25 +29,23 @@ public class CopyPaste : MonoBehaviour
         }
     }
 
-    // Ctrl+C でコピー、Ctrl+V でペースト
+    // Ctrl+Cでコピー、Ctrl+Vでマウス位置に複製
     void HandleCopyPaste()
     {
         if (selectedObject != null)
         {
-            // コピー (Ctrl + C)
             if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.C))
             {
                 copiedObject = selectedObject;
                 Debug.Log("Copied: " + copiedObject.name);
             }
 
-            // ペースト (Ctrl + V)
             if (copiedObject != null && Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.V))
             {
-                Vector3 newPos = copiedObject.transform.position + Vector3.right * 2; // 横にずらして生成
-                GameObject newObj = Instantiate(copiedObject, newPos, copiedObject.transform.rotation);
+                Vector2 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                GameObject newObj = Instantiate(copiedObject, spawnPos, Quaternion.identity);
                 newObj.name = copiedObject.name + "_Copy";
-                Debug.Log("Pasted: " + newObj.name);
+                Debug.Log("Pasted: " + newObj.name + " at " + spawnPos);
             }
         }
     }
