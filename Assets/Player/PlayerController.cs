@@ -4,50 +4,70 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float jumpForce = 5f;
-    private Rigidbody rb;
-    private Animator animator;
-    private SpriteRenderer spriteRenderer;
 
+    public float moveSpeed = 5f;
+    public float jumpForce = 8f;
+    private Rigidbody rb;
+    private SpriteRenderer spriteRenderer;
+    private bool isGrounded;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rb.freezeRotation = true; //
+    }
+        void Update()
+    {
+        HandleMovement();
+        HandleJump();
+        HandleSpriteDirection();
     }
 
-    void Update()
+    // **移動処理**
+    void HandleMovement()
     {
-        // 移動処理
         float moveX = Input.GetAxis("Horizontal");
         Vector3 move = new Vector3(moveX, 0, 0) * moveSpeed * Time.deltaTime;
         transform.Translate(move, Space.World);
+    }
 
-        // 接地判定（Raycastを使用）
-         bool isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.0f);
+    // **ジャンプ処理**
+    void HandleJump()
+    {
+        //着地判定
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 0.5f);
 
 
-        // ジャンプ処理
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
         }
+        
+        if (!isGrounded && rb.velocity.y < 0)
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * 1.0f * Time.deltaTime;
+        }
+        if(!isGrounded && rb.velocity.y > 0)
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * 0.1f * Time.deltaTime;
+        }
+    }
 
-       
+    // **プレイヤーの向き**
+    void HandleSpriteDirection()
+    {
+        float moveX = Input.GetAxis("Horizontal");
+
         if (moveX > 0)
         {
-            animator.SetBool("Direction", false);
             spriteRenderer.flipX = false; // 右向き
         }
         else if (moveX < 0)
         {
-            animator.SetBool("Direction", true);
             spriteRenderer.flipX = true; // 左向き
         }
-       
-
     }
-
 }
+
+
