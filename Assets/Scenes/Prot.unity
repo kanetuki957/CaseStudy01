@@ -383,17 +383,17 @@ PrefabInstance:
     - target: {fileID: 5422463462571865940, guid: 8b031c0b7c01eec4eb5f8f2216b036aa,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5422463462571865940, guid: 8b031c0b7c01eec4eb5f8f2216b036aa,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5422463462571865940, guid: 8b031c0b7c01eec4eb5f8f2216b036aa,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5422463462571865940, guid: 8b031c0b7c01eec4eb5f8f2216b036aa,
         type: 3}
@@ -540,8 +540,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closedDoorTag: closed
   openDoorTag: Finish
-  door: {fileID: 304850886}
-  openDoorObject: {fileID: 0}
 --- !u!212 &360811909
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -846,7 +844,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera1: {fileID: 2128950563}
   camera2: {fileID: 1620146779}
-  doorPrefab: {fileID: 0}
 --- !u!1001 &1224987640
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1423,17 +1420,17 @@ PrefabInstance:
     - target: {fileID: 7463257644699489408, guid: d0b2060df75ccc54d9c6aa10c129a59f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7463257644699489408, guid: d0b2060df75ccc54d9c6aa10c129a59f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7463257644699489408, guid: d0b2060df75ccc54d9c6aa10c129a59f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7463257644699489408, guid: d0b2060df75ccc54d9c6aa10c129a59f,
         type: 3}
@@ -1574,7 +1571,6 @@ SceneRoots:
   - {fileID: 118266019}
   - {fileID: 2128950565}
   - {fileID: 1620146781}
-  - {fileID: 2119016428}
   - {fileID: 1302745223}
   - {fileID: 1071915477}
   - {fileID: 360811910}
@@ -1582,4 +1578,5 @@ SceneRoots:
   - {fileID: 659501881}
   - {fileID: 1508227707}
   - {fileID: 147100257}
+  - {fileID: 2119016428}
   - {fileID: 196197794}
