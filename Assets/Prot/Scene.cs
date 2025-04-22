@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Scene : MonoBehaviour
+public class SceneChanger : MonoBehaviour
 {
     public Button changeSceneButton;
     public string sceneName;

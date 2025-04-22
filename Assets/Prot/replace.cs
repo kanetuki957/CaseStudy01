@@ -22,7 +22,7 @@ public class replace : MonoBehaviour
     private GameObject door;
     private GameObject openDoorObject;
 
-    void Start()
+    void Awake()
     {
         InitializeDoors();
     }
@@ -83,7 +83,8 @@ public class replace : MonoBehaviour
             openDoorObject.transform.localScale = door.transform.localScale;
             openDoorObject.transform.parent = door.transform.parent;
 
-            Destroy(door);
+            // 見た目だけ切り替える（削除しない）
+            door.SetActive(false);
             openDoorObject.SetActive(true);
         }
     }
@@ -130,7 +131,13 @@ public class replace : MonoBehaviour
                 newObj.name = copiedObject.name + "_Copy";
 
                 Debug.Log("Pasted: " + newObj.name + " at " + spawnPos);
+                // trigger に正しい targetBridge を設定する
 
+                trigger[] triggers = newObj.GetComponentsInChildren<trigger>();
+                foreach (trigger t in triggers)
+                {
+                    t.targetBridge = newObj.GetComponent<replace>();
+                }
                 // 開いた扉を強制的に非表示にし、初期状態を整える
                 replace bc = newObj.GetComponent<replace>();
                 if (bc != null)
