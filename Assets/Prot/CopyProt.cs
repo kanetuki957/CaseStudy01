@@ -7,8 +7,12 @@ public class CopyProt : MonoBehaviour
     public Camera camera1;
     public Camera camera2;
 
+    public Transform mainBody;
+
     private GameObject selectedObject;
     private GameObject copiedObject;
+
+
 
     void Update()
     {
@@ -50,7 +54,7 @@ public class CopyProt : MonoBehaviour
                 if (cam == null) return;
 
                 Vector2 spawnPos = cam.ScreenToWorldPoint(Input.mousePosition);
-                GameObject newObj = Instantiate(copiedObject, spawnPos, Quaternion.identity);
+                GameObject newObj = Instantiate(copiedObject, spawnPos, Quaternion.identity, mainBody);
                 newObj.name = copiedObject.name + "_Copy";
 
                 Debug.Log("Pasted: " + newObj.name + " at " + spawnPos);
