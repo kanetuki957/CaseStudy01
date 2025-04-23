@@ -20,6 +20,7 @@ public class trigger : MonoBehaviour
                 targetBridge.TriggerOpen();
                 // シーン上の全コピーを探して一緒に開く
                 OpenAllCopiedBridges();
+                Debug.Log("OPEN:" + this.gameObject.name);
             }
             else
             {
@@ -31,7 +32,7 @@ public class trigger : MonoBehaviour
     void OpenAllCopiedBridges()
     {
         // 橋と同じ名前で "_Copy" がついたやつ全部探す
-        string targetName = targetBridge.gameObject.name;
+        string targetName = targetBridge.gameObject.name + "_Copy";
 
         replace[] allBridges = FindObjectsOfType<replace>();
         foreach (replace r in allBridges)

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class replace : MonoBehaviour
 {
-    [Header("カメラ設定")]
+
     public Camera camera1;
     public Camera camera2;
 
-    [Header("コピーした橋の親オブジェクト")]
+   
     public Transform mainBody;
 
-    [Header("扉のタグ設定")]
+    
     public string closedDoorTag = "ClosedDoor";
     public string openDoorTag = "OpenDoor";
 
@@ -21,6 +21,7 @@ public class replace : MonoBehaviour
     private bool isPressed = false;
     private GameObject door;
     private GameObject openDoorObject;
+
 
     void Awake()
     {

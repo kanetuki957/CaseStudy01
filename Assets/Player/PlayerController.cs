@@ -13,14 +13,14 @@ public class PlayerController : MonoBehaviour
 
     private bool Button = false;
     private bool playerDirection = true;
-    private Rigidbody rb;
+    private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private bool isGrounded;
     private bool isWall;
     private Vector3 move;
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         startButton.onClick.AddListener(MoveButton);
          rb.freezeRotation = true; //
