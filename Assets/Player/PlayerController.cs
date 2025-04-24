@@ -9,21 +9,28 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpForce = 8f;
     public Button startButton;
-
+    public Button restartButton;
 
     private bool Button = false;
     private bool playerDirection = true;
-    private Rigidbody rb;
-    private SpriteRenderer spriteRenderer;
     private bool isGrounded;
     private bool isWall;
+    private bool isSloop;
+    private float playerWidth;
     private Vector3 move;
+    private Rigidbody rb;
+    private SpriteRenderer spriteRenderer;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         startButton.onClick.AddListener(MoveButton);
-         rb.freezeRotation = true; //
+        restartButton.onClick.AddListener(RestartButton);
+
+        playerWidth = spriteRenderer.bounds.size.x;  // スプライトの幅を取得
+        rb.freezeRotation = true; //
     }
         void Update()
     {
@@ -40,6 +47,10 @@ public class PlayerController : MonoBehaviour
         Button = true;
     }
 
+    void RestartButton()
+    {
+        Button = false;
+    }
     // **移動処理**
     void HandleMovement()
     {
@@ -51,6 +62,16 @@ public class PlayerController : MonoBehaviour
           playerDirection = !playerDirection;  // 反転
         }
 
+
+         isSloop= Physics.Raycast(transform.position, Vector3.down, 0.5f);
+
+
+
+
+
+
+
+        //向きによって進む方向を変える
         if (playerDirection)
         {
             float moveX = +1.0f;
@@ -63,22 +84,9 @@ public class PlayerController : MonoBehaviour
             move = new Vector3(moveX, 0, 0) * moveSpeed * Time.deltaTime;
             transform.Translate(move, Space.World);
         }
-      //RaycastHit hit;
-      //      if (Physics.Raycast(transform.position, Vector3.down, out hit, 1f))
-      //      {
-      //          float slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
-      //          float speedMultiplier = Mathf.Lerp(1f, 0.5f, slopeAngle / 45f);
-      //          MoveCharacter(speedMultiplier);
-      //      }
-      //        void MoveCharacter(float speedMultiplier)
-      //  {
-      //      float moveSpeed = 5f * speedMultiplier;
-      //      transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-      //  }
-
+ 
 
     }
-   
 
     // **ジャンプ処理**
     //void HandleJump()
@@ -91,7 +99,7 @@ public class PlayerController : MonoBehaviour
     //    {
     //        rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
     //    }
-        
+
     //    if (!isGrounded && rb.velocity.y < 0)
     //    {
     //        rb.velocity += Vector3.up * Physics.gravity.y * 1.0f * Time.deltaTime;
@@ -105,8 +113,8 @@ public class PlayerController : MonoBehaviour
     // **プレイヤーの向き**
     void HandleSpriteDirection()
     {
-      
-        if (playerDirection)
+      //無地の表示を変える
+      if (playerDirection)
         {
             spriteRenderer.flipX = false; // 右向き
         }
