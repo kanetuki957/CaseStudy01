@@ -44,7 +44,7 @@ public class PlayerMover : MonoBehaviour
         // シーン内に存在するすべてのオブジェクトを走査
         GameObject[] allObjects = FindObjectsOfType<GameObject>();
 
-        // オブジェクト名に itemKeyword が含まれているものをアイテムとして登録
+        // オブジェクト名にitemが含まれているものをアイテムとして登録
         foreach (GameObject obj in allObjects)
         {
             if (obj.name.Contains(itemKeyword))
@@ -104,7 +104,7 @@ public class PlayerMover : MonoBehaviour
     // アイテムとの衝突を検出する関数
     void OnTriggerEnter2D(Collider2D other)
     {
-        // 名前に itemKeyword を含むものだけをアイテムと判定
+        // 名前にitemを含むものだけをアイテムと判定
         if (other.gameObject.name.Contains(itemKeyword))
         {
             collectedCount++;                 // カウント加算
