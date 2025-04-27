@@ -6,6 +6,7 @@ public class TestOpenDoor : MonoBehaviour, IActivatable
 {
     public GameObject door;  // 扉のGameObject
     public Sprite openDoorSprite; // 開いた扉の画像
+    public Sprite closeDoorSprite;
     private SpriteRenderer doorSpriteRenderer;
     private BoxCollider2D doorCollider;
 
@@ -20,14 +21,23 @@ public class TestOpenDoor : MonoBehaviour, IActivatable
 
     public void Activate()
     {
-        if (doorSpriteRenderer != null && openDoorSprite != null)
+        if (doorCollider.enabled)   // 扉が閉じているなら
         {
             doorSpriteRenderer.sprite = openDoorSprite; // 扉の画像を開いた状態に変更
-        }
 
-        if (doorCollider != null)
+            doorCollider.enabled = false; // 扉のコライダーを無効化
+            if (doorCollider.enabled == true)
+            {
+            }
+        }
+        else
         {
-            Destroy(doorCollider); // 扉のコライダーを削除
+            doorSpriteRenderer.sprite = closeDoorSprite; // 扉の画像を閉じた状態に変更
+
+            doorCollider.enabled = true; // 扉のコライダーを有効化
+            if (doorCollider.enabled == false)
+            {
+            }
         }
     }
 }
