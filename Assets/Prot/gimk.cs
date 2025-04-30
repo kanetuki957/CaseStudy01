@@ -7,21 +7,37 @@ public class gimk : MonoBehaviour
     public string closedDoorTag = "ClosedDoor";     // 閉まった扉のTag
     public string openDoorTag = "OpenDoor";         // 開いた扉のTag（非表示）
 
-    public GameObject door;             // 実際に見つかった閉じた扉
-    public GameObject openDoorObject;   // 実際に見つかった開いた扉
+    private GameObject door;             // 実際に見つかった閉じた扉
+    private GameObject openDoorObject;   // 実際に見つかった開いた扉
 
     private bool isPressed = false;
 
     private void Start()
     {
-        // タグで探す（最初に一個だけ見つける）
-        door = GameObject.FindWithTag(closedDoorTag);
-        openDoorObject = GameObject.FindWithTag(openDoorTag);
+        // 自分の子オブジェクトからTagで探す
+        Transform[] children = GetComponentsInChildren<Transform>(true); // 非アクティブも含める
+        foreach (Transform child in children)
+        {
+            if (child.CompareTag(closedDoorTag))
+                door = child.gameObject;
+
+            if (child.CompareTag(openDoorTag))
+                openDoorObject = child.gameObject;
+        }
 
         // 念のため開いた扉は非表示にしとく（保険）
         if (openDoorObject != null)
         {
             openDoorObject.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("OpenDoorObjectが見つかりませんでした！");
+        }
+
+        if (door == null)
+        {
+            Debug.LogWarning("Door（閉まった扉）が見つかりませんでした！");
         }
     }
 
@@ -38,7 +54,6 @@ public class gimk : MonoBehaviour
     {
         if (door != null && openDoorObject != null)
         {
-            // 扉の位置を一致させる
             openDoorObject.transform.position = door.transform.position;
             openDoorObject.transform.rotation = door.transform.rotation;
             openDoorObject.transform.localScale = door.transform.localScale;
@@ -46,10 +61,6 @@ public class gimk : MonoBehaviour
 
             Destroy(door);
             openDoorObject.SetActive(true);
-        }
-        else
-        {
-            Debug.LogWarning("ドアが見つからへん！Tag設定されてるか確認してな");
         }
     }
 }

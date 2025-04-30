@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class CopyProt : MonoBehaviour
 {
-    public Camera camera1; // ← 一つ目のカメラ
-    public Camera camera2; // ← 二つ目のカメラ
+    public Camera camera1;
+    public Camera camera2;
+
+    public Transform mainBody;
 
     private GameObject selectedObject;
     private GameObject copiedObject;
-   
-    public GameObject doorPrefab;
+
+
 
     void Update()
     {
@@ -18,7 +20,6 @@ public class CopyProt : MonoBehaviour
         HandleCopyPaste();
     }
 
-    // オブジェクトをクリックして選択（2D対応）
     void HandleSelection()
     {
         if (Input.GetMouseButtonDown(0))
@@ -37,7 +38,6 @@ public class CopyProt : MonoBehaviour
         }
     }
 
-    // Ctrl+Cでコピー、Ctrl+Vでマウス位置に複製
     void HandleCopyPaste()
     {
         if (selectedObject != null)
@@ -54,33 +54,16 @@ public class CopyProt : MonoBehaviour
                 if (cam == null) return;
 
                 Vector2 spawnPos = cam.ScreenToWorldPoint(Input.mousePosition);
-                GameObject newObj = Instantiate(copiedObject, spawnPos, Quaternion.identity);
+                GameObject newObj = Instantiate(copiedObject, spawnPos, Quaternion.identity, mainBody);
                 newObj.name = copiedObject.name + "_Copy";
+
                 Debug.Log("Pasted: " + newObj.name + " at " + spawnPos);
 
-                // gimk スクリプトがある場合、openDoorObject も新しくインスタンス化して設定する
-                gimk originalGimk = copiedObject.GetComponent<gimk>();
-                gimk newGimk = newObj.GetComponent<gimk>();
-
-                if (originalGimk != null && newGimk != null)
-                {
-                    // Project 内のプレハブから新しいオブジェクトを生成
-                    GameObject newDoorObj = Instantiate(doorPrefab);
-                    newDoorObj.transform.position = newObj.transform.position;
-                    newDoorObj.name = doorPrefab.name + "_Copy";
-
-                    Debug.Log("==> newDoorObj: " + newDoorObj.name);
-                    Debug.Log("==> Assigning openDoorObject to newGimk");
-
-                    // コピー先のgimkに割り当て
-                    newGimk.openDoorObject = newDoorObj;
-                    newGimk.door = newObj;
-                }
+                // gimkは自身の子オブジェクトからタグで探す設計なので、特に設定しなくてOK
             }
         }
     }
 
-    // マウスが今、どのカメラのビューにあるか判定して返す
     Camera GetCameraUnderMouse()
     {
         Vector3 mousePos = Input.mousePosition;
@@ -88,10 +71,9 @@ public class CopyProt : MonoBehaviour
         if (IsMouseInCamera(camera1)) return camera1;
         if (IsMouseInCamera(camera2)) return camera2;
 
-        return null; // どのカメラにも含まれてない
+        return null;
     }
 
-    // マウスが指定カメラのビューポート内にあるか判定
     bool IsMouseInCamera(Camera cam)
     {
         Vector3 viewPortPos = cam.ScreenToViewportPoint(Input.mousePosition);
