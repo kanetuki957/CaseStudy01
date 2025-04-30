@@ -13,7 +13,7 @@ public class aitem : MonoBehaviour
     public GameObject itemDisplayPrefab;    // アイテム
     public Transform itemDisplayParent;     // 表示用オブジェクト
 
-    private List<string> collectedItems = new List<string>();// 取得したアイテムリスト
+    public List<string> collectedItems = new List<string>();// 取得したアイテムリスト
     private List<GameObject> displayedItems = new List<GameObject>(); // 画面に表示中のアイテムリスト
 
     public List<GameObject> desObject = new List<GameObject>(); // 消えるオブジェクトのリスト
@@ -46,7 +46,7 @@ public class aitem : MonoBehaviour
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Item"))
         {
