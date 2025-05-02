@@ -15,7 +15,7 @@ public class SwitchController : MonoBehaviour
         if (targetObject != null)
         {
             // MoveTarget スクリプトを探す
-            var moveScript = targetObject.GetComponent<MoveTarget>();
+            var moveScript = targetObject.GetComponent<MoveBeltconveyor>();
             if (moveScript != null)
             {
                 // 対象オブジェクトが設定されているか確認

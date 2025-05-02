@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // 指定のGameObjectを左に移動させる処理を管理するスクリプト
-public class MoveTarget : MonoBehaviour
+public class MoveBeltconveyor : MonoBehaviour
 {
     // 左方向への移動速度
     public float moveSpeed = 2f;
