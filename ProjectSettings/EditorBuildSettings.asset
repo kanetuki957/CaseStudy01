@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Prot/TitleProt.unity
     guid: cac41069f932d9041beeac205786fd19
   - enabled: 1
-    path: Assets/Scenes/Prot.unity
-    guid: f8afd46a7a18904458efc02aadc03115
+    path: Assets/Scenes/1-table.unity
+    guid: dab0ba820eb6f2043ae8365b2f515c94
   - enabled: 1
     path: Assets/Scenes/main_goal.unity
     guid: 4212d5ae999553848806162837ab7ed5
+  - enabled: 1
+    path: Assets/Scenes/Prot.unity
+    guid: f8afd46a7a18904458efc02aadc03115
   m_configObjects: {}

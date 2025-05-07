@@ -6,14 +6,18 @@ public class CopyPaste : MonoBehaviour
 {
     private GameObject selectedObject;
     private GameObject copiedObject;
+    private GameObject clickedObject;
+
+    private bool isDragging = false;
 
     void Update()
     {
         HandleSelection();
         HandleCopyPaste();
+        HandleDragging();
     }
 
-    // オブジェクトをクリックして選択（2D対応）
+    // 一回目のクリックで選択、二回目のクリックでドラッグ
     void HandleSelection()
     {
         if (Input.GetMouseButtonDown(0))
@@ -23,9 +27,26 @@ public class CopyPaste : MonoBehaviour
 
             if (hit.collider != null)
             {
-                selectedObject = hit.collider.gameObject;
-                Debug.Log("Selected: " + selectedObject.name);
+                GameObject hitObj = hit.collider.gameObject;
+
+                if (hitObj == selectedObject)
+                {
+                    // 同じオブジェクトを2回目クリック → ドラッグ開始
+                    isDragging = true;
+                    Debug.Log("Start dragging: " + hitObj.name);
+                }
+                else
+                {
+                    // 選択だけ（1回目クリック）
+                    selectedObject = hitObj;
+                    Debug.Log("Selected: " + selectedObject.name);
+                }
             }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            isDragging = false;
         }
     }
 
@@ -43,10 +64,22 @@ public class CopyPaste : MonoBehaviour
             if (copiedObject != null && Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.V))
             {
                 Vector2 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                GameObject newObj = Instantiate(copiedObject, spawnPos, Quaternion.identity);
+                GameObject newObj = Instantiate(copiedObject, spawnPos, copiedObject.transform.rotation);
                 newObj.name = copiedObject.name + "_Copy";
+                selectedObject = null;     // 貼り付け直後は未選択にしておく
+                isDragging = false;        // すぐにはドラッグしない
                 Debug.Log("Pasted: " + newObj.name + " at " + spawnPos);
             }
+        }
+    }
+
+    // ドラッグ中はマウス位置に追従
+    void HandleDragging()
+    {
+        if (isDragging && selectedObject != null)
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            selectedObject.transform.position = mousePos;
         }
     }
 }
