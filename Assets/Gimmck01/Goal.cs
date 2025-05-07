@@ -16,10 +16,6 @@ public class Goal : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             touchingPlayers.Add(other.gameObject);
-            Debug.Log("Player reached goal!");
-
-            // シーン名で遷移する例
-            SceneManager.LoadScene("main_goal"); // 実際のシーン名に置き換える
         }
     }
 

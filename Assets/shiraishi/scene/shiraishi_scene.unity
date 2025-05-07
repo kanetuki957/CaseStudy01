@@ -326,7 +326,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4096998818254969247, guid: 77625bf27054dcc40b0a8cc3ac0c4d19,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1934399466}
+      addedObject: {fileID: 1934399471}
+    - targetCorrespondingSourceObject: {fileID: 4096998818254969247, guid: 77625bf27054dcc40b0a8cc3ac0c4d19,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1934399472}
   m_SourcePrefab: {fileID: 100100000, guid: 77625bf27054dcc40b0a8cc3ac0c4d19, type: 3}
 --- !u!1 &401333806
 GameObject:
@@ -656,7 +660,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4096998818254969247, guid: 77625bf27054dcc40b0a8cc3ac0c4d19,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1706669373}
+      addedObject: {fileID: 1706669376}
+    - targetCorrespondingSourceObject: {fileID: 4096998818254969247, guid: 77625bf27054dcc40b0a8cc3ac0c4d19,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1706669377}
   m_SourcePrefab: {fileID: 100100000, guid: 77625bf27054dcc40b0a8cc3ac0c4d19, type: 3}
 --- !u!1 &845872257
 GameObject:
@@ -1742,7 +1750,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1706669373
+--- !u!114 &1706669376
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1751,16 +1759,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1706669367}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c6a6d333813fce44a4911adb12a8430, type: 3}
+  m_Script: {fileID: 11500000, guid: df6d8f073e902a44f869011b22629b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpForce: 7
-  itemDisplayPrefab: {fileID: 0}
-  itemDisplayParent: {fileID: 0}
+--- !u!114 &1706669377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706669367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c6af3bff1e07b4497711eef17b4612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   collectedItems: []
-  desObject: []
-  desRange: 3
 --- !u!1 &1789266666
 GameObject:
   m_ObjectHideFlags: 0
@@ -1909,25 +1924,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 281448008}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1934399466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1934399465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c6a6d333813fce44a4911adb12a8430, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  jumpForce: 7
-  itemDisplayPrefab: {fileID: 0}
-  itemDisplayParent: {fileID: 0}
-  collectedItems: []
-  desObject: []
-  desRange: 3
 --- !u!58 &1934399467
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1990,6 +1986,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1934399471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934399465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df6d8f073e902a44f869011b22629b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+--- !u!114 &1934399472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934399465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c6af3bff1e07b4497711eef17b4612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectedItems: []
 --- !u!1 &1981522832
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,7 +2116,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e9ec34507f63c8f4e881e1c4f64550f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c73485662bfe4764db5a2d25049704f2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2224,7 +2246,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e9ec34507f63c8f4e881e1c4f64550f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c73485662bfe4764db5a2d25049704f2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -9,6 +9,8 @@ public class GoalManager : MonoBehaviour
     private bool hasShownError = false;
     private bool hasShownUnregisteredPlayerWarning = false;
 
+    private bool wasKeyPresentAtStart = false;
+
     // プレイヤーと対応するゴールをセットで管理する構造体
     [System.Serializable]
     public class GoalPair
@@ -26,9 +28,28 @@ public class GoalManager : MonoBehaviour
     void Start()
     {
         CheckUnregisteredPlayers(); // ゲーム開始時に未登録プレイヤーを警告
-        
 
+        // シーン上の "key" を含むアイテムを取得
+        var keysInScene = GameObject.FindGameObjectsWithTag("Item")
+            .Where(item => item.name.StartsWith("key"))
+            .ToArray();
+
+        wasKeyPresentAtStart = keysInScene.Length > 0;
+
+        // プレイヤーとゴール数をgoalPairsから取得
+        int playerCount = goalPairs.Count;
+        int keyCount = keysInScene.Length;
+        int goalCount = goalPairs.Select(p => p.goal).Distinct().Count();
+
+        // 数が一致しない場合に警告（鍵があるときだけチェック）
+        if (wasKeyPresentAtStart && (keyCount != playerCount || goalCount != playerCount))
+        {
+            Debug.LogWarning(
+                $"GoalManager: 鍵({keyCount})・プレイヤー({playerCount})・ゴール({goalCount}) の数が一致していません！意図した仕様であるか確認してください。"
+            );
+        }
     }
+
 
     void Update()
     {
@@ -42,55 +63,9 @@ public class GoalManager : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.L))
+        if (AllPlayersOnGoals() && AllPlayersHaveKey())
         {
-            foreach (var pair in goalPairs)
-            {
-                var items = pair.player.GetComponent<aitem>()?.collectedItems;
-                Debug.Log($"[L CHECK] {pair.player.name} のアイテム: {string.Join(", ", items ?? new List<string>())}");
-            }
-        }
-
-
-        if (AllPlayersOnGoals())
-        {
-            Debug.Log("[CHECK] 全プレイヤーがゴールに触れている");
-            if (AllPlayersHaveKey())
-            {
-                Debug.Log("[CHECK] 全プレイヤーがキーを持っている → シーン遷移実行");
-                //SceneManager.LoadScene(next_scene);
-            }
-            else
-            {
-                Debug.Log("[CHECK] キーを持っていないプレイヤーがいる → 遷移しない");
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            DebugTouchingPlayers();
-            foreach (var pair in goalPairs)
-            {
-                Debug.Log($"Registered Player: {pair.player.name}, ID: {pair.player.GetInstanceID()}");
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            foreach (var pair in goalPairs)
-            {
-                var itemComponent = pair.player.GetComponent<aitem>();
-                if (itemComponent != null)
-                {
-                    string playerName = pair.player.name;
-                    string itemList = string.Join(", ", itemComponent.collectedItems);
-                    Debug.Log($"[L CHECK] {playerName} のアイテム: {itemList}");
-                }
-                else
-                {
-                    Debug.LogWarning($"[L CHECK] {pair.player.name} に aitem がついてない！");
-                }
-            }
+            SceneManager.LoadScene(next_scene);
         }
 
     }
@@ -110,69 +85,32 @@ public class GoalManager : MonoBehaviour
     // キーが必要かどうかを判断し、所持状況をチェック
     private bool AllPlayersHaveKey()
     {
-        if (GameObject.Find("key") == null)
+        if (!wasKeyPresentAtStart)
         {
-            Debug.LogWarning("GoalManager: 'key' オブジェクトがシーン上に存在しないため、キー取得判定をスキップします。");
             return true;
         }
-
-        bool allHaveKey = true;
 
         foreach (var pair in goalPairs)
         {
             if (pair.player == null)
             {
-                Debug.LogError("[KEY CHECK] goalPairs に null の player が含まれています！");
-                allHaveKey = false;
-                continue;
+                return false;
             }
 
-            string name = pair.player.name;
-            int id = pair.player.GetInstanceID();
-            var itemComponent = pair.player.GetComponent<aitem>();
-
-            if (itemComponent == null)
+            var itemComponent = pair.player.GetComponent<PlayerInventory>();
+            if (itemComponent == null || itemComponent.collectedItems == null)
             {
-                Debug.LogWarning($"[KEY CHECK] {name} (ID: {id}) に aitem がアタッチされていません！");
-                allHaveKey = false;
-                continue;
+                return false;
             }
 
-            var items = itemComponent.collectedItems;
-            if (items == null)
+            if (!itemComponent.collectedItems.Contains("key"))
             {
-                Debug.LogWarning($"[KEY CHECK] {name} (ID: {id}) の collectedItems が null です！");
-                allHaveKey = false;
-                continue;
-            }
-
-            Debug.Log($"[KEY CHECK] {name} (ID: {id}) のアイテム: {string.Join(", ", items)}");
-
-            if (!items.Contains("key"))
-            {
-                Debug.LogWarning($"[KEY CHECK] {name} (ID: {id}) は 'key' を持っていません！");
-                allHaveKey = false;
-            }
-            else
-            {
-                Debug.Log($"[KEY CHECK] {name} (ID: {id}) は 'key' を持っています！");
+                return false;
             }
         }
 
-        if (allHaveKey)
-        {
-            Debug.Log("[CHECK] 全プレイヤーがキーを持っている → シーン遷移実行");
-        }
-        else
-        {
-            Debug.Log("[CHECK] キーを持っていないプレイヤーがいる → 遷移しない");
-        }
-
-        return allHaveKey;
+        return true;
     }
-
-
-
 
 
     // シーン上のプレイヤーが goalPairs に登録されているかを検証
@@ -199,34 +137,5 @@ public class GoalManager : MonoBehaviour
             }
         }
     }
-
-    // 各プレイヤーがゴールに触れているかをコンソールに出力（デバッグ用）
-    void DebugTouchingPlayers()
-    {
-        foreach (var pair in goalPairs)
-        {
-            bool touching = pair.goal.IsPlayerTouching(pair.player);
-            Debug.Log($"[DEBUG] {pair.player.name} は {(touching ? "ゴールに触れている" : "触れていない")}");
-        }
-    }
-    void DebugKeyCheck()
-    {
-        foreach (var pair in goalPairs)
-        {
-            var itemComponent = pair.player.GetComponent<aitem>();
-            string playerName = pair.player.name;
-
-            if (itemComponent == null)
-            {
-                Debug.LogWarning($"[DEBUG] {playerName} に aitem コンポーネントがありません！");
-            }
-            else
-            {
-                bool hasKey = itemComponent.collectedItems.Contains("key");
-                Debug.Log($"[DEBUG] {playerName} は 'key' を {(hasKey ? "持っている" : "持っていない")}");
-            }
-        }
-    }
-
 
 }
