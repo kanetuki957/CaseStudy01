@@ -693,7 +693,7 @@ GameObject:
   - component: {fileID: 438717957}
   - component: {fileID: 438717956}
   m_Layer: 0
-  m_Name: on/offBlock (1)
+  m_Name: onOffBlock (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1376,7 +1376,7 @@ GameObject:
   - component: {fileID: 1409080917}
   - component: {fileID: 1409080916}
   m_Layer: 0
-  m_Name: on/offBlock (3)
+  m_Name: onOffBlock (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2454,7 +2454,7 @@ GameObject:
   - component: {fileID: 1826085635}
   - component: {fileID: 1826085638}
   m_Layer: 0
-  m_Name: on/offBlock
+  m_Name: onOffBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2874,7 +2874,7 @@ GameObject:
   - component: {fileID: 2050001773}
   - component: {fileID: 2050001772}
   m_Layer: 0
-  m_Name: on/offBlock (2)
+  m_Name: onOffBlock (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
