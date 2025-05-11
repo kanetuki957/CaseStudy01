@@ -17,6 +17,13 @@ public class Goal : MonoBehaviour
         {
             touchingPlayers.Add(other.gameObject);
         }
+        
+            if (other.CompareTag("Player"))
+            {
+                // プレイヤーがゴールに触れたら、次のシーンを読み込む
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+        
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -26,4 +33,5 @@ public class Goal : MonoBehaviour
             touchingPlayers.Remove(other.gameObject);
         }
     }
+
 }

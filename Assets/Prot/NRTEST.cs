@@ -107,6 +107,11 @@ public class NRTEST : MonoBehaviour
 
     void Paste()
     {
+        if(selectObject == null)
+        {
+            return;
+        }
+
         if (selectObject.CompareTag("Finish") && Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.V))
         {
             Camera cam = GetCameraUnderMouse();
