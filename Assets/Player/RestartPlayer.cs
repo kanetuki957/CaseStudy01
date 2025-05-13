@@ -19,6 +19,6 @@ public class RestartPlayer : MonoBehaviour
     public void ResetPlayerPosition()
     {
         transform.position = startPosition;  // ‰ŠúˆÊ’u‚Ö–ß‚·
-        spriteRenderer.flipX = false;
+        
     }
 }
