@@ -17,13 +17,23 @@ public class VersatilityLever : MonoBehaviour
     [Tooltip("ON/OFF切り替え可能なトグル式レバーか？")]
     public bool isToggle = true;
 
+    [SerializeField] private EffectManager effectManager;
+
     private SpriteRenderer spriteRenderer;
     private Collider2D playerCollider2D;
     private bool isOn = false;
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();// 子から EffectManager を自動で探す（未設定時のみ）
+        if (effectManager == null)
+        {
+            effectManager = GetComponentInChildren<EffectManager>();
+            if (effectManager == null)
+            {
+                Debug.LogWarning($"[DisappearBlock] 子オブジェクトに EffectManager が見つかりません: {gameObject.name}");
+            }
+        }
         UpdateSprite();
     }
 
