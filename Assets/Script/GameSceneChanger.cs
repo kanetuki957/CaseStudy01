@@ -1,10 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SceneChanger : MonoBehaviour
+public class GameSceneChanger : MonoBehaviour
 {
     public Button changeSceneButton;
     public string sceneName;
@@ -17,7 +17,7 @@ public class SceneChanger : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Button‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+            Debug.LogError("Buttonï¿½ï¿½ï¿½İ’è‚³ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B");
         }
     }
 
@@ -26,11 +26,11 @@ public class SceneChanger : MonoBehaviour
         if (!string.IsNullOrEmpty(sceneName))
         {
             SceneManager.LoadSceneAsync(sceneName);
-            Debug.Log("ƒV[ƒ“‚ª•ÏX‚³‚ê‚Ü‚µ‚½: " + sceneName);
+            Debug.Log("ï¿½Vï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½: " + sceneName);
         }
         else
         {
-            Debug.LogError("ƒV[ƒ“–¼‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+            Debug.LogError("ï¿½Vï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ’è‚³ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B");
         }
     }
 }
