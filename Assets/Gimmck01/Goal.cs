@@ -1,18 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI; // UIを使うために必要
 
 public class Goal : MonoBehaviour
 {
-    public string main_goal; // 遷移先のシーン名をInspectorで指定
+    private HashSet<GameObject> touchingPlayers = new HashSet<GameObject>();
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public bool IsPlayerTouching(GameObject player)
     {
-        if (other.CompareTag("Player")) // プレイヤーが触れたら
+        return touchingPlayers.Contains(player);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(main_goal); // 指定したシーンへ移動
+            touchingPlayers.Add(other.gameObject);
+        }
+        
+            if (other.CompareTag("Player"))
+            {
+                // プレイヤーがゴールに触れたら、次のシーンを読み込む
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+        
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            touchingPlayers.Remove(other.gameObject);
         }
     }
+
 }

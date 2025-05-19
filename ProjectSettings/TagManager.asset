@@ -6,6 +6,10 @@ TagManager:
   tags:
   - open
   - closed
+  - Ground
+  - Item
+  - Wall
+  - UseZone
   layers:
   - Default
   - TransparentFX
@@ -13,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Wall
   - 
   - 
   - 
