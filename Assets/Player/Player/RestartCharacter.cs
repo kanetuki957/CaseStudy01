@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RestartPlayer : MonoBehaviour
+public class RestartCharacter: MonoBehaviour
 {
     public Button startButton;
     private Vector3 startPosition;
