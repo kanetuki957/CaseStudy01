@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PageTurnTransition : MonoBehaviour
+public class PageTurnTransitions : MonoBehaviour
 {
     public RawImage TransitionImage;
-    public Material PageTurnMaterial;
-    public string nextSceneName;
+    public Material PageTurnMaterial;// 完全に非公開にして、SceneTransitionHelperから使う
+    private string nextSceneName => SceneTransitionHelper.NextSceneName;
+
     [SerializeField] private RawImage nextSceneImage;
 
     public float duration = 1.0f; // めくり時間
