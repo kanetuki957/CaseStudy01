@@ -8,18 +8,20 @@ public class AnimationController : MonoBehaviour
     // スプライトの配列 
     public Sprite[] idleFrames;      //停止時アニメーション
     public Sprite[] moveFrames;      //動作時アニメーション　
-    public Sprite[] goalFrames; 　　 //ゴール時アニメーション　
+    public Sprite[] goalFrames; 　　 //ゴール時アニメーション
+    public Sprite[] goalPerformanceFrame;//ゴール後のアニメーション　
     public Sprite[] gimmickFrames;   //ギミック時アニメーション　
     public Sprite[] trapFrames; 　　 //トラップ時アニメーション　
     public Sprite[] getupFrames;     //目が覚めるアニメーション　
-    public float frameRate = 0.1f; 　// フレームの切り替え速度
+    public float frameRate = 0.2f; 　// フレームの切り替え速度
     public Button startButton;　　 　//ボタンの判定
     public Button resetButton;       //ボタンの判定
     private bool Button = false;     //スタートボタンの判定
-    private bool GoalButton = true;　//ゴール判定
-    private bool result = true;      //ゴールアニメーション判定
-    private bool gimmick = false;　　//ギミックの判定
-    private bool trap = false;       //トラップのギミック
+    private bool GoalButton = false;　//ゴール判定
+    public bool goalPerformance = false;      //ゴールアニメーション判定
+    public bool gimmick = false;　　//ギミックの判定
+    public bool trap = false;       //トラップのギミック
+    public bool trapReset= false;
     private SpriteRenderer spriteRenderer;　//
     private int currentFrame;　　　　//描写するフレーム
     private float timer;             //時間
@@ -38,83 +40,102 @@ public class AnimationController : MonoBehaviour
 
     void Update()
     {
-        if (GoalButton)
+        if (!GoalButton)
         {
             if (Button)
             {
             
                 if (gimmick)
                 {
-                    
-                    frame(gimmickFrames);
-                    if (gimmickFrames.Length == currentFrame) // 3秒後にfalseにする
+                    Goaltimer += Time.deltaTime;
+                    Frame(gimmickFrames);
+                    if (Goaltimer >= 1f) // 1秒後にfalseにする
                     {
                         gimmick = false;
-                        
+                        Goaltimer = 0;
                     }
                 }
-                else if (trap)
+                
+                if (trap)
                 {
-                   
-                    frame(trapFrames);
-                    if (trapFrames.Length == currentFrame) // 3秒後にfalseにする
+                    Goaltimer += Time.deltaTime;
+                    Frame(trapFrames);
+                    if (Goaltimer >= 1f) // 1秒後にfalseにする
                     {
+                        trapReset = true;
                         trap = false;
-                        
+                        Goaltimer = 0;
+                        spriteRenderer.sprite = idleFrames[0];
+                        Button = false;
                     }
                 }
-                else
+                if(!trap&& !gimmick)
                 {
-                    frame(moveFrames);
+                    Frame(moveFrames);
                 }
+              
             }
             else
             {
-                frame(idleFrames);
+                Frame(idleFrames);
             }
         }
         else
         {
-            if (result)
+            if (!goalPerformance)
             {
   
-                 Goaltimer += Time.deltaTime;
-                frame(goalFrames);
-                if (Goaltimer >= 3f) // 3秒後にfalseにする
-                {                  
-                    result = false;
+                Goaltimer += Time.deltaTime;
+                Frame(goalFrames);
+                if (Goaltimer >= 2f) // 2秒後にfalseにする
+                {
+                    goalPerformance = true;
                     Goaltimer = 0;
                 }
             }
-          
+            else
+            {
+                Goaltimer += Time.deltaTime;
+                Frame(goalPerformanceFrame);
+                if (Goaltimer >= 3f) // 3秒後にfalseにする
+                {
+                    goalPerformance = false;
+                    Goaltimer = 0;
+                    spriteRenderer.sprite = idleFrames[0];
+                    Button = false;
+                }
+            }
         }
     }
     //スタートボタンの処理
     void MoveButton()
     {
         Goaltimer = 0;
-     result = true;
+        goalPerformance = false;
         Button = true;
+        trapReset = false;
     }
     //リセットボタンの処理
     void RestartButton()
     {
         spriteRenderer.sprite = idleFrames[0];
         Button = false;
-       
     }
-    //当たり判定
-    void OnCollisionEnter(Collision collision)
+    //ギミックの当たり判定
+    public void GimmickBool()
     {
-        //ゴールと触れたら
-        if (collision.gameObject.name == "Goal")
-        {
-
-            GoalButton =  false;
-        }
+        gimmick = true; 
+    }
+    public void TrapBool()
+    {
+        trap = true;
+    }
+    public void GoalBool()
+    {
+        GoalButton = true;
     }
     //アニメーション関数
-    void frame(Sprite[] frames)
+    void Frame(Sprite[] frames)
     {
         if(frames.Length != 0)
         {
@@ -126,6 +147,5 @@ public class AnimationController : MonoBehaviour
                 spriteRenderer.sprite = frames[currentFrame];
             }
         }
-      
     }
 }

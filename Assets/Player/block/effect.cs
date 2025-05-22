@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class effect : MonoBehaviour
+public class Effect : MonoBehaviour
 {
     public float checkRadius = 1f; // 判定する範囲の半径
 
@@ -11,7 +11,7 @@ public class effect : MonoBehaviour
 
         for (int i = 0; i < hitColliders.Length; i++)
         {
-            targeteffect target = hitColliders[i].GetComponent<targeteffect>();
+            TargetEffect target = hitColliders[i].GetComponent<TargetEffect>();
             if (target != null)
             {
                 target.isInside = true; // 範囲内のオブジェクトのisInsideをtrueにする

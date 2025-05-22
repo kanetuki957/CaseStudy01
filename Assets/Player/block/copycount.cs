@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class copycount : MonoBehaviour
+public class CopyCount : MonoBehaviour
 {
     public GameObject targetObject; // Inspectorで対象オブジェクトを設定
     public int copynumber;
