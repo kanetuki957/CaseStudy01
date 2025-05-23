@@ -10,7 +10,7 @@ using UnityEngine.UI;
 /// </summary>
 public class SceneSwitcher : MonoBehaviour
 {
-    public string sceneName = "1stStagePart1Scene"; // 遷移先のシーン名
+    public string sceneName = "1-table"; // 遷移先のシーン名
     public AudioClip clickSound;                    // クリック時の効果音
 
     private Button button;
