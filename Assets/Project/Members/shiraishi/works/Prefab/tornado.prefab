@@ -100,9 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e75a5d6641413b48bbb383b117235f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceDirection: {x: 1, y: 1}
+  forceDirection: {x: 0, y: 1}
   forceStrength: 16
-  restrictHorizontalMovement: 0
+  restrictHorizontalMovement: 1
+  effectManager: {fileID: 0}
 --- !u!61 &4126291916265248695
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146,7 +147,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.2, y: 1}
   m_EdgeRadius: 0
 --- !u!1001 &5690088473081455986
 PrefabInstance:

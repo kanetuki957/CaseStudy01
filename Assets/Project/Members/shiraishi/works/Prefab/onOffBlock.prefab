@@ -31,8 +31,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6625465024175680823}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1354039544874168523
@@ -102,8 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visibleSprite: {fileID: 21300000, guid: 68243dc655fd49d4c9def9e1dce2580f, type: 3}
   hiddenSprite: {fileID: 21300000, guid: 274580ec4491ea14d8624666ee55969f, type: 3}
-  fadeDuration: 0.5
-  effectManager: {fileID: 888834934955231144}
+  effectManager: {fileID: 0}
 --- !u!61 &703704547540577877
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -149,89 +147,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1001 &1441577612813733600
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1413782642649226614}
-    m_Modifications:
-    - target: {fileID: 5761197273403827159, guid: 90e2762d1a0f92f48a9da1fb64ecce66,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5761197273403827159, guid: 90e2762d1a0f92f48a9da1fb64ecce66,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5761197273403827159, guid: 90e2762d1a0f92f48a9da1fb64ecce66,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5761197273403827159, guid: 90e2762d1a0f92f48a9da1fb64ecce66,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5761197273403827159, guid: 90e2762d1a0f92f48a9da1fb64ecce66,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5761197273403827159, guid: 90e2762d1a0f92f48a9da1fb64ecce66,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5761197273403827159, guid: 90e2762d1a0f92f48a9da1fb64ecce66,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5761197273403827159, guid: 90e2762d1a0f92f48a9da1fb64ecce66,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5761197273403827159, guid: 90e2762d1a0f92f48a9da1fb64ecce66,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5761197273403827159, guid: 90e2762d1a0f92f48a9da1fb64ecce66,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7193842273498451126, guid: 90e2762d1a0f92f48a9da1fb64ecce66,
-        type: 3}
-      propertyPath: m_Name
-      value: EffectManager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 90e2762d1a0f92f48a9da1fb64ecce66, type: 3}
---- !u!114 &888834934955231144 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1753102680367941960, guid: 90e2762d1a0f92f48a9da1fb64ecce66,
-    type: 3}
-  m_PrefabInstance: {fileID: 1441577612813733600}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f7385412416bc74c9502f82c657a758, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &6625465024175680823 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5761197273403827159, guid: 90e2762d1a0f92f48a9da1fb64ecce66,
-    type: 3}
-  m_PrefabInstance: {fileID: 1441577612813733600}
-  m_PrefabAsset: {fileID: 0}
