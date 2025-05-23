@@ -9,7 +9,7 @@ public class SceneTransitionHelper : MonoBehaviour
 
     public static void StartTransition(string nextSceneName)
     {
-        Camera cam = Camera.main; // or ‘JˆÚŒ³‚ÌUI‚ğ•`‰æ‚µ‚Ä‚éƒJƒƒ‰
+        Camera cam = Camera.main; // ‘JˆÚŒ³‚ÌUI‚ğ•`‰æ‚µ‚Ä‚éƒJƒƒ‰
         int width = Screen.width;
         int height = Screen.height;
 

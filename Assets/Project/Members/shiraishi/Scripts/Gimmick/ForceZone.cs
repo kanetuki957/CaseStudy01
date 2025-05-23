@@ -13,6 +13,8 @@ public class ForceZone : MonoBehaviour
 
     [SerializeField] private EffectManager effectManager;
 
+    Rigidbody2D rb;
+
     private void Start()
     {
         // éqÇ©ÇÁ EffectManager Çé©ìÆÇ≈íTÇ∑Åiñ¢ê›íËéûÇÃÇ›Åj
@@ -30,16 +32,25 @@ public class ForceZone : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
+            rb = other.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
                 rb.AddForce(forceDirection.normalized * forceStrength);
 
-                if (restrictHorizontalMovement)
-                {
-                    rb.velocity = new Vector2(0, rb.velocity.y);
-                }
             }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        rb = null;
+    }
+
+    private void FixedUpdate()
+    {
+        if (restrictHorizontalMovement && rb != null)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
 }
