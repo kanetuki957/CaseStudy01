@@ -5,22 +5,31 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-
+    public Transform target;
     public float moveSpeed = 5f;　//スピード
     public Button startButton;　　//スタートボタンの判定
     public Button restartButton; //リセットボタンの判定
     public Collider targetBlockCollider;//ターゲットの当たり判定
+    
+    private Vector3 startPostion;
     private bool Button = false;　　　　//ボタン判定
     private bool playerDirection = true;　//プレイヤーの向き
     private bool isGrounded;              //地面の設置判定
     private bool isWall;                  //壁の当たり判定
+    private bool isGimmick;               //ギミックの判定
+    private bool isTrap;                  //トラップの判定
+    private bool isTrapReset;
+    private bool isGoal;
     private Vector3 move;                 //move変数
     private Rigidbody rb;                 
-    private SpriteRenderer spriteRenderer; 
+    private SpriteRenderer spriteRenderer;
+    private AnimationController animationController;
     private float moveX;                   //X軸のmove変数
 
     void Start()
     {
+        startPostion = transform.position;  // 初期位置を記録
+        animationController = GetComponent<AnimationController>();
         rb = GetComponent<Rigidbody>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         startButton.onClick.AddListener(MoveButton);
@@ -80,19 +89,48 @@ public class PlayerController : MonoBehaviour
        //向きによって進む方向を変える
        if (playerDirection)
        {
-               moveX = +1.0f;
+            moveX = +1.0f;
        }
        else
        {
             moveX = -1.0f;
-       }
+       } 
+       //ギミック時停止
+       isGimmick = animationController.gimmick;
+        StopCharactor(isGimmick);
+        //トラップ時停止
+        isTrap = animationController.trap;
+        StopCharactor(isTrap);
+        //トラップにかかり初期位置に戻る
+        isTrapReset = animationController.trapReset;
+        if (isTrapReset)
+        {
+            transform.position = startPostion + new Vector3(0,0.1f,0);  // 初期位置へ戻す
+            playerDirection = true;// 右向き
+        }
+        isGoal = animationController.goalPerformance;
+        if (isGoal)
+        {
+            direction = (target.position - rb.position).normalized;
+             float desiredDistance = 2f; // 一定の距離を保つ
+            float distance = Vector3.Distance(target.position, rb.position);
+            // 一定の距離より近い場合は移動しない
+            if (distance > desiredDistance)
+            {
+                rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+
+            }
+        }
+        else
+        {
+            move = new Vector3(moveX, 0, 0) * moveSpeed * Time.deltaTime;
+            transform.Translate(move, Space.World);
+        }
+        
       
-        move = new Vector3(moveX, 0, 0) * moveSpeed * Time.deltaTime;
-        transform.Translate(move, Space.World);
 
 
     }
-
 
     void HandleSpriteDirection()
     {
@@ -118,6 +156,13 @@ public class PlayerController : MonoBehaviour
         {
             Button = false;
 
+        }
+    }
+    private void StopCharactor(bool isbool)
+    {
+        if (isbool)
+        {
+            moveX = 0.0f;
         }
     }
 }
