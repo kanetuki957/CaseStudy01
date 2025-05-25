@@ -51,7 +51,7 @@ public class PlayerLadderClimb : MonoBehaviour
             if (climbDirection == 1 && transform.position.y >= topY)
                 climbDirection = -1;
             else if (climbDirection == -1 && transform.position.y <= bottomY)
-                climbDirection = 1;
+                FinishClimb(bottomY);
         }
     }
 
@@ -62,12 +62,18 @@ public class PlayerLadderClimb : MonoBehaviour
             currentLadder = other.gameObject;
             isOnLadder = true;
 
-            // 最初だけX座標を合わせる（ぴたっと吸い付く演出）
-            transform.position = new Vector3(
-                currentLadder.transform.position.x,
-                transform.position.y,
-                transform.position.z
-            );
+            // X座標の吸着を距離条件付きで行う
+            float distanceX = Mathf.Abs(transform.position.x - currentLadder.transform.position.x);
+            float snapThreshold = -0.1f; // 吸着する範囲（←必要に応じて調整）
+
+            if (distanceX < snapThreshold)
+            {
+                transform.position = new Vector3(
+                    currentLadder.transform.position.x,
+                    transform.position.y,
+                    transform.position.z
+                );
+            }
         }
     }
 
@@ -75,5 +81,21 @@ public class PlayerLadderClimb : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         // 処理しない（仕様通り）
+    }
+
+    void FinishClimb(float fixedY)
+    {
+        // Y位置を正確に合わせて停止
+        transform.position = new Vector3(transform.position.x, fixedY, transform.position.z);
+        rb.velocity = Vector2.zero;
+        rb.gravityScale = 0f;
+
+        // 横移動再開
+        moveScript.enabled = true;
+
+        // 状態リセット（1回限り）
+        isOnLadder = false;
+        currentLadder = null;
+        climbDirection = 0;
     }
 }
