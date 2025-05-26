@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -56,6 +57,15 @@ public class GameManager : MonoBehaviour
         resetButton.interactable = false;
         resetButtonGroup.alpha = 0.3f;
         resetButtonGroup.blocksRaycasts = false;
+
+        // Scene内にEventSystemが存在しなければ
+        if (FindObjectOfType<EventSystem>() == null)
+        {
+            // 新しいGameObjectを生成してEventSystemとStandaloneInputModuleを追加
+            GameObject es = new GameObject("EventSystem");
+            es.AddComponent<EventSystem>();
+            es.AddComponent<StandaloneInputModule>();
+        }
     }
 
     // 状態変更用メソッド（外部から状態を更新するために使用）
