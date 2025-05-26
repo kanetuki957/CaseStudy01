@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -140,5 +141,44 @@ public class GameManager : MonoBehaviour
 
         // 現在のシーンを再読み込み
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    /** シーン遷移関連 **/
+
+
+    [Header("シーン順リスト（ScriptableObject）")]
+    public GameSceneOrderList sceneOrderList; // インスペクターでアセットをドラッグして指定
+
+    public string GetNextSceneName()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        int idx = sceneOrderList.sceneNames.IndexOf(currentScene);
+        if (idx >= 0 && idx < sceneOrderList.sceneNames.Count - 1)
+        {
+            return sceneOrderList.sceneNames[idx + 1];
+        }
+        return null;
+    }
+
+    public string GetPreviousSceneName()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        int idx = sceneOrderList.sceneNames.IndexOf(currentScene);
+        if (idx > 0)
+        {
+            return sceneOrderList.sceneNames[idx - 1];
+        }
+        return null;
+    }
+
+    // シーン遷移を一元管理するメソッド
+    public void GoToNextScene()
+    {
+        string next = GetNextSceneName();
+        if (!string.IsNullOrEmpty(next))
+        {
+            SceneTransitionHelper.StartTransition(next);
+            //SceneManager.LoadScene(next);
+        }
     }
 }

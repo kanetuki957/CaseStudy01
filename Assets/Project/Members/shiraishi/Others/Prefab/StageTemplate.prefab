@@ -196,6 +196,7 @@ MonoBehaviour:
   seVolume: 1
   fadeImage: {fileID: 4365298609991973614}
   fadeDuration: 0.3
+  sceneOrderList: {fileID: 11400000, guid: b2218eff379b22b4b9f9a9759cd3ecd0, type: 2}
 --- !u!1 &3886711855470800926
 GameObject:
   m_ObjectHideFlags: 0
