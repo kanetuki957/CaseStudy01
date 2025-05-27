@@ -1,0 +1,134 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+// ゲームの状態を管理する列挙体
+public enum GameState
+{
+    Ready,      // 開始前（初期状態）
+    Playing,    // ゲーム中
+    Paused,     // 一時停止中
+    Cleared,    // クリア済み
+    GameOver    // ゲームオーバー
+}
+
+public class GameManager : MonoBehaviour
+{
+    // シングルトンインスタンス
+    public static GameManager Instance { get; private set; }
+
+    // 現在のゲーム状態
+    public GameState CurrentState { get; private set; } = GameState.Ready;
+
+    [SerializeField] private Button resetButton;
+    [SerializeField] private CanvasGroup resetButtonGroup;
+
+    [Header("ボタンクリック時のSE")]
+    public AudioClip clickSE;
+    public float clickSEVolume = 1f;
+
+    [Header("リセット時に鳴らすSE")]
+    public AudioClip resetSE;
+    public float seVolume = 1f;
+
+    [Header("フェード演出に使う UI イメージ")]
+    public Image fadeImage;
+
+    [Header("フェードの長さ（秒）")]
+    public float fadeDuration = 0.3f;
+
+    private void Awake()
+    {
+        // シングルトンの初期化（重複インスタンス防止）
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
+        // フェード用イメージを透明に初期化
+        if (fadeImage != null)
+            fadeImage.color = new Color(0, 0, 0, 0);
+
+        // 最初は非操作状態・透明に近い
+        resetButton.interactable = false;
+        resetButtonGroup.alpha = 0.3f;
+        resetButtonGroup.blocksRaycasts = false;
+    }
+
+    // 状態変更用メソッド（外部から状態を更新するために使用）
+    public void SetGameState(GameState newState)
+    {
+        CurrentState = newState;
+    }
+
+    // Startボタンが押されたときに呼ばれる（ゲーム開始）
+    public void OnStartButtonPressed()
+    {
+        // SE再生
+        if (clickSE != null)
+            AudioSource.PlayClipAtPoint(clickSE, Camera.main.transform.position, clickSEVolume);
+
+        SetGameState(GameState.Playing);
+        StartCoroutine(ShowPlayButtonDelayed());
+    }
+
+    private IEnumerator ShowPlayButtonDelayed()
+    {
+        yield return new WaitForSeconds(3f);
+
+        // 最初は非操作状態・透明に近い
+        resetButton.interactable = true;
+        resetButtonGroup.alpha = 1.0f;
+        resetButtonGroup.blocksRaycasts = true;
+    }
+
+    // Pauseボタンが押されたときに呼ばれる（一時停止）(未実装)
+    public void OnPauseButtonPressed()
+    {
+        // SE再生
+        if (clickSE != null)
+            AudioSource.PlayClipAtPoint(clickSE, Camera.main.transform.position, clickSEVolume);
+        SetGameState(GameState.Paused);
+    }
+
+    // Resetボタンが押されたときに呼ばれる（リスタート処理）
+    public void OnResetButtonPressed()
+    {
+        // SE再生
+        if (clickSE != null)
+            AudioSource.PlayClipAtPoint(clickSE, Camera.main.transform.position, clickSEVolume);
+        StartCoroutine(DoFadeAndReload());
+    }
+
+    // フェード演出 + SE + シーンリロードを順に行う
+    private IEnumerator DoFadeAndReload()
+    {
+        // フェードイン（黒くなる）
+        if (fadeImage != null)
+        {
+            float t = 0f;
+            Color original = fadeImage.color;
+
+            while (t < fadeDuration)
+            {
+                t += Time.deltaTime;
+                float alpha = Mathf.Clamp01(t / fadeDuration);
+                fadeImage.color = new Color(original.r, original.g, original.b, alpha);
+                yield return null;
+            }
+        }
+
+        // 効果音を再生（もし設定されていれば）
+        if (resetSE != null)
+        {
+            AudioSource.PlayClipAtPoint(resetSE, Camera.main.transform.position, seVolume);
+            yield return new WaitForSeconds(0.2f); // 音の余韻を待つ
+        }
+
+        // 現在のシーンを再読み込み
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+}
