@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Project/Members/shiraishi/works/PageTurn/TransitionScene.unity
     guid: a7c7d3f3213d5294b9455c2fd70a3c35
+  - enabled: 1
+    path: Assets/Project/Members/shiraishi/Scenes/shiraishi_scene.unity
+    guid: 417f3640d111bd1488766b56998f6f96
+  - enabled: 1
+    path: Assets/Project/Members/shiraishi/Scenes/Stage_shiraishi.unity
+    guid: eb33ffb02031f8942b8fc4c85bacc897
   m_configObjects: {}
