@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -56,6 +58,15 @@ public class GameManager : MonoBehaviour
         resetButton.interactable = false;
         resetButtonGroup.alpha = 0.3f;
         resetButtonGroup.blocksRaycasts = false;
+
+        // Scene内にEventSystemが存在しなければ
+        if (FindObjectOfType<EventSystem>() == null)
+        {
+            // 新しいGameObjectを生成してEventSystemとStandaloneInputModuleを追加
+            GameObject es = new GameObject("EventSystem");
+            es.AddComponent<EventSystem>();
+            es.AddComponent<StandaloneInputModule>();
+        }
     }
 
     // 状態変更用メソッド（外部から状態を更新するために使用）
@@ -130,5 +141,44 @@ public class GameManager : MonoBehaviour
 
         // 現在のシーンを再読み込み
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    /** シーン遷移関連 **/
+
+
+    [Header("シーン順リスト（ScriptableObject）")]
+    public GameSceneOrderList sceneOrderList; // インスペクターでアセットをドラッグして指定
+
+    public string GetNextSceneName()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        int idx = sceneOrderList.sceneNames.IndexOf(currentScene);
+        if (idx >= 0 && idx < sceneOrderList.sceneNames.Count - 1)
+        {
+            return sceneOrderList.sceneNames[idx + 1];
+        }
+        return null;
+    }
+
+    public string GetPreviousSceneName()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        int idx = sceneOrderList.sceneNames.IndexOf(currentScene);
+        if (idx > 0)
+        {
+            return sceneOrderList.sceneNames[idx - 1];
+        }
+        return null;
+    }
+
+    // シーン遷移を一元管理するメソッド
+    public void GoToNextScene()
+    {
+        string next = GetNextSceneName();
+        if (!string.IsNullOrEmpty(next))
+        {
+            SceneTransitionHelper.StartTransition(next);
+            //SceneManager.LoadScene(next);
+        }
     }
 }
