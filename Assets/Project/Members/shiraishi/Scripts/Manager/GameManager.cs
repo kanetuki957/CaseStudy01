@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 // ゲームの状態を管理する列挙体
 public enum GameState
@@ -35,10 +36,13 @@ public class GameManager : MonoBehaviour
     public float seVolume = 1f;
 
     [Header("フェード演出に使う UI イメージ")]
-    public Image fadeImage;
+    public　UnityEngine.UI.Image fadeImage;
 
     [Header("フェードの長さ（秒）")]
     public float fadeDuration = 0.3f;
+
+    [Header("リセットボタンが表示されるまでの長さ（秒）")]
+    public float turnResetButtonDuration = 1.0f;
 
     private void Awake()
     {
@@ -88,7 +92,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator ShowPlayButtonDelayed()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(turnResetButtonDuration);
 
         // 最初は非操作状態・透明に近い
         resetButton.interactable = true;
@@ -149,6 +153,7 @@ public class GameManager : MonoBehaviour
     [Header("シーン順リスト（ScriptableObject）")]
     public GameSceneOrderList sceneOrderList; // インスペクターでアセットをドラッグして指定
 
+    // リスト内の次のシーン名を取得する
     public string GetNextSceneName()
     {
         string currentScene = SceneManager.GetActiveScene().name;
@@ -160,6 +165,7 @@ public class GameManager : MonoBehaviour
         return null;
     }
 
+    // リスト内の前のシーン名を取得する
     public string GetPreviousSceneName()
     {
         string currentScene = SceneManager.GetActiveScene().name;
@@ -171,14 +177,19 @@ public class GameManager : MonoBehaviour
         return null;
     }
 
-    // シーン遷移を一元管理するメソッド
+    // リストで現在シーンの次にあるシーンをロード
     public void GoToNextScene()
     {
         string next = GetNextSceneName();
         if (!string.IsNullOrEmpty(next))
         {
-            SceneTransitionHelper.StartTransition(next);
-            //SceneManager.LoadScene(next);
+            SceneTransitionHelper.StartTransition(next, this);
         }
+    }
+
+    // シーン名を直接指定してロード
+    public void GoToScene(string sceneName)
+    {
+        SceneTransitionHelper.StartTransition(sceneName, this);
     }
 }
