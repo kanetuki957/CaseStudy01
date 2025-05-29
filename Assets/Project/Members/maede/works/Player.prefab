@@ -16,6 +16,9 @@ GameObject:
   - component: {fileID: 7635092613522918640}
   - component: {fileID: 8268574140988185578}
   - component: {fileID: 1963626386576500191}
+  - component: {fileID: 7989324799012761029}
+  - component: {fileID: 8672038954733406758}
+  - component: {fileID: 7752823051841159922}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -152,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a222a23f01d8248a9eede6e4830b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 45903603988558986, guid: f737d67f1b123d54094cb59e5f9e544a, type: 3}
   moveSpeed: 5
   jumpForce: 8
   Button: 0
@@ -160,9 +163,9 @@ MonoBehaviour:
   restartButton: {fileID: 0}
   targetBlockCollider: {fileID: 0}
   baseJumpForce: 0
-  maxJumpForce: 0.16
+  maxJumpForce: 0.2
   rayDistance: 1
-  tt: 0
+  jumpBlock: 2
   jumpMoveDamping: 0.5
   isGrounded: 0
 --- !u!95 &7635092613522918640
@@ -290,3 +293,46 @@ MonoBehaviour:
   rayLength: 1
   currentFrame: 0
   groundCheck: 0
+--- !u!114 &7989324799012761029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972271628872371531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c6af3bff1e07b4497711eef17b4612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectedItems: []
+--- !u!114 &8672038954733406758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972271628872371531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00405dbf61438c94ba828e9659bc0fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &7752823051841159922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972271628872371531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73c0c01bcd76af346810bdf4a67214f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallScene: 
+  ascendScene: 
