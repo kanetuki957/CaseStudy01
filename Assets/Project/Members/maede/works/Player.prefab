@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a222a23f01d8248a9eede6e4830b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 45903603988558986, guid: f737d67f1b123d54094cb59e5f9e544a, type: 3}
   moveSpeed: 5
   jumpForce: 8
   Button: 0
@@ -160,9 +160,9 @@ MonoBehaviour:
   restartButton: {fileID: 0}
   targetBlockCollider: {fileID: 0}
   baseJumpForce: 0
-  maxJumpForce: 0.16
+  maxJumpForce: 0.2
   rayDistance: 1
-  tt: 0
+  jumpBlock: 2
   jumpMoveDamping: 0.5
   isGrounded: 0
 --- !u!95 &7635092613522918640

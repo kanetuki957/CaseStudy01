@@ -126,7 +126,6 @@ public class AnimationController : MonoBehaviour
                 {
 
                     goalPerformance = false;
-                    framesAnimation = false;
                     Goaltimer = 0;
                     spriteRenderer.sprite = idleFrames[0];
                     Button = false;
