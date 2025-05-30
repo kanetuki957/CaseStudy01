@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+        //DontDestroyOnLoad(this);
 
         // 最初は非操作状態・透明に近い
         resetButton.interactable = false;
@@ -61,6 +62,7 @@ public class GameManager : MonoBehaviour
             es.AddComponent<EventSystem>();
             es.AddComponent<StandaloneInputModule>();
         }
+
     }
 
     // 状態変更用メソッド（外部から状態を更新するために使用）

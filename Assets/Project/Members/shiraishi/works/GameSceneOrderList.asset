@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameSceneOrderList
   m_EditorClassIdentifier: 
   sceneNames:
-  - shiraishi_scene
   - 1-table
-  - 3-1table_shira
-  - Stage_shiraishi
+  - 1-back
+  - 2-table
+  - main_goal
