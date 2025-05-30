@@ -9,44 +9,50 @@ public class FollowPlayer : MonoBehaviour
     public float speed = 5f;
     public float desiredDistance = 2f; // 一定の距離を保つ
     public GameObject[] ignoredPlayers; // 通り抜けたいプレイヤーのリスト
+    public float rayDistance = 0.0f;
+
     private Vector3 startPostion;
     private bool isTrapReset;
     private bool isgoal;
     private bool isgoalPerformance;
-    private Rigidbody rb;
-    private Collider myCollider;
+    private Rigidbody2D rb;
+    private Collider2D myCollider;
     private SpriteRenderer spriteRenderer;
     private AnimationController animationController;
     private float moveX;
-    private Vector3 direction;
+    private Vector2 direction;
+    private bool jump = false;
 
     void Start()
     {
+
         startPostion = transform.position;  // 初期位置を記録
         animationController = target.GetComponent<AnimationController>();
 
-        myCollider = GetComponent<Collider>();
-        rb = GetComponent<Rigidbody>();
+        myCollider = GetComponent<Collider2D>();
+        rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         for (int i = 0; i < ignoredPlayers.Length; i++)
         {
-            Collider playerCollider = ignoredPlayers[i].GetComponent<Collider>();
+            Collider2D playerCollider = ignoredPlayers[i].GetComponent<Collider2D>();
             if (playerCollider != null)
             {
-                Physics.IgnoreCollision(myCollider, playerCollider);
+                Physics2D.IgnoreCollision(myCollider, playerCollider);
             }
         }
+        rb.freezeRotation = true;
     }
+
 
     void FixedUpdate()
     {
         isgoal = animationController.GoalButton;
         if (!isgoal)
         {
-            direction = (target.position - rb.position).normalized;
+            direction = ((Vector2)target.position - rb.position).normalized;
         }
-        float distance = Vector3.Distance(target.position, rb.position);
+        float distance = Vector2.Distance((Vector2)target.position, rb.position);
         // スプライトの向きを反転
 
         isgoalPerformance = animationController.goalPerformance;
@@ -60,44 +66,61 @@ public class FollowPlayer : MonoBehaviour
             {
                 spriteRenderer.flipX = true; // 左向き
             }
-            if (distance > 3.0f)
+            if (distance > 4.0f)
             {
-                transform.position = target.position + new Vector3(-0.5f, 0, 0);  // 初期位置へ戻す
+                transform.position = target.position + new Vector3(-2.0f, 0, 0);  // 初期位置へ戻す
             }
         }
 
-      
+
         if (isgoalPerformance)
         {
+            // ゴール演出時：通常の動き（X方向のみ）
+            moveX = direction.x > 0 ? 1f : -1f;
 
-            float directionX = 0;
-            if(directionX == 0)
-            {
-                directionX = direction.x;
-            }
-            if (directionX > 0)
-            {
-                moveX = 1.0f; // 右向き
-            }
-            else if(directionX < 0)
-            {
-                moveX = -1.0f;
-            }
-            Vector3 move = new Vector3(moveX, 0, 0) * speed * Time.deltaTime;
-            transform.Translate(move, Space.World);
+            Vector2 velocity = rb.velocity;
+            velocity.x = moveX * speed;
+            rb.velocity = velocity;
+
         }
         else
         {
-            // 一定の距離より近い場合は移動しない
             if (distance > desiredDistance)
             {
-                rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+                Vector2 velocity = rb.velocity;
+                velocity.x = direction.x * speed; // X軸のみ追従
+                if(jump)
+                {
+                    velocity.y = direction.y * speed; // Y軸の移動（ジャンプ時も追従）
+                    rb.velocity = velocity; // Y軸はそのまま重力に任せる
+                }
+                else
+                {
+                    rb.velocity = new Vector2(velocity.x, velocity.y); // Y軸はそのまま重力に任せる
+                }
+             
+
+                
             }
+            else
+            {
+                // 距離が近いときは横移動止めるが、落下などは許容
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
+
         }
-     
+
     }
-    void RestartButton()
+    void SkyLeap()
     {
-       
+        if (rb.velocity.y > 0) // 正の速度ならジャンプ中
+        {
+            jump = true;
+        }
+        else if (rb.velocity.y <= 0) // 負の速度なら落下中
+        {
+            jump = false;
+        }
+
     }
 }
