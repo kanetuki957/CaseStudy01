@@ -35,12 +35,6 @@ public class GameManager : MonoBehaviour
     public AudioClip resetSE;
     public float seVolume = 1f;
 
-    [Header("フェード演出に使う UI イメージ")]
-    public　UnityEngine.UI.Image fadeImage;
-
-    [Header("フェードの長さ（秒）")]
-    public float fadeDuration = 0.3f;
-
     [Header("リセットボタンが表示されるまでの長さ（秒）")]
     public float turnResetButtonDuration = 1.0f;
 
@@ -53,10 +47,6 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-
-        // フェード用イメージを透明に初期化
-        if (fadeImage != null)
-            fadeImage.color = new Color(0, 0, 0, 0);
 
         // 最初は非操作状態・透明に近い
         resetButton.interactable = false;
@@ -121,21 +111,6 @@ public class GameManager : MonoBehaviour
     // フェード演出 + SE + シーンリロードを順に行う
     private IEnumerator DoFadeAndReload()
     {
-        // フェードイン（黒くなる）
-        if (fadeImage != null)
-        {
-            float t = 0f;
-            Color original = fadeImage.color;
-
-            while (t < fadeDuration)
-            {
-                t += Time.deltaTime;
-                float alpha = Mathf.Clamp01(t / fadeDuration);
-                fadeImage.color = new Color(original.r, original.g, original.b, alpha);
-                yield return null;
-            }
-        }
-
         // 効果音を再生（もし設定されていれば）
         if (resetSE != null)
         {
@@ -144,7 +119,7 @@ public class GameManager : MonoBehaviour
         }
 
         // 現在のシーンを再読み込み
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.Instance.GoToScene(SceneManager.GetActiveScene().name);
     }
 
     /** シーン遷移関連 **/
