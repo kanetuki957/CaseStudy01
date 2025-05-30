@@ -26,7 +26,7 @@ public class SceneChanger : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(sceneName))
         {
-            SceneManager.LoadSceneAsync(sceneName);
+            SceneTransitionHelper.StartTransition(sceneName,this);
             Debug.Log("ƒV[ƒ“‚ª•ÏX‚³‚ê‚Ü‚µ‚½: " + sceneName);
         }
         else

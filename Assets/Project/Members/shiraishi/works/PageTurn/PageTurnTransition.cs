@@ -16,11 +16,15 @@ public class PageTurnTransitions : MonoBehaviour
     private float progress = 0f;
     private bool animating = true;
 
-    void Start()
+    private void Awake()
     {
         // _MainTexに遷移元画像
         PageTurnMaterial.SetTexture("_MainTex", SceneTransitionHelper.Screenshot);
+        TransitionImage.material = PageTurnMaterial;
+    }
 
+    void Start()
+    {
         // 非同期Additiveで次シーンをロード
         StartCoroutine(LoadNextSceneAdditive());
     }
@@ -87,7 +91,6 @@ public class PageTurnTransitions : MonoBehaviour
         Destroy(rt);
 
         nextSceneImage.texture = nextSceneTex;
-        TransitionImage.material = PageTurnMaterial;
 
         // 遷移先シーンを非表示に
         foreach (GameObject go in nextScene.GetRootGameObjects())

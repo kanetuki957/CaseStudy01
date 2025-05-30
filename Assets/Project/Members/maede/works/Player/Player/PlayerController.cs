@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public float baseJumpForce =0f; // 最小ジャンプ力
     public float maxJumpForce = 1.0f; // 最大ジャンプ力
     public float rayDistance = 1.0f; // レイキャストの距離
-    public bool tt = false;
+    public int   jumpBlock = 1;　//ジャンプできるブロックの高さ設定
     public float jumpMoveDamping = 0.1f; // ジャンプ時の横移動の減速
 
 
@@ -98,11 +98,10 @@ public class PlayerController : MonoBehaviour
         RaycastHit hitBlock;
         if (Physics.Raycast(transform.position, direction, out hitBlock, rayDistance))
         {
-            // スクリプトを持っているか確認
-            JumpBlock jumpblock = hitBlock.collider.GetComponent<JumpBlock>();
-            if (jumpblock != null) // スクリプトを持っているブロックだけ反応
+            float blockHeight = hitBlock.collider.bounds.size.y;
+            if (blockHeight <jumpBlock) // スクリプトを持っているブロックだけ反応
             {
-                float blockHeight = hitBlock.collider.bounds.size.y;
+                
                 float jumpForce = Mathf.Clamp(blockHeight * 0.5f, baseJumpForce, maxJumpForce);
 
                 Jump(jumpForce);
