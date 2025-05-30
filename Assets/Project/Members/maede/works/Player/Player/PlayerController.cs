@@ -11,14 +11,15 @@ public class PlayerController : MonoBehaviour
     public bool Button = false;　　　　//ボタン判定
     public Button startButton;　　//スタートボタンの判定
     public Button restartButton; //リセットボタンの判定
-    public Collider targetBlockCollider;//ターゲットの当たり判定
+    public Collider2D targetBlockCollider;//ターゲットの当たり判定
+    private Collider2D myCollider;
+    public GameObject[] ignoredPlayers; // 通り抜けたいプレイヤーのリスト
     public float baseJumpForce =0f; // 最小ジャンプ力
     public float maxJumpForce = 1.0f; // 最大ジャンプ力
     public float rayDistance = 1.0f; // レイキャストの距離
     public int   jumpBlock = 1;　//ジャンプできるブロックの高さ設定
     public float jumpMoveDamping = 0.1f; // ジャンプ時の横移動の減速
-
-
+    public float wallsRay = 0.0f;
     private Vector3 startPostion;
     private bool playerDirection = true;　//プレイヤーの向き
     public bool isGrounded;              //地面の設置判定
@@ -30,7 +31,7 @@ public class PlayerController : MonoBehaviour
     private bool isGoalPerformance;
     private bool isFinish;
     private Vector3 move;                 //move変数
-    private Rigidbody rb;
+    private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private AnimationController animationController;
     private float moveX;                   //X軸のmove変数
@@ -39,13 +40,22 @@ public class PlayerController : MonoBehaviour
     {
         startPostion = transform.position;  // 初期位置を記録
         animationController = GetComponent<AnimationController>();
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
+        myCollider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         startButton.onClick.AddListener(MoveButton);
         restartButton.onClick.AddListener(RestartButton);
 
         //playerWidth = spriteRenderer.bounds.size.x;  // スプライトの幅を取得
         rb.freezeRotation = true; //
+        for (int i = 0; i < ignoredPlayers.Length; i++)
+        {
+            Collider2D playerCollider = ignoredPlayers[i].GetComponent<Collider2D>();
+            if (playerCollider != null)
+            {
+                Physics2D.IgnoreCollision(myCollider, playerCollider);
+            }
+        }
     }
     void Update()
     {
@@ -72,49 +82,42 @@ public class PlayerController : MonoBehaviour
     void HandleMovement()
     {
         //プレイヤーの向きを取得
-        Vector3 direction = playerDirection ? Vector3.right : Vector3.left;
-        Vector3 rayOrigintop = transform.position + Vector3.up * 0.5f; // 頭の位置から発射
-        Vector3 rayOrigindown = transform.position + Vector3.up * 0.5f; // 頭の位置から発射
-        Vector3 rayOrigin1 = transform.position + Vector3.down * 0.5f; // 足元からレイを飛ばす
+        Vector2 direction = playerDirection ? Vector2.right : Vector2.left;
+        Vector2 rayOrigin = (Vector2)transform.position + direction * 0.4f; // 頭の位置から発射
 
         // 前方に壁があるかチェック
-        if (Physics.Raycast(rayOrigintop, direction, 0.3f))
+        RaycastHit2D hitwalls = Physics2D.Raycast(rayOrigin, direction, wallsRay);
+        if (hitwalls.collider != null)
         {
+            Debug.Log("真ん中" + hitwalls.collider.name);
             playerDirection = !playerDirection;  // 反転
         }
-        else if (Physics.Raycast(rayOrigindown, direction, 0.3f))
-        {
-            playerDirection = !playerDirection;  // 反転
-        }
+        //RaycastHit2D hit = Physics2D.Raycast(rayOrigindown, Vector2.down, 10f);
+        //if (hit.collider != null)
+        // { // 最大10mの範囲で判定
+        //    float groundDistance = Mathf.Round(hit.distance * 10.0f);
 
-        RaycastHit hit;
-        if (Physics.Raycast(rayOrigin1, Vector3.down, out hit, 10f))
-        { // 最大10mの範囲で判定
-            float groundDistance = Mathf.Round(hit.distance * 10.0f);
-
-            //Debug.Log("床までの距離: " + groundDistance);
-            rb.velocity += Vector3.down * 2f * Time.deltaTime;
-        }
-        RaycastHit hitBlock;
-        if (Physics.Raycast(transform.position, direction, out hitBlock, rayDistance))
+        //    //Debug.Log("床までの距離: " + groundDistance);
+        //    rb.velocity += Vector2.down * 2f * Time.deltaTime;
+        //}
+         RaycastHit2D hitBlock = Physics2D.Raycast(rayOrigin, direction, rayDistance);
+        if (hitBlock.collider != null)
         {
             float blockHeight = hitBlock.collider.bounds.size.y;
-            if (blockHeight <jumpBlock) // スクリプトを持っているブロックだけ反応
+            if (blockHeight < jumpBlock) 
             {
-                
-                float jumpForce = Mathf.Clamp(blockHeight * 0.5f, baseJumpForce, maxJumpForce);
+
+                float jumpForce = Mathf.Clamp(blockHeight * 0.1f, baseJumpForce, maxJumpForce);
 
                 Jump(jumpForce);
-                
-            }
 
-          
+            }         
         }
 
         //向きによって進む方向を変える
         if (playerDirection)
         {
-            moveX = +1.0f;
+            moveX = 1.0f;
         }
         else
         {
@@ -141,11 +144,10 @@ public class PlayerController : MonoBehaviour
 
         }
 
-
         float modifiedMoveX = moveX;
 
         // 地面にいるときは通常の移動
-        if (isGrounded)
+        if (!isGrounded)
         {
             modifiedMoveX *= jumpMoveDamping; // ジャンプ中なら横移動を減速
         }
@@ -156,9 +158,9 @@ public class PlayerController : MonoBehaviour
         isGoalPerformance = animationController.goalPerformance;
         if (isGoalPerformance)
         {
-            direction = (target.position - rb.position).normalized;
+            direction = (target.position - transform.position).normalized;
             float desiredDistance = 2f; // 一定の距離を保つ
-            float distance = Vector3.Distance(target.position, rb.position);
+            float distance = Vector2.Distance(target.position, rb.position);
             if (direction.x > 0)
             {
                 spriteRenderer.flipX = false; // 右向き
@@ -171,9 +173,7 @@ public class PlayerController : MonoBehaviour
             if (distance > desiredDistance)
             {
                 rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
-
             }
-
         }
         else
         {
@@ -191,35 +191,19 @@ public class PlayerController : MonoBehaviour
 
     void HandleSpriteDirection()
     {
-        //無地の表示を変える
-        if (playerDirection)
-        {
-            spriteRenderer.flipX = false; // 左向き
-        }
-        else
-        {
-            spriteRenderer.flipX = true; // 右向き
-        }
+        spriteRenderer.flipX = !playerDirection;
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider == targetBlockCollider)
         {
-            Debug.Log("Touched specific block!");
             enabled = false;  // スクリプトの動作を停止
         }
         if (collision.gameObject.name == "Goal")
         {
             Button = false;
         }
-        
-        //if (collision.gameObject.GetComponent<JumpBlock>() != null) // MyScriptがアタッチされているか判定
-        //{
-        //    float blockTop = collision.gameObject.transform.position.y + collision.gameObject.transform.localScale.y / 2; // ブロックの上の座標を取得
-        //    transform.position = new Vector3(transform.position.x, blockTop, transform.position.z); // 位置をブロックの上に修正
-
-        //}
     }
     private void StopCharactor(bool isbool)
     {
@@ -232,7 +216,7 @@ public class PlayerController : MonoBehaviour
     void Jump(float force)
     {
         // 現在の横移動速度を取得
-        Vector3 velocity = rb.velocity;
+        Vector2 velocity = rb.velocity;
 
         float horizontalDamping = 0.5f; // 0.5f = 速度を50%に減らす
         velocity.x *= horizontalDamping; // X軸方向の速度を抑える
@@ -241,7 +225,9 @@ public class PlayerController : MonoBehaviour
         rb.velocity = velocity;
 
 
-        rb.AddForce(Vector3.up * force, ForceMode.Impulse); // ジャンプ力を適用
+        rb.AddForce(Vector2.up * force, ForceMode2D.Impulse); // ジャンプ力を適用
         animationController.JumpBool();
     }
+
+
 }

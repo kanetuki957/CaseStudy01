@@ -15,9 +15,12 @@ public class AnimationController : MonoBehaviour
     public Sprite[] getupFrames;     //目が覚めるアニメーション　
     public Sprite[] fallFrames;      //落ちるアニメーション
     public Sprite[] jumpFrames;
+
     public float frameRate = 0.2f; 　// フレームの切り替え速度
+
     public Button startButton;　　 　//ボタンの判定
     public Button resetButton;       //ボタンの判定
+
     public bool GoalButton = false;　//ゴール判定
     public bool goalPerformance = false;      //ゴールアニメーション判定
     public bool gimmick = false;　　//ギミックの判定
@@ -26,12 +29,13 @@ public class AnimationController : MonoBehaviour
     public bool trapReset= false;
     public bool finish = false;
     public bool framesAnimation = false;
-    public float rayLength = 1f; // レイの長さ
+
+    public float rayLength = 0f; // レイの長さ
     public int currentFrame;    //描写するフレーム
 
     private bool Button = false;     //スタートボタンの判定
     private SpriteRenderer spriteRenderer;　//
-    private Rigidbody rb;
+    private Rigidbody2D rb;
     private float timer;             //時間
     private float Goaltimer = 0;     //ゴールアニメションの表示時間
     public  bool groundCheck = false;
@@ -42,7 +46,7 @@ public class AnimationController : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         startButton.onClick.AddListener(MoveButton);
         resetButton.onClick.AddListener(RestartButton);
@@ -55,10 +59,11 @@ public class AnimationController : MonoBehaviour
         {
             if (Button)
             {
-                SkyLeap();
-                GroundCheck(transform.position, Vector3.down);
-                if (groundCheck)
+              
+                GroundCheck();
+                if (!groundCheck)
                 {
+                    SkyLeap();
                     if (jump)
                     {
                         
@@ -79,7 +84,6 @@ public class AnimationController : MonoBehaviour
                         {
                             gimmick = false;
                             framesAnimation = false;
-                            gimmick = false;
                         }
                     }
 
@@ -100,7 +104,6 @@ public class AnimationController : MonoBehaviour
                         Frame(moveFrames);
                     }
                 }
-              
             }
             else
             {
@@ -204,16 +207,20 @@ public class AnimationController : MonoBehaviour
             }           
         }
     }
-    void GroundCheck(Vector3 rayOrigin ,Vector3 rayDirection)
+    void GroundCheck()
     {
-        if (Physics.Raycast(rayOrigin, rayDirection, rayLength))
+       Vector2 rayOrigin = (Vector2)transform.position + Vector2.down; // 頭の位置から発射
+       
+
+       RaycastHit2D hitGround = Physics2D.Raycast(rayOrigin, Vector2.down, rayLength);
+        if (hitGround.collider != null)
         {
-            Debug.Log("地面あり！");
-            groundCheck = false;
+       
+            groundCheck = true;
         }
         else
         {
-            groundCheck = true;
+            groundCheck = false;
         }
 
       
