@@ -7,9 +7,16 @@ public class SceneTransitionHelper : MonoBehaviour
 {
     public static Texture2D Screenshot;
 
-    public static void StartTransition(string nextSceneName)
+    public static void StartTransition(string nextSceneName, MonoBehaviour caller)
     {
-        Camera cam = Camera.main; // ‘JˆÚŒ³‚ÌUI‚ğ•`‰æ‚µ‚Ä‚éƒJƒƒ‰
+        caller.StartCoroutine(CaptureAndLoadTransition(nextSceneName));
+    }
+
+    private static IEnumerator CaptureAndLoadTransition(string nextSceneName)
+    {
+        yield return new WaitForEndOfFrame();
+
+        Camera cam = Camera.main;
         int width = Screen.width;
         int height = Screen.height;
 
@@ -27,10 +34,8 @@ public class SceneTransitionHelper : MonoBehaviour
         Object.Destroy(rt);
 
         Screenshot = tex;
-
         NextSceneName = nextSceneName;
 
-        // TransitionƒV[ƒ“‚ÉˆÚ“®
         SceneManager.LoadScene("TransitionScene");
     }
 

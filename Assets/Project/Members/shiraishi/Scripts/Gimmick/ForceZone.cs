@@ -30,7 +30,7 @@ public class ForceZone : MonoBehaviour, IActivatable
             effectManager = GetComponentInChildren<EffectManager>();
             if (effectManager == null)
             {
-                Debug.LogWarning($"[DisappearBlock] 子オブジェクトに EffectManager が見つかりません: {gameObject.name}");
+                //Debug.LogWarning($"[DisappearBlock] 子オブジェクトに EffectManager が見つかりません: {gameObject.name}");
             }
         }
 
