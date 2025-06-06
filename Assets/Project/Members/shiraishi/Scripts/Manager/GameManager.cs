@@ -21,8 +21,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     // 現在のゲーム状態
-    public GameState CurrentState { get; private set; } = GameState.Ready;
+    public GameState currentState { get; private set; } = GameState.Ready;
+    public event System.Action<GameState, GameState> OnGameStateChanged;
 
+    // ボタン関連
     [SerializeField] private Button resetButton;
     [SerializeField] private CanvasGroup resetButtonGroup;
 
@@ -30,11 +32,7 @@ public class GameManager : MonoBehaviour
     public AudioClip clickSE;
     public float clickSEVolume = 1f;
 
-    [Header("リセット時に鳴らすSE")]
-    public AudioClip resetSE;
-    public float seVolume = 1f;
-
-    [Header("リセットボタンが表示されるまでの長さ（秒）")]
+    [Header("スタートボタンを押してからリセットボタンが表示されるまでの長さ（秒）")]
     public float turnResetButtonDuration = 1.0f;
 
     private void Awake()
@@ -46,7 +44,6 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-        //DontDestroyOnLoad(this);
 
         // 最初は非操作状態・透明に近い
         resetButton.interactable = false;
@@ -61,14 +58,20 @@ public class GameManager : MonoBehaviour
             es.AddComponent<EventSystem>();
             es.AddComponent<StandaloneInputModule>();
         }
-
     }
+
 
     // 状態変更用メソッド（外部から状態を更新するために使用）
     public void SetGameState(GameState newState)
     {
-        CurrentState = newState;
+        if (currentState != newState)
+        {
+            var previousState = currentState;
+            currentState = newState;
+            OnGameStateChanged?.Invoke(previousState, currentState);
+        }
     }
+
 
 
     /*** ボタンが押されたときの処理 ***/
