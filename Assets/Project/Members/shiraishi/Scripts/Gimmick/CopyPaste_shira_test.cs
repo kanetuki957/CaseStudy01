@@ -55,6 +55,8 @@ public class CopyPaste_shira_test : MonoBehaviour
             if (iconImage == null) return;
             iconPairs.Add(info.prefab, iconImage);
         }
+
+        SetIconVisible(true);
     }
 
     void OnDestroy()
