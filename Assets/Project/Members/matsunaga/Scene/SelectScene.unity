@@ -841,7 +841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeSceneButton: {fileID: 168601504}
-  sceneName: 1-2
+  sceneName: 1-2table
 --- !u!114 &168601501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1037,7 +1037,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 1-2
+          m_StringArgument: 1-2table
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &168601505
@@ -1155,7 +1155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeSceneButton: {fileID: 207290675}
-  sceneName: 2-1
+  sceneName: 2-1table
 --- !u!114 &207290672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3726,7 +3726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeSceneButton: {fileID: 671893023}
-  sceneName: 2-1
+  sceneName: 2-table
 --- !u!114 &671893027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6118,8 +6118,8 @@ Canvas:
   m_GameObject: {fileID: 961403625}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 827126026}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -6748,6 +6748,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129141037}
   m_CullTransparentMesh: 1
+--- !u!1 &1181874208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1181874210}
+  - component: {fileID: 1181874209}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1181874209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181874208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f4ccb4cca326d84bb6baf7915b3fdc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resetButton: {fileID: 0}
+  resetButtonGroup: {fileID: 0}
+  clickSE: {fileID: 0}
+  clickSEVolume: 1
+  resetSE: {fileID: 0}
+  seVolume: 1
+  turnResetButtonDuration: 1
+  sceneOrderList: {fileID: 11400000, guid: b2218eff379b22b4b9f9a9759cd3ecd0, type: 2}
+--- !u!4 &1181874210
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181874208}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.9515057, y: 0.8620713, z: 0.0006616509}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1182469705
 GameObject:
   m_ObjectHideFlags: 0
@@ -7835,8 +7887,8 @@ Canvas:
   m_GameObject: {fileID: 1365911309}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 827126026}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -8227,7 +8279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeSceneButton: {fileID: 1549361636}
-  sceneName: 3-1
+  sceneName: 3-table
 --- !u!114 &1549361633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10284,8 +10336,8 @@ Canvas:
   m_GameObject: {fileID: 2016459190}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 827126026}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -10541,3 +10593,4 @@ SceneRoots:
   - {fileID: 1700409485}
   - {fileID: 1851990675}
   - {fileID: 6913506575760460266}
+  - {fileID: 1181874210}

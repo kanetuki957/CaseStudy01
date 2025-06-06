@@ -12,8 +12,7 @@ public enum GameState
     Ready,      // 開始前（初期状態）
     Playing,    // ゲーム中
     Paused,     // 一時停止中
-    Cleared,    // クリア済み
-    GameOver    // ゲームオーバー
+    Editing,    // 編集モード
 }
 
 public class GameManager : MonoBehaviour
@@ -47,6 +46,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+        //DontDestroyOnLoad(this);
 
         // 最初は非操作状態・透明に近い
         resetButton.interactable = false;
@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
             es.AddComponent<EventSystem>();
             es.AddComponent<StandaloneInputModule>();
         }
+
     }
 
     // 状態変更用メソッド（外部から状態を更新するために使用）
@@ -69,7 +70,10 @@ public class GameManager : MonoBehaviour
         CurrentState = newState;
     }
 
-    // Startボタンが押されたときに呼ばれる（ゲーム開始）
+
+    /*** ボタンが押されたときの処理 ***/
+
+    // Startボタンが押されたときの処理
     public void OnStartButtonPressed()
     {
         // SE再生
@@ -77,10 +81,11 @@ public class GameManager : MonoBehaviour
             AudioSource.PlayClipAtPoint(clickSE, Camera.main.transform.position, clickSEVolume);
 
         SetGameState(GameState.Playing);
-        StartCoroutine(ShowPlayButtonDelayed());
+        StartCoroutine(ShowResetButtonDelayed());
     }
 
-    private IEnumerator ShowPlayButtonDelayed()
+    // Startボタンが押されたあと一定時間待ってからResetボタンを表示する処理
+    private IEnumerator ShowResetButtonDelayed()
     {
         yield return new WaitForSeconds(turnResetButtonDuration);
 
@@ -90,7 +95,7 @@ public class GameManager : MonoBehaviour
         resetButtonGroup.blocksRaycasts = true;
     }
 
-    // Pauseボタンが押されたときに呼ばれる（一時停止）(未実装)
+    // Pauseボタンが押されたときの処理(未実装)
     public void OnPauseButtonPressed()
     {
         // SE再生
@@ -99,31 +104,25 @@ public class GameManager : MonoBehaviour
         SetGameState(GameState.Paused);
     }
 
-    // Resetボタンが押されたときに呼ばれる（リスタート処理）
+    // Resetボタンが押されたときの処理
     public void OnResetButtonPressed()
     {
         // SE再生
         if (clickSE != null)
             AudioSource.PlayClipAtPoint(clickSE, Camera.main.transform.position, clickSEVolume);
-        StartCoroutine(DoFadeAndReload());
+        GoToScene(SceneManager.GetActiveScene().name);
     }
 
-    // フェード演出 + SE + シーンリロードを順に行う
-    private IEnumerator DoFadeAndReload()
+    // Editボタンが押されたときの処理
+    public void OnEditButtonPressed()
     {
-        // 効果音を再生（もし設定されていれば）
-        if (resetSE != null)
-        {
-            AudioSource.PlayClipAtPoint(resetSE, Camera.main.transform.position, seVolume);
-            yield return new WaitForSeconds(0.2f); // 音の余韻を待つ
-        }
-
-        // 現在のシーンを再読み込み
-        GameManager.Instance.GoToScene(SceneManager.GetActiveScene().name);
+        if (clickSE != null)
+            AudioSource.PlayClipAtPoint(clickSE, Camera.main.transform.position, clickSEVolume);
+        SetGameState(GameState.Editing);
     }
 
-    /** シーン遷移関連 **/
 
+    /*** シーン遷移関連 ***/
 
     [Header("シーン順リスト（ScriptableObject）")]
     public GameSceneOrderList sceneOrderList; // インスペクターでアセットをドラッグして指定
