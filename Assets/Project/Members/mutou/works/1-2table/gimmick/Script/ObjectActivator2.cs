@@ -7,29 +7,35 @@ public class ObjectActivator2 : MonoBehaviour
     [System.Serializable]
     public class SwitchData
     {
-        public GameObject switchObject;     // スイッチ本体
-        public GameObject targetObject;     // 動かすオブジェクト
+        public GameObject switchObject;
+        public GameObject targetObject;
         public float moveDistance = 2f;
         public float moveSpeed = 2f;
 
         [HideInInspector] public Vector3 topPos;
         [HideInInspector] public Vector3 bottomPos;
         [HideInInspector] public bool activated = false;
-        [HideInInspector] public bool goingUp = true; // 下からスタートなので最初は上へ
+        [HideInInspector] public bool goingUp = true;
+        [HideInInspector] public bool hasStartedMoving = false; // 動き始めたかどうか
     }
 
     public List<SwitchData> switches = new List<SwitchData>();
 
+    public AudioClip switchSE;   // スイッチ音
+    public AudioClip moveSE;     // 動作開始音
+    private AudioSource audioSource;
+
     void Start()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
+
         foreach (var s in switches)
         {
             if (s.targetObject != null)
             {
-                // 現在位置が bottom として基準にする
                 s.bottomPos = s.targetObject.transform.position;
                 s.topPos = s.bottomPos + Vector3.up * s.moveDistance;
-                s.goingUp = true; // 最初は上へ向かう
+                s.goingUp = true;
             }
         }
     }
@@ -53,10 +59,14 @@ public class ObjectActivator2 : MonoBehaviour
             {
                 s.activated = true;
 
-                // スイッチ反転：左右反転
+                // スイッチ反転
                 Vector3 scale = s.switchObject.transform.localScale;
                 scale.x *= -1;
                 s.switchObject.transform.localScale = scale;
+
+                // SE（スイッチ用）
+                if (switchSE != null)
+                    audioSource.PlayOneShot(switchSE);
             }
         }
     }
@@ -64,6 +74,15 @@ public class ObjectActivator2 : MonoBehaviour
     void MoveTarget(SwitchData s)
     {
         Vector3 destination = s.goingUp ? s.topPos : s.bottomPos;
+
+        // 初回移動開始時にSE（移動SE）
+        if (!s.hasStartedMoving)
+        {
+            s.hasStartedMoving = true;
+            if (moveSE != null)
+                audioSource.PlayOneShot(moveSE);
+        }
+
         s.targetObject.transform.position = Vector3.MoveTowards(
             s.targetObject.transform.position,
             destination,
@@ -73,6 +92,8 @@ public class ObjectActivator2 : MonoBehaviour
         if (Vector3.Distance(s.targetObject.transform.position, destination) < 0.01f)
         {
             s.goingUp = !s.goingUp;
+            s.hasStartedMoving = false; // 次の方向転換時にも鳴らせるようにリセット
         }
     }
+
 }
