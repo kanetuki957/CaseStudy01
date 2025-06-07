@@ -850,7 +850,7 @@ PrefabInstance:
     - target: {fileID: 1897248131405591458, guid: 3b5e9d8578571cb478a532d75db484e2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.72
+      value: -10.2
       objectReference: {fileID: 0}
     - target: {fileID: 1897248131405591458, guid: 3b5e9d8578571cb478a532d75db484e2,
         type: 3}
@@ -1547,7 +1547,7 @@ PrefabInstance:
     - target: {fileID: 7716301014789795449, guid: c2153ae4115dafd4792ee723540ae2e5,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 7716301014789795449, guid: c2153ae4115dafd4792ee723540ae2e5,
         type: 3}
@@ -1557,12 +1557,12 @@ PrefabInstance:
     - target: {fileID: 7716301014789795449, guid: c2153ae4115dafd4792ee723540ae2e5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.35
+      value: 0.57
       objectReference: {fileID: 0}
     - target: {fileID: 7716301014789795449, guid: c2153ae4115dafd4792ee723540ae2e5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.53
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7716301014789795449, guid: c2153ae4115dafd4792ee723540ae2e5,
         type: 3}
@@ -11642,10 +11642,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bridge
       objectReference: {fileID: 0}
+    - target: {fileID: 3959237642125721458, guid: c2153ae4115dafd4792ee723540ae2e5,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 3959237642125721458, guid: c2153ae4115dafd4792ee723540ae2e5,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.44
+      objectReference: {fileID: 0}
     - target: {fileID: 7716301014789795449, guid: c2153ae4115dafd4792ee723540ae2e5,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 7716301014789795449, guid: c2153ae4115dafd4792ee723540ae2e5,
         type: 3}
@@ -11655,12 +11665,12 @@ PrefabInstance:
     - target: {fileID: 7716301014789795449, guid: c2153ae4115dafd4792ee723540ae2e5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.02
+      value: 7.28
       objectReference: {fileID: 0}
     - target: {fileID: 7716301014789795449, guid: c2153ae4115dafd4792ee723540ae2e5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.53
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7716301014789795449, guid: c2153ae4115dafd4792ee723540ae2e5,
         type: 3}
