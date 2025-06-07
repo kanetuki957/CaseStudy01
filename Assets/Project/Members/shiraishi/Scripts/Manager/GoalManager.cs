@@ -63,8 +63,9 @@ public class GoalManager : MonoBehaviour
         if (AllPlayersOnGoals() && AllPlayersHaveKey())
         {
             GameManager.Instance.GoToNextScene();
-            //SceneTransitionHelper.StartTransition("1-table");
-            //SceneManager.LoadScene("1-table");
+
+            // ¸”s‚µ‚½‚çƒŠƒ[ƒh
+            GameManager.Instance.GoToScene(SceneManager.GetActiveScene().name);
         }
 
     }

@@ -24,7 +24,7 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         // Game‚Ìó‘Ô‚ªPlaying‚Å‚È‚¢‚È‚ç“®‚©‚È‚¢
-        if (GameManager.Instance.CurrentState != GameState.Playing)
+        if (GameManager.Instance.currentState != GameState.Playing)
         {
             return;
         }
