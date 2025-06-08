@@ -39,11 +39,11 @@ public class PlayerOutOfBounds : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(sceneName))
         {
-            SceneManager.LoadScene(sceneName);
+            GameManager.Instance.GoToScene(sceneName);
         }
         else
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GameManager.Instance.GoToScene(SceneManager.GetActiveScene().name);
         }
     }
 }

@@ -22,9 +22,6 @@ public class GoalManager : MonoBehaviour
     // インスペクターから設定できる、プレイヤーとゴールの対応リスト
     public List<GoalPair> goalPairs = new List<GoalPair>();
 
-    // クリア時に遷移するシーン名（Build Settings に登録されている必要あり）
-    public string next_scene;
-
     void Start()
     {
         CheckUnregisteredPlayers(); // ゲーム開始時に未登録プレイヤーを警告
@@ -65,8 +62,10 @@ public class GoalManager : MonoBehaviour
 
         if (AllPlayersOnGoals() && AllPlayersHaveKey())
         {
-            //SceneTransitionHelper.StartTransition(next_scene);
             GameManager.Instance.GoToNextScene();
+
+            // 失敗したらリロード
+            GameManager.Instance.GoToScene(SceneManager.GetActiveScene().name);
         }
 
     }

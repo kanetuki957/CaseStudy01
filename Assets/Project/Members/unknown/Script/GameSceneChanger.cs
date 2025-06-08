@@ -13,7 +13,7 @@ public class GameSceneChanger : MonoBehaviour
     {
         if (changeSceneButton != null)
         {
-            changeSceneButton.onClick.AddListener(() => ChangeScene(sceneName));
+            //changeSceneButton.onClick.AddListener(() => ChangeScene(sceneName));
         }
         else
         {
@@ -25,7 +25,8 @@ public class GameSceneChanger : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(sceneName))
         {
-            SceneManager.LoadSceneAsync(sceneName);
+            //SceneManager.LoadSceneAsync(sceneName);
+            SceneTransitionHelper.StartTransition(sceneName, this);
             Debug.Log("�V�[�����ύX����܂���: " + sceneName);
         }
         else

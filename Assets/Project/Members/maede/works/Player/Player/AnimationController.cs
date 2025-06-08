@@ -15,9 +15,13 @@ public class AnimationController : MonoBehaviour
     public Sprite[] getupFrames;     //目が覚めるアニメーション　
     public Sprite[] fallFrames;      //落ちるアニメーション
     public Sprite[] jumpFrames;
+
     public float frameRate = 0.2f; 　// フレームの切り替え速度
+    public float onlyFrameRate = 0.3f;
+
     public Button startButton;　　 　//ボタンの判定
     public Button resetButton;       //ボタンの判定
+
     public bool GoalButton = false;　//ゴール判定
     public bool goalPerformance = false;      //ゴールアニメーション判定
     public bool gimmick = false;　　//ギミックの判定
@@ -26,23 +30,28 @@ public class AnimationController : MonoBehaviour
     public bool trapReset= false;
     public bool finish = false;
     public bool framesAnimation = false;
-    public float rayLength = 1f; // レイの長さ
+    public bool jumpAnimation = false;
+
+    public float rayLength = 0f; // レイの長さ
     public int currentFrame;    //描写するフレーム
+    public int currentOnlyFrame;
+    public int currentJumpFrame;
 
     private bool Button = false;     //スタートボタンの判定
     private SpriteRenderer spriteRenderer;　//
-    private Rigidbody rb;
+    private Rigidbody2D rb;
     private float timer;             //時間
     private float Goaltimer = 0;     //ゴールアニメションの表示時間
     public  bool groundCheck = false;
+    public bool skyLeapBool = false;
 
 
 
-
+ 
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         startButton.onClick.AddListener(MoveButton);
         resetButton.onClick.AddListener(RestartButton);
@@ -55,18 +64,32 @@ public class AnimationController : MonoBehaviour
         {
             if (Button)
             {
-                SkyLeap();
-                GroundCheck(transform.position, Vector3.down);
-                if (groundCheck)
+              
+                GroundCheck();
+                if (jumpAnimation)
                 {
+                    JumpBool();
+                }
+
+                if (!groundCheck)
+                {
+                    SkyLeap();
                     if (jump)
                     {
                         
-                        OnlyFrame(jumpFrames);
+
+                        JumpFrame(jumpFrames);
+                        if (framesAnimation)
+                        {
+                            framesAnimation = false;
+                           
+                        }
                     }
                     else
                     {
                         Frame(fallFrames);
+                        skyLeapBool = true;
+
                     }
                 }
                 else
@@ -77,9 +100,9 @@ public class AnimationController : MonoBehaviour
                         OnlyFrame(gimmickFrames);
                         if (framesAnimation)
                         {
+                            currentOnlyFrame = 0;
                             gimmick = false;
                             framesAnimation = false;
-                            gimmick = false;
                         }
                     }
 
@@ -88,6 +111,7 @@ public class AnimationController : MonoBehaviour
                         OnlyFrame(trapFrames);
                         if (framesAnimation) // 1秒後にfalseにする
                         {
+                            currentOnlyFrame = 0;
                             trapReset = true;
                             trap = false;
                             spriteRenderer.sprite = idleFrames[0];
@@ -98,9 +122,9 @@ public class AnimationController : MonoBehaviour
                     if (!trap && !gimmick)
                     {
                         Frame(moveFrames);
+                        skyLeapBool = true;
                     }
                 }
-              
             }
             else
             {
@@ -114,6 +138,7 @@ public class AnimationController : MonoBehaviour
                 OnlyFrame(goalFrames);
                 if (framesAnimation) // 2秒後にfalseにする
                 {
+                    currentOnlyFrame = 0;
                     goalPerformance = true;
                     framesAnimation = false;
                 }
@@ -126,7 +151,6 @@ public class AnimationController : MonoBehaviour
                 {
 
                     goalPerformance = false;
-                    framesAnimation = false;
                     Goaltimer = 0;
                     spriteRenderer.sprite = idleFrames[0];
                     Button = false;
@@ -137,8 +161,10 @@ public class AnimationController : MonoBehaviour
             }
         }
     }
-    //スタートボタンの処理
-    void MoveButton()
+
+
+//スタートボタンの処理
+void MoveButton()
     {
         Goaltimer = 0;
         goalPerformance = false;
@@ -168,13 +194,16 @@ public class AnimationController : MonoBehaviour
     }
     public void JumpBool()
     {
+        groundCheck = false;
         jump = true;
     }
+   
     //アニメーション関数
     void Frame(Sprite[] frames)
     {
         if(frames.Length != 0)
         {
+          
             timer += Time.deltaTime;
             if (timer >= frameRate)
             {
@@ -188,33 +217,73 @@ public class AnimationController : MonoBehaviour
     {
         if (frames.Length != 0)
         {
-
-            if (currentFrame +1 == frames.Length)
+            if (currentOnlyFrame +1 == frames.Length)
             {
                 framesAnimation = true;
+                currentOnlyFrame = 0;
+                return;
             }
             else
             {
                 timer += Time.deltaTime;
-                if (timer >= frameRate)
+                if (timer >= onlyFrameRate)
                 {
                     timer = 0f;
-                    currentFrame = (currentFrame + 1) % frames.Length;
-                    spriteRenderer.sprite = frames[currentFrame];
+                    currentOnlyFrame++;
+                    if (currentOnlyFrame >= frames.Length)
+                        currentOnlyFrame = frames.Length - 1;
+                    spriteRenderer.sprite = frames[currentOnlyFrame];
                 }
             }           
         }
     }
-    void GroundCheck(Vector3 rayOrigin ,Vector3 rayDirection)
+
+    void JumpFrame(Sprite[] frames)
     {
-        if (Physics.Raycast(rayOrigin, rayDirection, rayLength))
+        if(skyLeapBool)
         {
-            Debug.Log("地面あり！");
-            groundCheck = false;
+            currentJumpFrame = 0;
+            skyLeapBool = false;
+        }
+
+        if (frames.Length != 0)
+        {
+            if (currentJumpFrame == frames.Length -1)
+            {
+                framesAnimation = true;
+               
+                return;
+            }
+            else
+            {
+                timer += Time.deltaTime;
+                if (timer >= onlyFrameRate)
+                {
+                    timer = 0f;
+                    currentJumpFrame++;
+                    if (currentJumpFrame >= frames.Length)
+                        currentJumpFrame = frames.Length - 1;
+                    spriteRenderer.sprite = frames[currentJumpFrame];
+                }
+            }
+        }
+    }
+
+    void GroundCheck()
+    {
+       Vector2 rayOrigin = (Vector2)transform.position + Vector2.down; // 頭の位置から発射
+       
+
+       RaycastHit2D hitGround = Physics2D.Raycast(rayOrigin, Vector2.down, rayLength);
+        if (hitGround.collider != null)
+        {
+           groundCheck = true;
+           
         }
         else
         {
-            groundCheck = true;
+          groundCheck= false;
+           
         }
 
       
@@ -224,10 +293,12 @@ public class AnimationController : MonoBehaviour
         if (rb.velocity.y > 0) // 正の速度ならジャンプ中
         {
             jump = true;
+           
         }
         else if (rb.velocity.y < 0) // 負の速度なら落下中
         {
             jump = false;
+            
         }
    
     }
