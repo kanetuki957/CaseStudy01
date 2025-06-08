@@ -18,6 +18,7 @@ public class FollowPlayer : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D myCollider;
     private SpriteRenderer spriteRenderer;
+    private PlayerController playerController;
     private AnimationController animationController;
     private float moveX;
     private Vector2 direction;
@@ -25,10 +26,9 @@ public class FollowPlayer : MonoBehaviour
 
     void Start()
     {
-
+        playerController = target.GetComponent<PlayerController>();
         startPostion = transform.position;  // 初期位置を記録
         animationController = target.GetComponent<AnimationController>();
-
         myCollider = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -47,6 +47,7 @@ public class FollowPlayer : MonoBehaviour
 
     void FixedUpdate()
     {
+        jump = animationController.skyLeapBool;
         isgoal = animationController.GoalButton;
         if (!isgoal)
         {
@@ -87,26 +88,37 @@ public class FollowPlayer : MonoBehaviour
         {
             if (distance > desiredDistance)
             {
-                Vector2 velocity = rb.velocity;
-                velocity.x = direction.x * speed; // X軸のみ追従
-                if(jump)
-                {
-                    velocity.y = direction.y * speed; // Y軸の移動（ジャンプ時も追従）
-                    rb.velocity = velocity; // Y軸はそのまま重力に任せる
-                }
-                else
-                {
-                    rb.velocity = new Vector2(velocity.x, velocity.y); // Y軸はそのまま重力に任せる
-                }
-             
+                Vector2 targetVelocity = new Vector2(direction.x * speed, rb.velocity.y);
 
-                
+                if (!jump)
+                {
+                    targetVelocity.y = direction.y * speed;
+                }
+
+                // 今の速度から目標速度へ徐々に近づける（滑らかになる）
+                rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, 0.5f);  // 0.1fは調整可能
             }
             else
             {
-                // 距離が近いときは横移動止めるが、落下などは許容
-                rb.velocity = new Vector2(0, rb.velocity.y);
+                Vector2 targetVelocity = new Vector2(0, rb.velocity.y);
+                rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, 0.5f);
             }
+
+            //if (distance > desiredDistance)
+            //{
+            //    Vector2 velocity = rb.velocity;
+            //    velocity.x = direction.x * speed; // X軸のみ追従
+            //    if(!jump)
+            //    {
+            //        velocity.y = direction.y * speed;
+            //    }
+            //    rb.velocity = new Vector2(velocity.x, velocity.y); // Y軸はそのまま重力に任せる
+            //}
+            //else
+            //{
+            //    // 距離が近いときは横移動止めるが、落下などは許容
+            //    rb.velocity = new Vector2(0, rb.velocity.y);
+            //}
 
         }
 
