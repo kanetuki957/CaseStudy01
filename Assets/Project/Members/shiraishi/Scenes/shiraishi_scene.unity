@@ -129,12 +129,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6867194268911290717}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &182515830 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5629450618453580858, guid: 66e0579f356c2974d883fc00f20743d9,
-    type: 3}
-  m_PrefabInstance: {fileID: 869598100}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &232380767
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,9 +796,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 37563313169614940, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
+      propertyPath: copyableObjects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 37563313169614940, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
       propertyPath: copyableObjects.Array.data[0].prefab
       value: 
-      objectReference: {fileID: 182515830}
+      objectReference: {fileID: 0}
     - target: {fileID: 37563313169614940, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: copyableObjects.Array.data[1].prefab
