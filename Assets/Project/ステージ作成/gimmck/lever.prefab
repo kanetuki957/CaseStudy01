@@ -147,7 +147,7 @@ MonoBehaviour:
   - {fileID: 0}
   activateKey: 102
   activateOnTouch: 1
-  offSprite: {fileID: 21300000, guid: e191043eba5bd6a44a77b281552dadd9, type: 3}
-  onSprite: {fileID: 21300000, guid: 62028ccaf2de868478351d7b1ed78756, type: 3}
+  offSprite: {fileID: 21300000, guid: 388bb2203534cf045a618f6d786153cd, type: 3}
+  onSprite: {fileID: 21300000, guid: d9e49dcaa4f5dd4468823ad383e748cc, type: 3}
   isToggle: 1
   effectManager: {fileID: 0}
