@@ -90,18 +90,27 @@ public class CopyPaste_shira_test : MonoBehaviour
     }
     void LateUpdate()
     {
-        foreach (var pair in iconPairs)
+        // ゲームステートが編集モード中なら実行
+        if (GameManager.Instance.currentState == GameState.Editing)
         {
-            GameObject obj = pair.Key;
-            Image icon = pair.Value;
+            foreach (var pair in iconPairs)
+            {
+                GameObject obj = pair.Key;
+                Image icon = pair.Value;
 
-            // オブジェクトの少し上に表示（必要に応じて調整）
-            Vector3 offset = new Vector3(-0.5f, 0.5f, 0);
-            Vector3 worldPos = obj.transform.position + offset;
+                if (obj == null)
+                {
+                    Debug.LogAssertion("コピー可能オブジェクトの配列に空の要素があります");
+                    break;
+                }
+                // オブジェクトの少し上に表示（必要に応じて調整）
+                Vector3 offset = new Vector3(-0.5f, 0.5f, 0);
+                Vector3 worldPos = obj.transform.position + offset;
 
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
+                Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
 
-            icon.rectTransform.position = screenPos;
+                icon.rectTransform.position = screenPos;
+            }
         }
     }
 
@@ -115,7 +124,7 @@ public class CopyPaste_shira_test : MonoBehaviour
         }
 
         // 編集モードから切り替わったらアイコンを非表示にする
-        if(curr != GameState.Editing && prev == GameState.Editing)
+        if (curr != GameState.Editing && prev == GameState.Editing)
         {
             SetIconVisible(false);
         }
