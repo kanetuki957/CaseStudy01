@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1994952276852299490}
   - component: {fileID: 5055693287004681318}
   - component: {fileID: 4685614474292756237}
+  - component: {fileID: 4418280281298283381}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -207,3 +208,16 @@ MonoBehaviour:
   - {fileID: 0}
   openedSprite: {fileID: 21300160, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
   effectRange: 3
+--- !u!114 &4418280281298283381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7318599788847784925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 438bfcd4188ceea4489d99c0d168caea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switches: []
