@@ -35,12 +35,12 @@ public class PlayerLadder2 : MonoBehaviour
     private int climbDirection = 0;          // 1 = 上に登る, -1 = 下に降りる
 
     private float originalGravityScale;      // 登り中に重力を止めるため、元の値を保存
-    private PlayerMovePro moveScript;        // 横移動用スクリプト
+    private PlayerMove moveScript;        // 横移動用スクリプト
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        moveScript = GetComponent<PlayerMovePro>();
+        moveScript = GetComponent<PlayerMove>();
 
         // gravityScale を記憶しておく（復帰時に使用）
         originalGravityScale = rb.gravityScale;
