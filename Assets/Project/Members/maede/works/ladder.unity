@@ -283,6 +283,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8752187963414333798, guid: 1da473877b666114fa4bfb69da1e14cf,
+        type: 3}
+      propertyPath: ladderFrames.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752187963414333798, guid: 1da473877b666114fa4bfb69da1e14cf,
+        type: 3}
+      propertyPath: getItemFrames.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
