@@ -107,26 +107,30 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.collider is BoxCollider2D)
             {
-                // targetBlockCollider に当たったかチェック
-                if (hit.collider == targetBlockCollider)
+                if (hit.collider.gameObject.name != "Ladder")
                 {
-                    hit.collider.enabled = false;  // スクリプト停止などの処理
-                    return;
-                }
+                    // targetBlockCollider に当たったかチェック
+                    if (hit.collider == targetBlockCollider)
+                    {
+                        hit.collider.enabled = false;  // スクリプト停止などの処理
+                        return;
+                    }
 
-                // 名前が Goal のオブジェクトに当たったか
-                if (hit.collider.name == "Goal")
-                {
-                    Debug.Log(isGoalPerformance);
-                    animationController.GoalBool();
-                    hit.collider.enabled = false; // 当たり判定をオフにする
-                    return;
+                    // 名前が Goal のオブジェクトに当たったか
+                    if (hit.collider.name == "Goal")
+                    {
+                        Debug.Log(isGoalPerformance);
+                        animationController.GoalBool();
+                        hit.collider.enabled = false; // 当たり判定をオフにする
+                        return;
+                    }
+                    else
+                    {
+                        //Debug.Log("真ん中" + hitwalls.collider.name);
+                        playerDirection = !playerDirection;  // 反転
+                    }
                 }
-                else
-                {
-                    //Debug.Log("真ん中" + hitwalls.collider.name);
-                    playerDirection = !playerDirection;  // 反転
-                }
+            
                 
             }
             
