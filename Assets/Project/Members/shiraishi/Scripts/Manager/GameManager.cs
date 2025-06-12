@@ -9,10 +9,10 @@ using static System.Net.Mime.MediaTypeNames;
 // ゲームの状態を管理する列挙体
 public enum GameState
 {
-    Ready,      // 開始前（初期状態）
+    Ready,      // 待機中
     Playing,    // ゲーム中
-    Paused,     // 一時停止中
-    Editing,    // 編集モード
+    Paused,     // 一時停止(未実装)
+    Editing,    // 編集モード（初期状態）
 }
 
 public class GameManager : MonoBehaviour
@@ -21,20 +21,20 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     // 現在のゲーム状態
-    public GameState CurrentState { get; private set; } = GameState.Ready;
+    public GameState currentState { get; private set; } = GameState.Editing;
+    public event System.Action<GameState, GameState> OnGameStateChanged;
 
+    // ボタン関連
     [SerializeField] private Button resetButton;
-    [SerializeField] private CanvasGroup resetButtonGroup;
+    [SerializeField] private Button editButton;
+    [SerializeField] private CanvasGroup resetButtonCanvasGroup;
+    [SerializeField] private CanvasGroup editButtonCanvasGroup;
 
     [Header("ボタンクリック時のSE")]
     public AudioClip clickSE;
     public float clickSEVolume = 1f;
 
-    [Header("リセット時に鳴らすSE")]
-    public AudioClip resetSE;
-    public float seVolume = 1f;
-
-    [Header("リセットボタンが表示されるまでの長さ（秒）")]
+    [Header("スタートボタンを押してからリセットボタンが表示されるまでの長さ（秒）")]
     public float turnResetButtonDuration = 1.0f;
 
     private void Awake()
@@ -46,12 +46,11 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-        //DontDestroyOnLoad(this);
 
-        // 最初は非操作状態・透明に近い
+        // 最初は非操作状態・半透明
         resetButton.interactable = false;
-        resetButtonGroup.alpha = 0.3f;
-        resetButtonGroup.blocksRaycasts = false;
+        resetButtonCanvasGroup.alpha = 0.3f;
+        resetButtonCanvasGroup.blocksRaycasts = false;
 
         // Scene内にEventSystemが存在しなければ
         if (FindObjectOfType<EventSystem>() == null)
@@ -61,14 +60,20 @@ public class GameManager : MonoBehaviour
             es.AddComponent<EventSystem>();
             es.AddComponent<StandaloneInputModule>();
         }
-
     }
+
 
     // 状態変更用メソッド（外部から状態を更新するために使用）
     public void SetGameState(GameState newState)
     {
-        CurrentState = newState;
+        if (currentState != newState)
+        {
+            var previousState = currentState;
+            currentState = newState;
+            OnGameStateChanged?.Invoke(previousState, currentState);
+        }
     }
+
 
 
     /*** ボタンが押されたときの処理 ***/
@@ -82,6 +87,10 @@ public class GameManager : MonoBehaviour
 
         SetGameState(GameState.Playing);
         StartCoroutine(ShowResetButtonDelayed());
+
+        editButton.interactable = false;
+        editButtonCanvasGroup.alpha = 0.3f;
+        editButtonCanvasGroup.blocksRaycasts = false;
     }
 
     // Startボタンが押されたあと一定時間待ってからResetボタンを表示する処理
@@ -89,10 +98,9 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(turnResetButtonDuration);
 
-        // 最初は非操作状態・透明に近い
         resetButton.interactable = true;
-        resetButtonGroup.alpha = 1.0f;
-        resetButtonGroup.blocksRaycasts = true;
+        resetButtonCanvasGroup.alpha = 1.0f;
+        resetButtonCanvasGroup.blocksRaycasts = true;
     }
 
     // Pauseボタンが押されたときの処理(未実装)
