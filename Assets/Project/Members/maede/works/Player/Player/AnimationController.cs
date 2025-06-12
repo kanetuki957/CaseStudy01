@@ -33,6 +33,7 @@ public class AnimationController : MonoBehaviour
     public bool finish = false;
     public bool framesAnimation = false;
     public bool jumpAnimation = false;
+    public bool getItem = false;
 
     public float rayLength = 0f; // レイの長さ
     public int currentFrame;    //描写するフレーム
@@ -40,6 +41,7 @@ public class AnimationController : MonoBehaviour
     public int currentJumpFrame;
 
     private bool Button = false;     //スタートボタンの判定
+    private PlayerLadder2 playerLadder;
     private SpriteRenderer spriteRenderer;　//
     private Rigidbody2D rb;
     private float timer;             //時間
@@ -53,6 +55,7 @@ public class AnimationController : MonoBehaviour
 
     void Start()
     {
+        playerLadder = GetComponent<PlayerLadder2>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         startButton.onClick.AddListener(MoveButton);
@@ -96,6 +99,16 @@ public class AnimationController : MonoBehaviour
                 }
                 else
                 {
+                    if(getItem)
+                    {
+                        OnlyFrame(getItemFrames);
+                        if(framesAnimation)
+                        {
+                            currentOnlyFrame = 0;
+                            getItem = false;
+                            framesAnimation= false;
+                        }
+                    }
                     if (gimmick)
                     {
 
@@ -121,7 +134,14 @@ public class AnimationController : MonoBehaviour
                             framesAnimation = false;
                         }
                     }
-                    if (!trap && !gimmick)
+
+                    if(playerLadder.isOnLadder)
+                    {
+                        Frame(ladderFrames);
+                    }
+
+
+                    if (!trap && !gimmick && !playerLadder.isOnLadder)
                     {
                         Frame(moveFrames);
                         skyLeapBool = true;
@@ -198,6 +218,10 @@ void MoveButton()
     {
         groundCheck = false;
         jump = true;
+    }
+    public void getItemBool()
+    {
+
     }
    
     //アニメーション関数

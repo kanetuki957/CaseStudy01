@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public float jumpMoveDamping = 0.1f; // ジャンプ時の横移動の減速
     public float wallsRay = 0.0f;
     public float jumpWait = 0.1f;
+    public string[] checkObjectnames;
 
     private Vector3 startPostion;
     private bool playerDirection = true;　//プレイヤーの向き
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private bool isFinish;
     public  bool isjump;
     private Vector3 move;                 //move変数
+    private PlayerLadder2 playerladder;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private AnimationController animationController;
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        playerladder = GetComponent<PlayerLadder2>();
         startPostion = transform.position;  // 初期位置を記録
         animationController = GetComponent<AnimationController>();
         rb = GetComponent<Rigidbody2D>();
@@ -109,6 +112,14 @@ public class PlayerController : MonoBehaviour
             {
                 if (hit.collider.gameObject.name != "Ladder")
                 {
+                    foreach (string name in checkObjectnames)
+                    {
+                        if (hit.collider.name == name)
+                        {
+                            animationController.getItem = true;
+                            StopCharactor(animationController.getItem);
+                        }
+                    }
                     // targetBlockCollider に当たったかチェック
                     if (hit.collider == targetBlockCollider)
                     {
@@ -119,15 +130,19 @@ public class PlayerController : MonoBehaviour
                     // 名前が Goal のオブジェクトに当たったか
                     if (hit.collider.name == "Goal")
                     {
-                        Debug.Log(isGoalPerformance);
+                       
                         animationController.GoalBool();
                         hit.collider.enabled = false; // 当たり判定をオフにする
                         return;
                     }
                     else
                     {
-                        //Debug.Log("真ん中" + hitwalls.collider.name);
-                        playerDirection = !playerDirection;  // 反転
+                        if(!playerladder.isOnLadder)
+                        {
+                            //Debug.Log("真ん中" + hitwalls.collider.name);
+                            playerDirection = !playerDirection;  // 反転
+                        }
+                    
                     }
                 }
             
