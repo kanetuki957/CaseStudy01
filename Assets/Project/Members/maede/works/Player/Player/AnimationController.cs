@@ -14,7 +14,9 @@ public class AnimationController : MonoBehaviour
     public Sprite[] trapFrames; 　　 //トラップ時アニメーション　
     public Sprite[] getupFrames;     //目が覚めるアニメーション　
     public Sprite[] fallFrames;      //落ちるアニメーション
-    public Sprite[] jumpFrames;
+    public Sprite[] jumpFrames;      //ジャンプアニメーション
+    public Sprite[] ladderFrames;    //はしごを上るアニメーション
+    public Sprite[] getItemFrames;   //獲得アニメーション
 
     public float frameRate = 0.2f; 　// フレームの切り替え速度
     public float onlyFrameRate = 0.3f;
