@@ -31,7 +31,7 @@ public class PlayerLadder2 : MonoBehaviour
 
     private Rigidbody2D rb;
     private GameObject currentLadder = null; // Œ»İG‚ê‚Ä‚¢‚é‚Í‚µ‚²
-    private bool isOnLadder = false;         // ‚Í‚µ‚²‚Éæ‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
+    public bool isOnLadder = false;         // ‚Í‚µ‚²‚Éæ‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
     private int climbDirection = 0;          // 1 = ã‚É“o‚é, -1 = ‰º‚É~‚è‚é
 
     private float originalGravityScale;      // “o‚è’†‚Éd—Í‚ğ~‚ß‚é‚½‚ßAŒ³‚Ì’l‚ğ•Û‘¶
