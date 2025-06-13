@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public GameObject targetObject;
     public Transform target;
     public float moveSpeed = 4f; //スピード
     public bool Button = false;　　　　//ボタン判定
@@ -100,9 +102,18 @@ public class PlayerController : MonoBehaviour
         //プレイヤーの向きを取得
         Vector2 direction = playerDirection ? Vector2.right : Vector2.left;
         Vector2 rayOrigin = (Vector2)transform.position + direction * 0.4f; // 頭の位置から発射
-      
-     
 
+        
+        if (playerladder.isOnLadder)
+        {
+            targetObject.SetActive(false);
+            target.position = transform.position; // 初期位置へ戻す
+        }
+        else
+        {
+
+            targetObject.SetActive(true);
+        }
 
         // 前方にものがあるかチェック
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, wallsRay);
@@ -123,6 +134,7 @@ public class PlayerController : MonoBehaviour
                     // targetBlockCollider に当たったかチェック
                     if (hit.collider == targetBlockCollider)
                     {
+
                         hit.collider.enabled = false;  // スクリプト停止などの処理
                         return;
                     }

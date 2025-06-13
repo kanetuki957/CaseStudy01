@@ -169,20 +169,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   moveSpeed: 5
-  jumpForce: 1
   Button: 0
   startButton: {fileID: 0}
   restartButton: {fileID: 0}
   targetBlockCollider: {fileID: 0}
   ignoredPlayers:
-  - {fileID: 0}
-  baseJumpForce: 0
-  maxJumpForce: 0.2
+  - {fileID: 7329326523593108582, guid: f737d67f1b123d54094cb59e5f9e544a, type: 3}
+  JumpForce: 1
   rayDistance: 1
   jumpBlock: 2
   jumpMoveDamping: 0.5
   wallsRay: 0.1
+  jumpWait: 0.1
+  checkObjectnames:
+  - 
   isGrounded: 0
+  isjump: 0
+  Goaltimer: 0
 --- !u!95 &7635092613522918640
 Animator:
   serializedVersion: 5
@@ -294,7 +297,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9628e070ab5fea241aaf55c02b517d67, type: 3}
   - {fileID: 21300000, guid: 7f58bd0bec210e24fa469eaff18f99d9, type: 3}
   - {fileID: 21300000, guid: 43a0cfc976d58fa4ead576e2bcf365c4, type: 3}
+  ladderFrames: []
+  getItemFrames: []
   frameRate: 0.1
+  onlyFrameRate: 0.3
   startButton: {fileID: 0}
   resetButton: {fileID: 0}
   GoalButton: 0
@@ -305,9 +311,14 @@ MonoBehaviour:
   trapReset: 0
   finish: 0
   framesAnimation: 0
+  jumpAnimation: 0
+  getItem: 0
   rayLength: 0
   currentFrame: 0
+  currentOnlyFrame: 0
+  currentJumpFrame: 0
   groundCheck: 0
+  skyLeapBool: 0
 --- !u!114 &3042031772637770673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,6 +332,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectedItems: []
+  ActivateObject: {fileID: 0}
+  activeKey: 0
 --- !u!114 &4370677769031399473
 MonoBehaviour:
   m_ObjectHideFlags: 0
