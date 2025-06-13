@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 45903603988558986}
   - component: {fileID: 8880102056906856536}
-  - component: {fileID: 519529225656600796}
-  - component: {fileID: 1853450540025112773}
+  - component: {fileID: 715956432985352704}
+  - component: {fileID: 7257681846188229780}
   - component: {fileID: 2018789190185071014}
   - component: {fileID: 5962189966483233661}
   - component: {fileID: 5109437843277659103}
@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &45903603988558986
 Transform:
   m_ObjectHideFlags: 0
@@ -89,40 +89,42 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!54 &519529225656600796
-Rigidbody:
+--- !u!50 &715956432985352704
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7329326523593108582}
-  serializedVersion: 4
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
   m_Mass: 1
-  m_Drag: 0
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!136 &1853450540025112773
-CapsuleCollider:
+  m_Constraints: 0
+--- !u!70 &7257681846188229780
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7329326523593108582}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -131,14 +133,24 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.08
-  m_Height: 0.25
-  m_Direction: 1
-  m_Center: {x: 0, y: -0.05, z: 0}
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.2, y: 0.3}
+  m_Direction: 0
 --- !u!114 &2018789190185071014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,11 +163,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c451f151b31d3874e954f71df5897f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 5482186065798272976, guid: be6e6e71828a05b4cb4936ddec6f2f46, type: 3}
+  target: {fileID: 0}
   speed: 5
-  desiredDistance: 1
+  desiredDistance: 1.5
   ignoredPlayers:
-  - {fileID: 972271628872371531, guid: be6e6e71828a05b4cb4936ddec6f2f46, type: 3}
+  - {fileID: 0}
+  rayDistance: 0.1
 --- !u!114 &5962189966483233661
 MonoBehaviour:
   m_ObjectHideFlags: 0
