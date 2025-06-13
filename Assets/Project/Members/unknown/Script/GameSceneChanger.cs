@@ -25,7 +25,8 @@ public class GameSceneChanger : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(sceneName))
         {
-            SceneManager.LoadSceneAsync(sceneName);
+            SceneTransitionHelper.StartTransition(sceneName,this);
+            //SceneManager.LoadSceneAsync(sceneName);
             Debug.Log("�V�[�����ύX����܂���: " + sceneName);
         }
         else
