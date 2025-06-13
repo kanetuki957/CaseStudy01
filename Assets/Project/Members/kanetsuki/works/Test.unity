@@ -299,6 +299,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageTemplate
       objectReference: {fileID: 0}
+    - target: {fileID: 5907599467835336815, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814495002965251208, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -580,7 +595,7 @@ PrefabInstance:
     - target: {fileID: 1199837450992483755, guid: 47353f927b7fe384ca3cf5deab08917d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.68
+      value: -1.75
       objectReference: {fileID: 0}
     - target: {fileID: 1199837450992483755, guid: 47353f927b7fe384ca3cf5deab08917d,
         type: 3}
