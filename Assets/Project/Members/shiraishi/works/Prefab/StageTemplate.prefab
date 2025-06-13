@@ -834,16 +834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bbff326c339dd4daa404496a784a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  copyableObjects:
-  - prefab: {fileID: 0}
-    maxCopies: 5
-    currentCopies: 0
-  - prefab: {fileID: 0}
-    maxCopies: 3
-    currentCopies: 0
-  - prefab: {fileID: 3279735398235960646}
-    maxCopies: 3
-    currentCopies: 0
+  copyableObjects: []
   canvasRectTransform: {fileID: 1243345100392936814}
   iconPrefab: {fileID: 1893843390234180111, guid: 2d4d3498c56e4bc44b878d0354b27cf5,
     type: 3}
