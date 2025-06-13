@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ForceZone : MonoBehaviour, IActivatable
 {
@@ -17,10 +18,11 @@ public class ForceZone : MonoBehaviour, IActivatable
     public bool isTurn = false;
 
     private bool isActive = false;  //  起動中かどうか
+    private bool isStay = false;
 
     [SerializeField] private EffectManager effectManager;
 
-    Rigidbody2D rb;
+    Rigidbody2D rb_player;
 
     private void Start()
     {
@@ -41,24 +43,36 @@ public class ForceZone : MonoBehaviour, IActivatable
     {
         if (other.CompareTag("Player"))
         {
-            rb = other.GetComponent<Rigidbody2D>();
-            if (rb != null)
+            rb_player = other.GetComponent<Rigidbody2D>();
+            if (rb_player != null)
             {
-                rb.AddForce(forceDirection.normalized * forceStrength);
+                rb_player.WakeUp();
+                Debug.Log("Player is in the force zone");
+                isStay = true;
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        rb = null;
+        isStay = false;
+        rb_player = null;
     }
 
     private void FixedUpdate()
     {
-        if (restrictHorizontalMovement && rb != null)
+        if (rb_player != null)
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            if (isStay)
+            {
+                if (restrictHorizontalMovement)
+                {
+                    rb_player.velocity = new Vector2(0, rb_player.velocity.y);
+                }
+                //rb_player.AddForce(forceDirection.normalized * forceStrength * Time.deltaTime);
+                rb_player.velocity += forceDirection.normalized * forceStrength;
+            }
+            Debug.Log(rb_player.velocity);
         }
     }
     public void Activate()
@@ -89,7 +103,30 @@ public class ForceZone : MonoBehaviour, IActivatable
                 GetComponent<BoxCollider2D>().enabled = true;
             }
 
-            isActive= false;
+            isActive = false;
         }
+    }
+
+    // デバッグ用矢印描画
+    private void OnDrawGizmos()
+    {
+        // Gizmoの色
+        Gizmos.color = Color.cyan;
+        // オブジェクトの位置
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y + 0.7f, transform.position.z);
+        // 方向ベクトル
+        Vector3 dir = new Vector3(forceDirection.x, forceDirection.y, 0).normalized;
+        // 矢印を描画
+        Gizmos.DrawLine(pos, pos + dir);
+        // 先端に三角形の矢印を追加
+        DrawArrowHead(pos + dir, dir, 0.3f);
+    }
+
+    void DrawArrowHead(Vector3 pos, Vector3 dir, float size)
+    {
+        Vector3 right = Quaternion.Euler(0, 0, 30) * -dir;
+        Vector3 left = Quaternion.Euler(0, 0, -30) * -dir;
+        Gizmos.DrawLine(pos, pos + right * size);
+        Gizmos.DrawLine(pos, pos + left * size);
     }
 }
