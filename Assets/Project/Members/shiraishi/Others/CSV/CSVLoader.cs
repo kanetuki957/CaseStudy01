@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class GimmickPair
+{
+    public int id;
+    public GameObject prefab;
+}
+
 public class CSVLoader : MonoBehaviour
 {
     public TextAsset csvFile;
-    public GameObject wallPrefab;
-    public GameObject playerPrefab;
-    public GameObject goalPrefab;
+    public List<GimmickPair> gimmickPrefabs; // InspectorÇ≈î‘çÜÇ∆PrefabÇïRïtÇØ
+    private Dictionary<int, GameObject> idToPrefab;
 
 #if UNITY_EDITOR
     public void GenerateInEditor()
@@ -17,6 +23,11 @@ public class CSVLoader : MonoBehaviour
         {
             DestroyImmediate(transform.GetChild(0).gameObject);
         }
+
+        idToPrefab = new Dictionary<int, GameObject>();
+        foreach (var pair in gimmickPrefabs)
+            idToPrefab[pair.id] = pair.prefab;
+
 
         string[] lines = csvFile.text.Split('\n');
         List<string> lineList = new List<string>();
@@ -49,14 +60,16 @@ public class CSVLoader : MonoBehaviour
                 float py = -(y - rowCount / 2f + 0.5f) * cellSize;
                 Vector3 pos = new Vector3(px, py, 0);
 
-                GameObject prefab = null;
-                if (cell == "1") prefab = wallPrefab;
-                else if (cell == "P") prefab = playerPrefab;
-                else if (cell == "G") prefab = goalPrefab;
-                if (prefab != null)
+                int id;
+                if (int.TryParse(cells[x], out id) && idToPrefab.ContainsKey(id))
                 {
-                    GameObject go = (GameObject)UnityEditor.PrefabUtility.InstantiatePrefab(prefab, this.transform);
-                    go.transform.localPosition = pos;
+
+                    GameObject prefab = idToPrefab[id];
+                    if (prefab != null)
+                    {
+                        var go = (GameObject)UnityEditor.PrefabUtility.InstantiatePrefab(prefab, this.transform);
+                        go.transform.localPosition = pos;
+                    }
                 }
             }
         }
