@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &339180365173121113
+--- !u!1 &5253621794090612198
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5303610869980943225}
-  - component: {fileID: 2310646461700919365}
-  - component: {fileID: 8619799020321095323}
-  - component: {fileID: 4126291916265248695}
+  - component: {fileID: 9023973874969668228}
+  - component: {fileID: 1438088303900483692}
+  - component: {fileID: 5546435028106123924}
+  - component: {fileID: 3399941955154555448}
   m_Layer: 0
   m_Name: tornado
   m_TagString: Untagged
@@ -19,29 +19,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5303610869980943225
+--- !u!4 &9023973874969668228
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 339180365173121113}
+  m_GameObject: {fileID: 5253621794090612198}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 0.8, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalPosition: {x: -4.57, y: -2.29, z: 0}
+  m_LocalScale: {x: 0.8069972, y: 0.89393705, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 73362940912174757}
+  - {fileID: 8168145894588769267}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2310646461700919365
+--- !u!212 &1438088303900483692
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 339180365173121113}
+  m_GameObject: {fileID: 5253621794090612198}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -87,13 +87,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8619799020321095323
+--- !u!114 &5546435028106123924
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 339180365173121113}
+  m_GameObject: {fileID: 5253621794090612198}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e75a5d6641413b48bbb383b117235f7, type: 3}
@@ -104,13 +104,13 @@ MonoBehaviour:
   restrictHorizontalMovement: 1
   isTurn: 0
   effectManager: {fileID: 0}
---- !u!61 &4126291916265248695
+--- !u!61 &3399941955154555448
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 339180365173121113}
+  m_GameObject: {fileID: 5253621794090612198}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -136,7 +136,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.02767396}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -147,15 +147,15 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 1}
+  m_Size: {x: 0.2, y: 4.3762364}
   m_EdgeRadius: 0
---- !u!1001 &5690088473081455986
+--- !u!1001 &4515130272293339172
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 5303610869980943225}
+    m_TransformParent: {fileID: 9023973874969668228}
     m_Modifications:
     - target: {fileID: 5761197273403827159, guid: 90e2762d1a0f92f48a9da1fb64ecce66,
         type: 3}
@@ -217,9 +217,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90e2762d1a0f92f48a9da1fb64ecce66, type: 3}
---- !u!4 &73362940912174757 stripped
+--- !u!4 &8168145894588769267 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5761197273403827159, guid: 90e2762d1a0f92f48a9da1fb64ecce66,
     type: 3}
-  m_PrefabInstance: {fileID: 5690088473081455986}
+  m_PrefabInstance: {fileID: 4515130272293339172}
   m_PrefabAsset: {fileID: 0}
