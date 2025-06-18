@@ -101,8 +101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceDirection: {x: 0, y: 1}
-  forceStrength: 16
-  restrictHorizontalMovement: 1
+  forceStrength: 3
+  restrictHorizontalMovement: 0
+  isTurn: 0
   effectManager: {fileID: 0}
 --- !u!61 &4126291916265248695
 BoxCollider2D:
