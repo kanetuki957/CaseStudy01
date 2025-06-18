@@ -34,13 +34,14 @@ public class AnimationController : MonoBehaviour
     public bool framesAnimation = false;
     public bool jumpAnimation = false;
     public bool getItem = false;
+    public bool ladder = false;
 
     public float rayLength = 0f; // レイの長さ
     public int currentFrame;    //描写するフレーム
     public int currentOnlyFrame;
     public int currentJumpFrame;
 
-    private bool Button = false;     //スタートボタンの判定
+    public bool Button = false;     //スタートボタンの判定
     private PlayerLadder2 playerLadder;
     private SpriteRenderer spriteRenderer;　//
     private Rigidbody2D rb;
@@ -99,7 +100,8 @@ public class AnimationController : MonoBehaviour
                 }
                 else
                 {
-                    if(getItem)
+                   
+                    if (getItem)
                     {
                         OnlyFrame(getItemFrames);
                         if(framesAnimation)
@@ -134,8 +136,8 @@ public class AnimationController : MonoBehaviour
                             framesAnimation = false;
                         }
                     }
-
-                    if(playerLadder.isOnLadder)
+                    
+                    if (playerLadder.isOnLadder)
                     {
                         Frame(ladderFrames);
                     }
