@@ -14,6 +14,9 @@ public class ForceZone : MonoBehaviour, IActivatable
     [Header("横移動を制限するか")]
     public bool restrictHorizontalMovement = false;
 
+    [Header("起動時の状態")]
+    [SerializeField] private bool isActiveAtStart = true;
+
     [Header("レバーを起動したときの挙動\ntrue : 反転, false : 停止")]
     public bool isTurn = false;
 
@@ -37,6 +40,14 @@ public class ForceZone : MonoBehaviour, IActivatable
         }
 
         StartForceStrength = forceStrength;
+
+        isActive = isActiveAtStart;
+
+        if (!isTurn)
+        {
+            forceStrength = isActive ? StartForceStrength : 0;
+            GetComponent<BoxCollider2D>().enabled = isActive;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -61,49 +72,34 @@ public class ForceZone : MonoBehaviour, IActivatable
 
     private void FixedUpdate()
     {
-        if (rb_player != null)
+        if (rb_player != null && isStay && forceStrength != 0)
         {
-            if (isStay)
+            if (restrictHorizontalMovement)
             {
-                if (restrictHorizontalMovement)
-                {
-                    rb_player.velocity = new Vector2(0, rb_player.velocity.y);
-                }
-                //rb_player.AddForce(forceDirection.normalized * forceStrength * Time.deltaTime);
-                rb_player.velocity += forceDirection.normalized * forceStrength;
+                rb_player.velocity = new Vector2(0, rb_player.velocity.y);
             }
+
+            rb_player.velocity += forceDirection.normalized * forceStrength;
             Debug.Log(rb_player.velocity);
         }
     }
     public void Activate()
     {
-        if (!isActive)
+        if (isTurn)
         {
-            if (isTurn)
-            {
-                forceDirection = -forceDirection;
-            }
-            else
-            {
-                forceStrength = 0;
-                GetComponent<BoxCollider2D>().enabled = false;
-            }
-
-            isActive = true;
+            // 反転モード：向きを反転するだけで常にON
+            forceDirection = -forceDirection;
+            Debug.Log("ForceZone direction reversed");
         }
         else
         {
-            if (isTurn)
-            {
-                forceDirection = -forceDirection;
-            }
-            else
-            {
-                forceStrength = StartForceStrength;
-                GetComponent<BoxCollider2D>().enabled = true;
-            }
+            // 停止モード：ON/OFF を切り替える
+            isActive = !isActive;
 
-            isActive = false;
+            forceStrength = isActive ? StartForceStrength : 0;
+            GetComponent<BoxCollider2D>().enabled = isActive;
+
+            Debug.Log(isActive ? "ForceZone ON" : "ForceZone OFF");
         }
     }
 
