@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 public class TestOpenDoor : MonoBehaviour, IActivatable
@@ -9,6 +10,7 @@ public class TestOpenDoor : MonoBehaviour, IActivatable
     public Sprite closeDoorSprite;
     private SpriteRenderer doorSpriteRenderer;
     private BoxCollider2D doorCollider;
+    public bool isOpen = false;
 
     void Start()
     {
@@ -21,23 +23,19 @@ public class TestOpenDoor : MonoBehaviour, IActivatable
 
     public void Activate()
     {
-        if (doorCollider.enabled)   // 扉が閉じているなら
+        if (!isOpen)   // 扉が閉じているなら
         {
             doorSpriteRenderer.sprite = openDoorSprite; // 扉の画像を開いた状態に変更
 
             doorCollider.enabled = false; // 扉のコライダーを無効化
-            if (doorCollider.enabled == true)
-            {
-            }
+            isOpen = true;
         }
         else
         {
             doorSpriteRenderer.sprite = closeDoorSprite; // 扉の画像を閉じた状態に変更
 
             doorCollider.enabled = true; // 扉のコライダーを有効化
-            if (doorCollider.enabled == false)
-            {
-            }
+            isOpen = false;
         }
     }
 }
