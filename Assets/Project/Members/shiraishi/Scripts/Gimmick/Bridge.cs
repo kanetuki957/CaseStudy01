@@ -27,6 +27,7 @@ public class Bridge : MonoBehaviour, IActivatable
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         SetBridgeState(isOpenAtStart);
+        colliderOpen.enabled = false;
     }
 
     public void Activate()
@@ -39,7 +40,7 @@ public class Bridge : MonoBehaviour, IActivatable
         isOpen = open;
 
         // コライダー切り替え
-        colliderOpen.enabled = isOpen;
+        //colliderOpen.enabled = isOpen;
         colliderClose.enabled = !isOpen;
 
         // スプライト切り替え
