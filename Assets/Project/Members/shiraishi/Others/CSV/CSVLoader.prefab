@@ -44,10 +44,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f49da924baf1d74fac516b6ecca85f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  csvFile: {fileID: 4900000, guid: 4f2709ebcfb67a04595e60cbac1c8a63, type: 3}
-  wallPrefab: {fileID: 2585201291691231909, guid: 12618168f184e6f468cbce7ccf844687,
-    type: 3}
-  playerPrefab: {fileID: 972271628872371531, guid: dced076ba4f879e4ba8faf1631b186b8,
-    type: 3}
-  goalPrefab: {fileID: 5243063107199598873, guid: f9f0d362ff655cf4d9d6cec971f7d6e6,
-    type: 3}
+  csvFile: {fileID: 4900000, guid: 8cf1af710b9cfc84289bd054854a074a, type: 3}
+  gimmickPrefabs:
+  - id: 0
+    prefab: {fileID: 0}
+    layer: 0
+  - id: 1
+    prefab: {fileID: 972271628872371531, guid: dced076ba4f879e4ba8faf1631b186b8, type: 3}
+    layer: 7
+  - id: 2
+    prefab: {fileID: 5243063107199598873, guid: f9f0d362ff655cf4d9d6cec971f7d6e6,
+      type: 3}
+    layer: 0
+  - id: 3
+    prefab: {fileID: 2585201291691231909, guid: 12618168f184e6f468cbce7ccf844687,
+      type: 3}
+    layer: 6
+  - id: 4
+    prefab: {fileID: 8395435369043933733, guid: b963974f374186b47a83f5349cca5e77,
+      type: 3}
+    layer: 0
+  - id: 5
+    prefab: {fileID: 5629450618453580858, guid: 47353f927b7fe384ca3cf5deab08917d,
+      type: 3}
+    layer: 0
+  - id: 6
+    prefab: {fileID: 1428927597209594942, guid: 6e35b20bd714bb148b655c8627e6ba96,
+      type: 3}
+    layer: 0
+  - id: 7
+    prefab: {fileID: 555381523688714703, guid: 7ca63eb8b1cfec24d861371ef6387296, type: 3}
+    layer: 0
+  - id: 8
+    prefab: {fileID: 339180365173121113, guid: 6ed373ea6ee2ef14dba16d2d3d714441, type: 3}
+    layer: 0
+  - id: 9
+    prefab: {fileID: 6757548551192842488, guid: e26b09424a9af8343b71b628ce5121f6,
+      type: 3}
+    layer: 0
+  - id: 10
+    prefab: {fileID: 1582284285716413371, guid: f73933338d5773042844d0caa3fa22f2,
+      type: 3}
+    layer: 0
+  - id: 11
+    prefab: {fileID: 5608169695402396938, guid: 9aa9d622e12cdad46bed35ff68843372,
+      type: 3}
+    layer: 0
