@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4416986951560223904}
-  - component: {fileID: 3726105714280362608}
+  - component: {fileID: 1379628756404509770}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3726105714280362608
+--- !u!114 &1379628756404509770
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,6 +41,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2962634471612053286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acc59cbd5abb76e4898d463f36bb5fcc, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f4d8f85562d3164ab6df85f88d5536e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

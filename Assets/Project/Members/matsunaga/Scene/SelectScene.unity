@@ -180,13 +180,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'n
+  m_text: '
 
-    e
-
-    x
-
-    t
 
 '
   m_isRightToLeft: 0
@@ -322,7 +317,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 687c192ff8ca4b4429db2514302c7d6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -397,7 +392,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 687c192ff8ca4b4429db2514302c7d6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -547,7 +542,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 687c192ff8ca4b4429db2514302c7d6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1162,14 +1157,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 168601497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5f698dbdf02c2143ba5151953e8a2aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fd01d7f9f6c3f74091f2eee203d566c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetButton: {fileID: 168601504}
   requireClearToUnlock: 1
   lockIconImage: {fileID: 1327669248}
-  lockedIcon: {fileID: 21300000, guid: 687c192ff8ca4b4429db2514302c7d6c, type: 3}
-  unlockedIcon: {fileID: 21300000, guid: 98f63f7653002c543b085b66aa421a01, type: 3}
+  lockedIcon: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
+  unlockedIcon: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0, type: 3}
   requiredStageNames:
   - 1-1
 --- !u!1 &207290668
@@ -1476,14 +1471,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 207290668}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5f698dbdf02c2143ba5151953e8a2aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fd01d7f9f6c3f74091f2eee203d566c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetButton: {fileID: 207290675}
   requireClearToUnlock: 1
   lockIconImage: {fileID: 54191436}
-  lockedIcon: {fileID: 21300000, guid: 687c192ff8ca4b4429db2514302c7d6c, type: 3}
-  unlockedIcon: {fileID: 21300000, guid: 98f63f7653002c543b085b66aa421a01, type: 3}
+  lockedIcon: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
+  unlockedIcon: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0, type: 3}
   requiredStageNames:
   - 2-1
 --- !u!1 &223240035
@@ -1790,14 +1785,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 223240035}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5f698dbdf02c2143ba5151953e8a2aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fd01d7f9f6c3f74091f2eee203d566c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetButton: {fileID: 223240042}
   requireClearToUnlock: 1
   lockIconImage: {fileID: 848563639}
-  lockedIcon: {fileID: 21300000, guid: 687c192ff8ca4b4429db2514302c7d6c, type: 3}
-  unlockedIcon: {fileID: 21300000, guid: 98f63f7653002c543b085b66aa421a01, type: 3}
+  lockedIcon: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
+  unlockedIcon: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0, type: 3}
   requiredStageNames:
   - 3-1
   - 3-2
@@ -1858,7 +1853,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: STAGESELECT2
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2743,14 +2738,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 562415202}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5f698dbdf02c2143ba5151953e8a2aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fd01d7f9f6c3f74091f2eee203d566c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetButton: {fileID: 562415209}
   requireClearToUnlock: 1
   lockIconImage: {fileID: 93528451}
-  lockedIcon: {fileID: 21300000, guid: 687c192ff8ca4b4429db2514302c7d6c, type: 3}
-  unlockedIcon: {fileID: 21300000, guid: 98f63f7653002c543b085b66aa421a01, type: 3}
+  lockedIcon: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
+  unlockedIcon: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0, type: 3}
   requiredStageNames:
   - 4-1
 --- !u!1 &565637950
@@ -2944,7 +2939,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: STAGESELECT
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3057,8 +3052,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 930, y: 0}
-  m_SizeDelta: {x: 30, y: 200}
+  m_AnchoredPosition: {x: 915, y: 0}
+  m_SizeDelta: {x: 100, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &577421431
 MonoBehaviour:
@@ -3106,14 +3101,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1851990674}
         m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
-        m_MethodName: ShowCanvas2
+        m_MethodName: ShowNextCanvas
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Canvas2
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &577421432
@@ -3136,8 +3131,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 6ab3a5281fb8f494595979d58ff1e900, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3211,17 +3206,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'r
-
-    e
-
-    t
-
-    u
-
-    r
-
-    n'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3489,7 +3474,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 687c192ff8ca4b4429db2514302c7d6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3811,14 +3796,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 671893018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5f698dbdf02c2143ba5151953e8a2aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fd01d7f9f6c3f74091f2eee203d566c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetButton: {fileID: 671893023}
   requireClearToUnlock: 1
   lockIconImage: {fileID: 936431463}
-  lockedIcon: {fileID: 21300000, guid: 687c192ff8ca4b4429db2514302c7d6c, type: 3}
-  unlockedIcon: {fileID: 21300000, guid: 98f63f7653002c543b085b66aa421a01, type: 3}
+  lockedIcon: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
+  unlockedIcon: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0, type: 3}
   requiredStageNames:
   - 1-1
   - 1-2
@@ -4151,8 +4136,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -930, y: 0}
-  m_SizeDelta: {x: 30, y: 200}
+  m_AnchoredPosition: {x: -915, y: 0}
+  m_SizeDelta: {x: 100, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &693636891
 MonoBehaviour:
@@ -4200,7 +4185,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1851990674}
         m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
-        m_MethodName: ShowCanvas2
+        m_MethodName: ShowPreviousCanvas
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4230,8 +4215,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 7d583c140e254084681946691ed84fa2, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4305,17 +4290,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'r
-
-    e
-
-    t
-
-    u
-
-    r
-
-    n'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4585,7 +4560,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: STAGESELECT3
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5238,7 +5213,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 687c192ff8ca4b4429db2514302c7d6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5717,7 +5692,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 687c192ff8ca4b4429db2514302c7d6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5929,7 +5904,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: acc42671df636274b84f05d54f44afbf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fe25a81e6f32757439528b7a82747328, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -6038,14 +6013,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 936504788}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5f698dbdf02c2143ba5151953e8a2aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fd01d7f9f6c3f74091f2eee203d566c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetButton: {fileID: 936504790}
   requireClearToUnlock: 0
   lockIconImage: {fileID: 0}
-  lockedIcon: {fileID: 21300000, guid: 687c192ff8ca4b4429db2514302c7d6c, type: 3}
-  unlockedIcon: {fileID: 21300000, guid: 98f63f7653002c543b085b66aa421a01, type: 3}
+  lockedIcon: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
+  unlockedIcon: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0, type: 3}
   requiredStageNames: []
 --- !u!1 &940965311
 GameObject:
@@ -6676,14 +6651,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1025528149}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5f698dbdf02c2143ba5151953e8a2aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fd01d7f9f6c3f74091f2eee203d566c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetButton: {fileID: 1025528156}
   requireClearToUnlock: 1
   lockIconImage: {fileID: 1898582379}
-  lockedIcon: {fileID: 21300000, guid: 687c192ff8ca4b4429db2514302c7d6c, type: 3}
-  unlockedIcon: {fileID: 21300000, guid: 98f63f7653002c543b085b66aa421a01, type: 3}
+  lockedIcon: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
+  unlockedIcon: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0, type: 3}
   requiredStageNames:
   - 3-1
 --- !u!1 &1060902251
@@ -6927,11 +6902,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetButton: {fileID: 0}
-  resetButtonGroup: {fileID: 0}
+  editButton: {fileID: 0}
+  resetButtonCanvasGroup: {fileID: 0}
+  editButtonCanvasGroup: {fileID: 0}
   clickSE: {fileID: 0}
   clickSEVolume: 1
-  resetSE: {fileID: 0}
-  seVolume: 1
   turnResetButtonDuration: 1
   sceneOrderList: {fileID: 11400000, guid: b2218eff379b22b4b9f9a9759cd3ecd0, type: 2}
 --- !u!4 &1181874210
@@ -7253,14 +7228,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1182469705}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5f698dbdf02c2143ba5151953e8a2aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fd01d7f9f6c3f74091f2eee203d566c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetButton: {fileID: 1182469712}
   requireClearToUnlock: 1
   lockIconImage: {fileID: 115176185}
-  lockedIcon: {fileID: 21300000, guid: 687c192ff8ca4b4429db2514302c7d6c, type: 3}
-  unlockedIcon: {fileID: 21300000, guid: 98f63f7653002c543b085b66aa421a01, type: 3}
+  lockedIcon: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
+  unlockedIcon: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0, type: 3}
   requiredStageNames:
   - 4-1
   - 4-2
@@ -7808,14 +7783,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1296318115}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5f698dbdf02c2143ba5151953e8a2aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fd01d7f9f6c3f74091f2eee203d566c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetButton: {fileID: 1296318122}
   requireClearToUnlock: 1
   lockIconImage: {fileID: 2000047207}
-  lockedIcon: {fileID: 21300000, guid: 687c192ff8ca4b4429db2514302c7d6c, type: 3}
-  unlockedIcon: {fileID: 21300000, guid: 98f63f7653002c543b085b66aa421a01, type: 3}
+  lockedIcon: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
+  unlockedIcon: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0, type: 3}
   requiredStageNames:
   - 5-1
 --- !u!1 &1303685921
@@ -7950,7 +7925,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 687c192ff8ca4b4429db2514302c7d6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8751,14 +8726,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1549361629}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5f698dbdf02c2143ba5151953e8a2aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fd01d7f9f6c3f74091f2eee203d566c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetButton: {fileID: 1549361636}
   requireClearToUnlock: 1
   lockIconImage: {fileID: 661981931}
-  lockedIcon: {fileID: 21300000, guid: 687c192ff8ca4b4429db2514302c7d6c, type: 3}
-  unlockedIcon: {fileID: 21300000, guid: 98f63f7653002c543b085b66aa421a01, type: 3}
+  lockedIcon: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
+  unlockedIcon: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0, type: 3}
   requiredStageNames:
   - 2-1
   - 2-2
@@ -9497,8 +9472,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 930, y: 0}
-  m_SizeDelta: {x: 30, y: 200}
+  m_AnchoredPosition: {x: 915, y: 0}
+  m_SizeDelta: {x: 100, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1851496669
 MonoBehaviour:
@@ -9546,7 +9521,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1851990674}
         m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
-        m_MethodName: ShowCanvas3
+        m_MethodName: ShowNextCanvas
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9576,8 +9551,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 6ab3a5281fb8f494595979d58ff1e900, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -9623,10 +9598,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 887566d8486df1e4592ede2328885f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas1: {fileID: 2016459190}
-  canvas2: {fileID: 961403625}
-  canvas3: {fileID: 1365911309}
-  canvas4: {fileID: 0}
+  canvases:
+  - {fileID: 2016459190}
+  - {fileID: 961403625}
+  - {fileID: 1365911309}
+  canvasTransition: {fileID: 0}
 --- !u!4 &1851990675
 Transform:
   m_ObjectHideFlags: 0
@@ -9774,15 +9750,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'n
-
-    e
-
-    x
-
-    t
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9916,7 +9884,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 687c192ff8ca4b4429db2514302c7d6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10179,8 +10147,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -930, y: 0}
-  m_SizeDelta: {x: 30, y: 200}
+  m_AnchoredPosition: {x: -915, y: 0}
+  m_SizeDelta: {x: 100, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1980724590
 MonoBehaviour:
@@ -10228,7 +10196,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1851990674}
         m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
-        m_MethodName: ShowCanvas1
+        m_MethodName: ShowPreviousCanvas
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10258,8 +10226,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 7d583c140e254084681946691ed84fa2, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -10626,7 +10594,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 687c192ff8ca4b4429db2514302c7d6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10954,7 +10922,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6005720471312087027, guid: 739ba65a449ee424991dd7318d1011f3,
+        type: 3}
+      propertyPath: lockedIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e,
+        type: 3}
+    - target: {fileID: 6005720471312087027, guid: 739ba65a449ee424991dd7318d1011f3,
+        type: 3}
+      propertyPath: unlockedIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0,
+        type: 3}
+    m_RemovedComponents:
+    - {fileID: 0}
+    - {fileID: 3981874716169512867, guid: 739ba65a449ee424991dd7318d1011f3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
