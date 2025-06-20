@@ -929,6 +929,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2671816353851887370, guid: 4a923725ec1e0c94fbfe80fda3d44f8b,
+        type: 3}
+      propertyPath: copyableObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2671816353851887370, guid: 4a923725ec1e0c94fbfe80fda3d44f8b,
+        type: 3}
+      propertyPath: copyableObjects.Array.data[0].prefab
+      value: 
+      objectReference: {fileID: 5584434352907416040}
+    - target: {fileID: 2671816353851887370, guid: 4a923725ec1e0c94fbfe80fda3d44f8b,
+        type: 3}
+      propertyPath: copyableObjects.Array.data[0].maxCopies
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4026406739187244119, guid: 4a923725ec1e0c94fbfe80fda3d44f8b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1671,7 +1686,7 @@ PrefabInstance:
     - target: {fileID: 982911174728651040, guid: fe355ece29c8b1e49b2d83bdf8abeca4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.74
+      value: 2.32
       objectReference: {fileID: 0}
     - target: {fileID: 982911174728651040, guid: fe355ece29c8b1e49b2d83bdf8abeca4,
         type: 3}
@@ -1712,6 +1727,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2212191884549240235, guid: fe355ece29c8b1e49b2d83bdf8abeca4,
+        type: 3}
+      propertyPath: forceStrength
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1822,7 +1842,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
