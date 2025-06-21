@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a222a23f01d8248a9eede6e4830b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetObject: {fileID: 0}
   target: {fileID: 0}
   moveSpeed: 5
   Button: 0
@@ -181,10 +182,10 @@ MonoBehaviour:
   jumpMoveDamping: 0.5
   wallsRay: 0.1
   jumpWait: 0.1
-  checkObjectnames:
-  - 
   isGrounded: 0
   isjump: 0
+  isget: 0
+  moveX: 0
   Goaltimer: 0
 --- !u!95 &7635092613522918640
 Animator:
@@ -297,8 +298,21 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9628e070ab5fea241aaf55c02b517d67, type: 3}
   - {fileID: 21300000, guid: 7f58bd0bec210e24fa469eaff18f99d9, type: 3}
   - {fileID: 21300000, guid: 43a0cfc976d58fa4ead576e2bcf365c4, type: 3}
-  ladderFrames: []
-  getItemFrames: []
+  ladderFrames:
+  - {fileID: 21300000, guid: 61b8e3530e389794ebbefe527a769be1, type: 3}
+  - {fileID: 21300000, guid: 210db74d8e9ff6648b019e898979ef03, type: 3}
+  - {fileID: 21300000, guid: 0c18d42585c9a4742ac5e1d88e6cabb1, type: 3}
+  - {fileID: 21300000, guid: cfeb55af18038c64fb32c9abce8f0011, type: 3}
+  - {fileID: 21300000, guid: 0fcf796c8f8d8d343b87352ede553b1e, type: 3}
+  - {fileID: 21300000, guid: 75a1d84f0ff7b414e95b4d3ef5ed65d4, type: 3}
+  - {fileID: 21300000, guid: c00c3c25238adc34a81652f4ca549917, type: 3}
+  - {fileID: 21300000, guid: 3fcc7a90301ad68449edae14d191f813, type: 3}
+  - {fileID: 21300000, guid: d6d115c2ae386fa4bb1ae0db8090818e, type: 3}
+  getItemFrames:
+  - {fileID: 21300000, guid: 204c76b3c9aebfc46aaf8ed62e898fed, type: 3}
+  - {fileID: 21300000, guid: ba44e2b256ef9e6499c3c438cfb958d9, type: 3}
+  - {fileID: 21300000, guid: c68dd37e2f0aa9247bd8c6c8054dab8e, type: 3}
+  - {fileID: 21300000, guid: 7c389eac17c45e940963e83397c7f509, type: 3}
   frameRate: 0.1
   onlyFrameRate: 0.3
   startButton: {fileID: 0}
@@ -313,10 +327,13 @@ MonoBehaviour:
   framesAnimation: 0
   jumpAnimation: 0
   getItem: 0
+  ladder: 0
+  get: 0
   rayLength: 0
   currentFrame: 0
   currentOnlyFrame: 0
   currentJumpFrame: 0
+  Button: 0
   groundCheck: 0
   skyLeapBool: 0
 --- !u!114 &3042031772637770673
@@ -347,9 +364,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  wallLayer:
+  hitLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
 --- !u!114 &4307969996715576336
 MonoBehaviour:
   m_ObjectHideFlags: 0
