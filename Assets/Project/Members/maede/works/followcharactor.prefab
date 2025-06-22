@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7257681846188229780}
   - component: {fileID: 2018789190185071014}
   - component: {fileID: 5962189966483233661}
-  - component: {fileID: 5109437843277659103}
+  - component: {fileID: 2491745157975356230}
   m_Layer: 0
   m_Name: followcharactor
   m_TagString: Untagged
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startButton: {fileID: 0}
---- !u!114 &5109437843277659103
+--- !u!114 &2491745157975356230
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,25 +191,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7329326523593108582}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aff0d9ea90c1f26488503ee9f13cca3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 79ebd16f08f4d86498f3839248b2fa34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleFrames:
-  - {fileID: 21300000, guid: 72de0c64f2c6a498096698322c976a67, type: 3}
-  moveFrames:
-  - {fileID: 21300000, guid: c8a742c1f2ebb43b9afe34a47304c051, type: 3}
-  goalFrames:
-  - {fileID: 21300000, guid: 72de0c64f2c6a498096698322c976a67, type: 3}
+  idleFrames: []
+  moveFrames: []
+  goalFrames: []
   goalPerformanceFrame: []
-  gimmickFrames:
-  - {fileID: 0}
-  trapFrames:
-  - {fileID: 21300000, guid: 72de0c64f2c6a498096698322c976a67, type: 3}
-  getupFrames:
-  - {fileID: 21300000, guid: 72de0c64f2c6a498096698322c976a67, type: 3}
+  gimmickFrames: []
+  trapFrames: []
+  getupFrames: []
   fallFrames: []
   jumpFrames: []
-  frameRate: 0.1
+  ladderFrames: []
+  getItemFrames: []
+  frameRate: 0.2
+  onlyFrameRate: 0.3
   startButton: {fileID: 0}
   resetButton: {fileID: 0}
   GoalButton: 0
@@ -220,6 +217,14 @@ MonoBehaviour:
   trapReset: 0
   finish: 0
   framesAnimation: 0
-  rayLength: 0.1
+  jumpAnimation: 0
+  getItem: 0
+  ladder: 0
+  get: 0
+  rayLength: 0
   currentFrame: 0
+  currentOnlyFrame: 0
+  currentJumpFrame: 0
+  Button: 0
   groundCheck: 0
+  skyLeapBool: 0

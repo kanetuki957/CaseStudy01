@@ -11,15 +11,12 @@ public class FollowPlayer : MonoBehaviour
     public GameObject[] ignoredPlayers; // 通り抜けたいプレイヤーのリスト
     public float rayDistance = 0.0f;
 
-    private Vector3 startPostion;
-    private bool isTrapReset;
     private bool isgoal;
     private bool isgoalPerformance;
     private bool button = false;
     private Rigidbody2D rb;
     private Collider2D myCollider;
     private SpriteRenderer spriteRenderer;
-    private PlayerController playerController;
     private AnimationController animationController;
     private float moveX;
     private Vector2 direction;
@@ -27,8 +24,7 @@ public class FollowPlayer : MonoBehaviour
 
     void Start()
     {
-        playerController = target.GetComponent<PlayerController>();
-        startPostion = transform.position;  // 初期位置を記録
+        
         animationController = target.GetComponent<AnimationController>();
         myCollider = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
@@ -40,7 +36,7 @@ public class FollowPlayer : MonoBehaviour
             Collider2D playerCollider = ignoredPlayers[i].GetComponent<Collider2D>();
             if (playerCollider != null)
             {
-                Physics2D.IgnoreCollision(myCollider, playerCollider);
+                Physics2D.IgnoreCollision(playerCollider, myCollider);
             }
         }
     }
