@@ -12,8 +12,12 @@ public class GimmickPair
 
 public class CSVLoader : MonoBehaviour
 {
+    [Header("↓ここにインポートしたCSVファイルを設定")]
     public TextAsset csvFile;
+    [Header("使いたいギミックのリスト、足りない場合は要追加")]
     public List<GimmickPair> gimmickPrefabs; // Inspectorで番号・Prefab・Layer紐付け
+
+
     private Dictionary<int, GimmickPair> idToPair; // PrefabだけでなくLayerも管理
 
 #if UNITY_EDITOR
@@ -74,12 +78,12 @@ public class CSVLoader : MonoBehaviour
                 {
                     if (id == 1 && playerObj != null)
                     {
-                        playerObj.transform.localPosition = pos;
+                        playerObj.transform.position = pos;
                         continue;
                     }
                     if (id == 2 && goalObj != null)
                     {
-                        goalObj.transform.localPosition = pos;
+                        goalObj.transform.position = pos;
                         continue;
                     }
                 }
@@ -91,7 +95,7 @@ public class CSVLoader : MonoBehaviour
                     if (pair.prefab != null)
                     {
                         var go = (GameObject)UnityEditor.PrefabUtility.InstantiatePrefab(pair.prefab, blocksParent);
-                        go.transform.localPosition = pos;
+                        go.transform.position = pos;
                         SetLayerRecursively(go, pair.layer);
                     }
                 }
