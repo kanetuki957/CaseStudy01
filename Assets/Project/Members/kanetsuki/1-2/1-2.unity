@@ -3382,6 +3382,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageTemplate
       objectReference: {fileID: 0}
+    - target: {fileID: 6090785473455563860, guid: 4a923725ec1e0c94fbfe80fda3d44f8b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.45
+      objectReference: {fileID: 0}
     - target: {fileID: 6343276283342156293, guid: 4a923725ec1e0c94fbfe80fda3d44f8b,
         type: 3}
       propertyPath: m_LocalPosition.x
