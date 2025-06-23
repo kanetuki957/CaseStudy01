@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d7c2d92dabf6f4d4f8938e5b106faa7f
+guid: e4528e1f82ec22146befb15f5c9cbb88
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -44,7 +44,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
