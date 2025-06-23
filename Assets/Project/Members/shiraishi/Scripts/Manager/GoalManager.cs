@@ -11,6 +11,8 @@ public class GoalManager : MonoBehaviour
 
     private bool wasKeyPresentAtStart = false;
 
+    public string nextSceneName; // 次のシーン名（必要に応じて設定）
+
     // プレイヤーと対応するゴールをセットで管理する構造体
     [System.Serializable]
     public class GoalPair
@@ -62,6 +64,11 @@ public class GoalManager : MonoBehaviour
 
         if (AllPlayersOnGoals() && AllPlayersHaveKey())
         {
+            // 次のシーン名が入力されている場合はそのシーンへ遷移
+            if (nextSceneName != null) {
+                GameManager.Instance.GoToScene(nextSceneName);
+            }
+
             GameManager.Instance.GoToNextScene();
 
             // 失敗したらリロード
