@@ -36,7 +36,7 @@ public class SceneTransitionHelper : MonoBehaviour
         Screenshot = tex;
         NextSceneName = nextSceneName;
 
-        SceneManager.LoadScene("TransitionScene");
+        SceneManager.LoadScene("TransitionScene", LoadSceneMode.Single);
     }
 
     public static string NextSceneName;
