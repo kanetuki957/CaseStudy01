@@ -696,7 +696,7 @@ MonoBehaviour:
   iconPrefab: {fileID: 1893843390234180111, guid: 2d4d3498c56e4bc44b878d0354b27cf5,
     type: 3}
   normalIconSprite: {fileID: 21300000, guid: 2d5a41a4aa5ea5246bb925543ed5fdaa, type: 3}
-  limitIconSprite: {fileID: 21300000, guid: e0621b8ae3a3ada4f8f30c66ccd60f25, type: 3}
+  limitIconSprite: {fileID: 21300000, guid: 57fec1169285c4448b9231b37375dc40, type: 3}
 --- !u!1 &8006600958120790407
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,19 +965,13 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7296095185693733983}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3279735398235960646 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5243063107199598873, guid: f9f0d362ff655cf4d9d6cec971f7d6e6,
-    type: 3}
-  m_PrefabInstance: {fileID: 7296095185693733983}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7748942802725557864 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1065428443894686263, guid: f9f0d362ff655cf4d9d6cec971f7d6e6,
     type: 3}
   m_PrefabInstance: {fileID: 7296095185693733983}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3279735398235960646}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a04c6f8b3df21149a604b7e08526197, type: 3}
