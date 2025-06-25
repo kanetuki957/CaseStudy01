@@ -136,44 +136,46 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, wallsRay);
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.gameObject);
-
+            //Debug.Log(hit.collider.gameObject);
             if (hit.collider is BoxCollider2D)
             {
                 if (hit.collider.gameObject.name != "Ladder")
                 {
-                    if (hit.collider.GetComponent<PickupableItem>() == null)
+                    if (hit.collider.GetComponent<LeverGimmick>() == null)
                     {
-                        if (hit.collider.gameObject.name != "followcharactor")
+                        if (hit.collider.GetComponent<PickupableItem>() == null)
                         {
-
-                            // targetBlockCollider に当たったかチェック
-                            if (hit.collider == targetBlockCollider)
+                            if (hit.collider.gameObject.name != "followcharactor")
                             {
 
-                                hit.collider.enabled = false;  // スクリプト停止などの処理
+                                // targetBlockCollider に当たったかチェック
+                                if (hit.collider == targetBlockCollider)
+                                {
+
+                                    hit.collider.enabled = false;  // スクリプト停止などの処理
+                                    return;
+                                }
+                            }
+
+                            // 名前が Goal のオブジェクトに当たったか
+                            if (hit.collider.name == "Goal")
+                            {
+
+                                animationController.GoalBool();
+                                hit.collider.enabled = false; // 当たり判定をオフにする
                                 return;
                             }
-                        }
-                        
-                        // 名前が Goal のオブジェクトに当たったか
-                        if (hit.collider.name == "Goal")
-                        {
-
-                            animationController.GoalBool();
-                            hit.collider.enabled = false; // 当たり判定をオフにする
-                            return;
-                        }
-                        else
-                        {
-                            if (!animationController.ladder)
+                            else
                             {
-                                //Debug.Log("真ん中" + hitwalls.collider.name);
-                                playerDirection = !playerDirection;  // 反転
+                                if (!animationController.ladder)
+                                {
+                                    //Debug.Log("真ん中" + hitwalls.collider.name);
+                                    playerDirection = !playerDirection;  // 反転
+                                }
                             }
                         }
                     }
-                }   
+                }
             }
         }
         //RaycastHit2D hit = Physics2D.Raycast(rayOrigindown, Vector2.down, 10f);
