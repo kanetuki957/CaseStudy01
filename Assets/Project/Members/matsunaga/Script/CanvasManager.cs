@@ -21,6 +21,10 @@ public class CanvasManager : MonoBehaviour
         if (targetCanvas == canvases[currentIndex])
             return;
 
+        // アニメーション中なら何もしない
+        if (canvasTransition != null && canvasTransition.IsAnimating())
+            return;
+
         if (canvasTransition != null)
         {
             canvasTransition.StartCanvasTransition(canvases[currentIndex], targetCanvas);
@@ -33,6 +37,7 @@ public class CanvasManager : MonoBehaviour
 
         currentIndex = System.Array.IndexOf(canvases, targetCanvas);
     }
+
 
     public void ShowNextCanvas()
     {
