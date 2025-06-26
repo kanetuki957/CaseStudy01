@@ -74,6 +74,7 @@ public class ForceZone : MonoBehaviour, IActivatable
     private void OnTriggerExit2D(Collider2D other)
     {
         isStay = false;
+        rb_player.GetComponent<PlayerMove>().playerState = PlayerState.Move;
         rb_player = null;
     }
 
@@ -83,7 +84,7 @@ public class ForceZone : MonoBehaviour, IActivatable
         {
             if (restrictHorizontalMovement)
             {
-                rb_player.velocity = new Vector2(0, rb_player.velocity.y);
+                rb_player.GetComponent<PlayerMove>().playerState = PlayerState.Stay;
             }
 
             rb_player.velocity += forceDirection.normalized * forceStrength;
