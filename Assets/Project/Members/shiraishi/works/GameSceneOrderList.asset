@@ -14,6 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneNames:
   - 1-table
-  - 1-back
+  - 1-2
+  - SelectScene
+  - 1-3
+  - 1-4
+  - SelectScene
+  - 1-5
+  - 2-1
+  - SelectScene
+  - 2-2
   - 2-table
-  - main_goal
+  - SelectScene
+  - 2-2table
+  - 1-2copy
+  - SelectScene
+  - 3-1
+  - 2-3
+  - SelectScene
+  - 1-2table
+  - 2-4

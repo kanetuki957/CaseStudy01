@@ -20,6 +20,7 @@ public class AnimationController : MonoBehaviour
 
     public float frameRate = 0.2f; 　// フレームの切り替え速度
     public float onlyFrameRate = 0.3f;
+    public float jumpFrameRate = 0.3f;
 
     public Button startButton;　　 　//ボタンの判定
     public Button resetButton;       //ボタンの判定
@@ -173,22 +174,22 @@ public class AnimationController : MonoBehaviour
                     framesAnimation = false;
                 }
             }
-            else
-            {
-                Goaltimer += Time.deltaTime;
-                Frame(goalPerformanceFrame);
-                if (Goaltimer > 5) 
-                {
+            //else
+            //{
+            //    Goaltimer += Time.deltaTime;
+            //    Frame(goalPerformanceFrame);
+            //    if (Goaltimer > 5) 
+            //    {
 
-                    goalPerformance = false;
-                    Goaltimer = 0;
-                    spriteRenderer.sprite = idleFrames[0];
-                    Button = false;
-                    GoalButton = false;
-                    finish = true;
+            //        goalPerformance = false;
+            //        Goaltimer = 0;
+            //        spriteRenderer.sprite = idleFrames[0];
+            //        Button = false;
+            //        GoalButton = false;
+            //        finish = true;
 
-                }
-            }
+            //    }
+            //}
         }
     }
 

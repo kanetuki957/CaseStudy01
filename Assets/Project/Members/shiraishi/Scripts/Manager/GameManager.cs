@@ -160,18 +160,22 @@ public class GameManager : MonoBehaviour
     }
 
     // リストで現在シーンの次にあるシーンをロード
-    public void GoToNextScene()
+    public bool GoToNextScene()
     {
         string next = GetNextSceneName();
         if (!string.IsNullOrEmpty(next))
         {
+            Debug.Log("リストの次のシーンに移動します");
             SceneTransitionHelper.StartTransition(next, this);
+            return true;
         }
+        return false;
     }
 
     // シーン名を直接指定してロード
     public void GoToScene(string sceneName)
     {
+        Debug.Log("入力されたシーンに移動します");
         SceneTransitionHelper.StartTransition(sceneName, this);
     }
 }

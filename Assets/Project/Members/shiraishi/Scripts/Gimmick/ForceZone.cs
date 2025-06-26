@@ -26,6 +26,11 @@ public class ForceZone : MonoBehaviour, IActivatable
     [SerializeField] private EffectManager effectManager;
 
     Rigidbody2D rb_player;
+    private void Awake()
+    {
+        forceDirection = forceDirection.normalized;
+        StartForceStrength = forceStrength;
+    }
 
     private void Start()
     {
@@ -38,6 +43,8 @@ public class ForceZone : MonoBehaviour, IActivatable
                 //Debug.LogWarning($"[DisappearBlock] 子オブジェクトに EffectManager が見つかりません: {gameObject.name}");
             }
         }
+
+        forceDirection = forceDirection.normalized;
 
         StartForceStrength = forceStrength;
 
