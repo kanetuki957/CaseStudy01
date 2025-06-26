@@ -462,6 +462,12 @@ MonoBehaviour:
   openDoorSprite: {fileID: 21300160, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
   closeDoorSprite: {fileID: 21300158, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
   isOpen: 0
+--- !u!1 &843346442 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5629450618453580858, guid: 66e0579f356c2974d883fc00f20743d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 869598100}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &869598100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -901,18 +907,23 @@ PrefabInstance:
     - target: {fileID: 37563313169614940, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: copyableObjects.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 37563313169614940, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: copyableObjects.Array.data[0].prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 843346442}
     - target: {fileID: 37563313169614940, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: copyableObjects.Array.data[1].prefab
       value: 
       objectReference: {fileID: 1236596248}
+    - target: {fileID: 37563313169614940, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: copyableObjects.Array.data[0].maxCopies
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 39328507130387824, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: m_Material

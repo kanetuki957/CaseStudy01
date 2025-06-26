@@ -227,6 +227,7 @@ public class CopyPaste_shira_test : MonoBehaviour
         }
     }
 
+    // コピー上限に達しているなら画像を変更
     public void UpdateAllIconSprites()
     {
         foreach (var pair in iconPairs)
