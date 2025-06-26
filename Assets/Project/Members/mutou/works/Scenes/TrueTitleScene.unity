@@ -304,7 +304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0bc44dc32e44e94597701ccb5c6cfd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickSound: {fileID: 8300000, guid: eb783cd395ca87a4ab71eaa128d279c2, type: 3}
+  clickSound: {fileID: 8300000, guid: 1ea8a12dc30f1804b86ef62afbdbba91, type: 3}
+  confirmSound: {fileID: 8300000, guid: 46acd165517b40a429b255d8332b5d15, type: 3}
 --- !u!1 &489194926
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,11 +727,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11460108, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
       propertyPath: fadeColor.b
-      value: 0.7082739
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11460108, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
       propertyPath: fadeColor.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11460108, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
       propertyPath: fadeColor.r
@@ -751,7 +752,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1831558263}
   - component: {fileID: 1831558262}
-  - component: {fileID: 1831558264}
   m_Layer: 0
   m_Name: TitleLogo
   m_TagString: Untagged
@@ -826,43 +826,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1831558264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1831558261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45e5d52bebe94a54d913094a7f30b819, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  duration: 1.5
-  curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &1929715753
 GameObject:
   m_ObjectHideFlags: 0
