@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 311708489747504206}
   - component: {fileID: 8206269654934444379}
   - component: {fileID: 932192996384541434}
+  - component: {fileID: -3838718189089647105}
   m_Layer: 0
   m_Name: Conveyor
   m_TagString: Untagged
@@ -179,6 +180,7 @@ MonoBehaviour:
   forceDirection: {x: 1, y: 0}
   forceStrength: 1.5
   restrictHorizontalMovement: 1
+  isActiveAtStart: 1
   isTurn: 1
   effectManager: {fileID: 0}
 --- !u!61 &932192996384541434
@@ -226,3 +228,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8, y: 1.5}
   m_EdgeRadius: 0
+--- !u!95 &-3838718189089647105
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6757548551192842488}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 823a12e0b1b83664da28ba6b30556581, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
