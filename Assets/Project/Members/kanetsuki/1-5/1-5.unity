@@ -3146,11 +3146,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: tornado
       objectReference: {fileID: 0}
-    - target: {fileID: 5546435028106123924, guid: 8dffec19d14d752488d2549ff6a70106,
-        type: 3}
-      propertyPath: forceStrength
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 9023973874969668228, guid: 8dffec19d14d752488d2549ff6a70106,
         type: 3}
       propertyPath: m_LocalPosition.x
