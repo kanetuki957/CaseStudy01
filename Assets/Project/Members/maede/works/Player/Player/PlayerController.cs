@@ -147,30 +147,39 @@ public class PlayerController : MonoBehaviour
                         {
                             if (hit.collider.gameObject.name != "followcharactor")
                             {
-
-                                // targetBlockCollider に当たったかチェック
-                                if (hit.collider == targetBlockCollider)
+                                if (hit.collider.name != "Goal")
                                 {
+                                    // targetBlockCollider に当たったかチェック
+                                    if (hit.collider == targetBlockCollider)
+                                    {
 
-                                    hit.collider.enabled = false;  // スクリプト停止などの処理
-                                    return;
-                                }
-                            }
+                                        hit.collider.enabled = false;  // スクリプト停止などの処理
+                                        return;
+                                    }
 
-                            // 名前が Goal のオブジェクトに当たったか
-                            if (hit.collider.name == "Goal")
-                            {
 
-                                animationController.GoalBool();
-                                hit.collider.enabled = false; // 当たり判定をオフにする
-                                return;
-                            }
-                            else
-                            {
-                                if (!animationController.ladder)
-                                {
-                                    //Debug.Log("真ん中" + hitwalls.collider.name);
-                                    playerDirection = !playerDirection;  // 反転
+                                    if (!animationController.ladder)
+                                    {
+                                        //Debug.Log("真ん中" + hitwalls.collider.name);
+                                        playerDirection = !playerDirection;  // 反転
+                                    }
+
+                                    //// 名前が Goal のオブジェクトに当たったか
+                                    //if (hit.collider.name == "Goal")
+                                    //{
+
+                                    //    animationController.GoalBool();
+                                    //    hit.collider.enabled = false; // 当たり判定をオフにする
+                                    //    return;
+                                    //}
+                                    //else
+                                    //{
+                                    //    if (!animationController.ladder)
+                                    //    {
+                                    //        //Debug.Log("真ん中" + hitwalls.collider.name);
+                                    //        playerDirection = !playerDirection;  // 反転
+                                    //    }                            //}
+                                    //}
                                 }
                             }
                         }
