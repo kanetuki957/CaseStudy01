@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
@@ -48,6 +50,8 @@ public class CopyPaste_shira_test : MonoBehaviour
         iconPairs.Clear();
         foreach (CopyableObjectInfo info in copyableObjects)
         {
+            AddClickHitbox(info.prefab);
+
             GameObject iconObj = Instantiate(iconPrefab, canvasRectTransform);
             iconObj.SetActive(false);
 
@@ -135,22 +139,25 @@ public class CopyPaste_shira_test : MonoBehaviour
     {
         selectedInfo = null;
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+        int clickLayer = LayerMask.GetMask("ClickDetection");
+
+        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, 0f, clickLayer);
 
         if (hit.collider != null)
         {
-            selectedInfo = copyableObjects.Find(x => x.prefab == hit.collider.gameObject);
+            GameObject hitObj = hit.collider.gameObject;
+            GameObject rootObj = hitObj.transform.root.gameObject;
+
+            selectedInfo = copyableObjects.Find(x => x.prefab == rootObj);
             if (selectedInfo == null)
             {
-                // リストに登録されていないオブジェクトを選択した場合
-                var origin = hit.collider.gameObject.GetComponent<CopyOrigin>();
+                var origin = rootObj.GetComponent<CopyOrigin>();
                 if (origin != null)
                 {
-                    // リストに直接登録されていないが、コピー元オブジェクトが登録されていた場合
-                    selectedObject = hit.collider.gameObject;
+                    selectedObject = rootObj;
                     selectedInfo = origin.originInfo;
                     distance_MouseToObject = (Vector2)selectedObject.transform.position - mousePos;
-                    Debug.Log($"{hit.collider.gameObject.name} を選択 元オブジェクト {selectedInfo.prefab.name}");
+                    Debug.Log($"{rootObj.name} を選択 元オブジェクト {selectedInfo.prefab.name}");
                 }
                 else
                 {
@@ -159,10 +166,9 @@ public class CopyPaste_shira_test : MonoBehaviour
             }
             else
             {
-                // リストに登録されているオブジェクトを選択した場合
-                selectedObject = hit.collider.gameObject;
+                selectedObject = rootObj;
                 distance_MouseToObject = (Vector2)selectedObject.transform.position - mousePos;
-                Debug.Log($"{hit.collider.gameObject.name} を選択");
+                Debug.Log($"{rootObj.name} を選択");
             }
         }
         else
@@ -170,6 +176,7 @@ public class CopyPaste_shira_test : MonoBehaviour
             selectedInfo = null;
         }
     }
+
 
     // オブジェクトをコピー
     public bool CopySelectedObject()
@@ -235,21 +242,8 @@ public class CopyPaste_shira_test : MonoBehaviour
             GameObject obj = pair.Key;
             Image icon = pair.Value;
 
-            // CopyOriginがついていればコピー済み、なければ元Prefab
-            CopyOrigin origin = obj.GetComponent<CopyOrigin>();
-            CopyableObjectInfo info = null;
+            var info = GetCopyableInfo(obj);
 
-            if (origin != null)
-            {
-                info = origin.originInfo;
-            }
-            else
-            {
-                // 元Prefabの場合
-                info = copyableObjects.Find(x => x.prefab == obj);
-            }
-
-            // 上限判定＆Sprite切り替え
             if (info != null && info.currentCopies >= info.maxCopies)
             {
                 icon.sprite = limitIconSprite;
@@ -261,4 +255,50 @@ public class CopyPaste_shira_test : MonoBehaviour
         }
     }
 
+    private CopyableObjectInfo GetCopyableInfo(GameObject obj)
+    {
+        var origin = obj.GetComponent<CopyOrigin>();
+        if (origin != null)
+        {
+            return origin.originInfo;
+        }
+
+        // シーン上のオブジェクトを参照で一致させる
+        return copyableObjects.FirstOrDefault(x => x.prefab == obj);
+    }
+
+    void AddClickHitbox(GameObject obj)
+    {
+        if (obj.transform.Find("ClickHitbox") != null)
+            return;
+
+        GameObject hitbox = new GameObject("ClickHitbox");
+        hitbox.transform.SetParent(obj.transform);
+        hitbox.transform.localPosition = Vector3.zero;
+        hitbox.transform.localScale = Vector3.one;
+
+        BoxCollider2D col = hitbox.AddComponent<BoxCollider2D>();
+        col.isTrigger = true;
+
+        // 子にあるSpriteRendererも含めて探す
+        SpriteRenderer spriteRenderer = obj.GetComponentInChildren<SpriteRenderer>();
+        if (spriteRenderer != null && spriteRenderer.sprite != null)
+        {
+            Vector2 pixelSize = spriteRenderer.sprite.rect.size;
+            float ppu = spriteRenderer.sprite.pixelsPerUnit;
+            Vector2 localSize = pixelSize / ppu;
+
+            float minSize = 0.5f;
+            localSize.x = Mathf.Max(localSize.x, minSize);
+            localSize.y = Mathf.Max(localSize.y, minSize);
+
+            col.size = localSize;
+        }
+        else
+        {
+            Debug.LogWarning($"{obj.name} に有効な SpriteRenderer が見つかりませんでした");
+        }
+
+        hitbox.layer = LayerMask.NameToLayer("ClickDetection");
+    }
 }

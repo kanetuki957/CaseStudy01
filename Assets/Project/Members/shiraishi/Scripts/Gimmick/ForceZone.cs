@@ -88,7 +88,6 @@ public class ForceZone : MonoBehaviour, IActivatable
             }
 
             rb_player.velocity += forceDirection.normalized * forceStrength;
-            Debug.Log(rb_player.velocity);
         }
     }
     public void Activate()
