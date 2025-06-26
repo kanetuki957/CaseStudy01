@@ -305,6 +305,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
+      propertyPath: trapFrames.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
       propertyPath: ladderFrames.Array.size
       value: 9
       objectReference: {fileID: 0}
@@ -318,6 +323,66 @@ PrefabInstance:
       propertyPath: gimmickFrames.Array.size
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: trapFrames.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: f78d736f59541854ebf508f6fe57ba7f,
+        type: 3}
+    - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: trapFrames.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: ba93355a06a2a504488603f114367272,
+        type: 3}
+    - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: trapFrames.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: de426129aa5f5274984ea155a7c20292,
+        type: 3}
+    - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: trapFrames.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: c322f1c74ac82eb44ba47836e1263932,
+        type: 3}
+    - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: trapFrames.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: f05857fd83ff89f46bb78c6c405f0e12,
+        type: 3}
+    - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: trapFrames.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4cbbdae2e50ecf44398f2c2780031085,
+        type: 3}
+    - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: trapFrames.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: e10061b03f9c033489aaa427c0f24e65,
+        type: 3}
+    - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: trapFrames.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: adeae980b0e05ec4cbf97bf92242456d,
+        type: 3}
+    - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: trapFrames.Array.data[8]
+      value: 
+      objectReference: {fileID: 21300000, guid: 575b088a5531a4140a0d63802e7903b5,
+        type: 3}
+    - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: trapFrames.Array.data[9]
+      value: 
+      objectReference: {fileID: 21300000, guid: 014499211b46c5c43996a39b18e33507,
+        type: 3}
     - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: ladderFrames.Array.data[0]

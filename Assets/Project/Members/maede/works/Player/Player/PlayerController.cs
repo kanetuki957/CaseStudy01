@@ -156,23 +156,24 @@ public class PlayerController : MonoBehaviour
                                     return;
                                 }
                             }
-
-                            // 名前が Goal のオブジェクトに当たったか
-                            if (hit.collider.name == "Goal")
+                            if (!animationController.ladder)
                             {
+                                //Debug.Log("真ん中" + hitwalls.collider.name);
+                                playerDirection = !playerDirection;  // 反転
+                            }
 
-                                animationController.GoalBool();
-                                hit.collider.enabled = false; // 当たり判定をオフにする
-                                return;
-                            }
-                            else
-                            {
-                                if (!animationController.ladder)
-                                {
-                                    //Debug.Log("真ん中" + hitwalls.collider.name);
-                                    playerDirection = !playerDirection;  // 反転
-                                }
-                            }
+                            //// 名前が Goal のオブジェクトに当たったか
+                            //if (hit.collider.name == "Goal")
+                            //{
+
+                            //    animationController.GoalBool();
+                            //    hit.collider.enabled = false; // 当たり判定をオフにする
+                            //    return;
+                            //}
+                            //else
+                            //{
+                               
+                            //}
                         }
                     }
                 }
