@@ -164,16 +164,16 @@ public class AnimationController : MonoBehaviour
         }
         else
         {
-            if (!goalPerformance)
-            {
-                OnlyFrame(goalFrames);
-                if (framesAnimation) // 2•bŒã‚Éfalse‚É‚·‚é
-                {
-                    currentOnlyFrame = 0;
-                    goalPerformance = true;
-                    framesAnimation = false;
-                }
-            }
+            //if (!goalPerformance)
+            //{
+            //    OnlyFrame(goalFrames);
+            //    if (framesAnimation) // 2•bŒã‚Éfalse‚É‚·‚é
+            //    {
+            //        currentOnlyFrame = 0;
+            //        goalPerformance = true;
+            //        framesAnimation = false;
+            //    }
+            //}
             //else
             //{
             //    Goaltimer += Time.deltaTime;
