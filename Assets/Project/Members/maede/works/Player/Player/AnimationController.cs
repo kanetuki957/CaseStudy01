@@ -134,10 +134,7 @@ public class AnimationController : MonoBehaviour
                         if (framesAnimation) // 1•bŒã‚Éfalse‚É‚·‚é
                         {
                             currentOnlyFrame = 0;
-                            trapReset = true;
                             trap = false;
-                            spriteRenderer.sprite = idleFrames[0];
-                            Button = false;
                             framesAnimation = false;
                         }
                     }
