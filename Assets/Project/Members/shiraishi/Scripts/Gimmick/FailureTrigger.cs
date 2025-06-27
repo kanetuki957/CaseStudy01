@@ -19,6 +19,7 @@ public class FailureTrigger : MonoBehaviour
     private bool hasTriggered = false;
     public GameObject obj;
     private AnimationController controller;
+    public float delay = 0f;
 
     //-----------------------------------------
 
@@ -40,17 +41,14 @@ public class FailureTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        float delay = 0f;
+ 
         if (trapHitSE != null)
         {
             controller.TrapBool();
             AudioSource.PlayClipAtPoint(trapHitSE, Camera.main.transform.position, seVolume);
-            delay = trapHitSE.length;     // クリップ尺ぶん待つ
+            //delay = trapHitSE.length;     // クリップ尺ぶん待つ
         }
-        //-- ★ ここでプレイヤーを完全停止 ★ --
-        Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
-        if (rb) { rb.velocity = Vector2.zero; rb.constraints = RigidbodyConstraints2D.FreezeAll; }
-
+        
         // ───── コルーチンをローカル関数で宣言 → その場で実行 ─────
         IEnumerator WaitAndLoad()
         {

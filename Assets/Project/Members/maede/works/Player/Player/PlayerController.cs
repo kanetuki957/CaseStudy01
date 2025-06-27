@@ -42,6 +42,9 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private AnimationController animationController;
 
+    private Vector2 direction;
+    private Vector2 rayOrigin;
+
     void Start()
     {
 
@@ -101,8 +104,8 @@ public class PlayerController : MonoBehaviour
             moveX = -1.0f;
         }
         //プレイヤーの向きを取得
-        Vector2 direction = playerDirection ? Vector2.right : Vector2.left;
-        Vector2 rayOrigin = (Vector2)transform.position + direction * 0.4f; // 頭の位置から発射
+        direction = playerDirection ? Vector2.right : Vector2.left;
+        rayOrigin = (Vector2)transform.position + direction * 0.4f; // 頭の位置から発射
 
         isladder = animationController.ladder;
 
@@ -118,6 +121,7 @@ public class PlayerController : MonoBehaviour
 
 
 
+
         if (i && !isladder)
         {
             if (direction == Vector2.right)
@@ -130,86 +134,8 @@ public class PlayerController : MonoBehaviour
             }
         }
         i = isladder;
-        // 前方にものがあるかチェック
-        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, wallsRay);
-        if (hit.collider != null)
-        {
-            //Debug.Log(hit.collider.gameObject);
-            if (hit.collider is BoxCollider2D && hit.collider.GetComponent<CheckLadder>() == null && hit.collider.GetComponent<LeverGimmick>() == null && hit.collider.GetComponent<PickupableItem>() == null && hit.collider.GetComponent<FailureTrigger>() == null)
-            {
-                if (hit.collider.gameObject.name != "followcharactor" && hit.collider.name != "Goal")
-                {
-
-                    // targetBlockCollider に当たったかチェック
-                    if (hit.collider == targetBlockCollider)
-                    {
-
-                        hit.collider.enabled = false;  // スクリプト停止などの処理
-                        return;
-                    }
-
-                    if (!animationController.ladder )
-                    {
-                        Debug.Log(hit.collider.name);
-                        //Debug.Log("真ん中" + hitwalls.collider.name);
-                        playerDirection = !playerDirection;  // 反転
-                    }
-
-                    //// 名前が Goal のオブジェクトに当たったか
-                    //if (hit.collider.name == "Goal")
-                    //{
-
-                    //    animationController.GoalBool();
-                    //    hit.collider.enabled = false; // 当たり判定をオフにする
-                    //    return;
-                    //}
-                    //else
-                    //{
-                    //    if (!animationController.ladder)
-                    //    {
-                    //        //Debug.Log("真ん中" + hitwalls.collider.name);
-                    //        playerDirection = !playerDirection;  // 反転
-                    //    }                            //}
-                    //}
-                }
-            }
-        }        
         
-        //RaycastHit2D hit = Physics2D.Raycast(rayOrigindown, Vector2.down, 10f);
-        //if (hit.collider != null)
-        // { // 最大10mの範囲で判定
-        //    float groundDistance = Mathf.Round(hit.distance * 10.0f);
-
-        //    //Debug.Log("床までの距離: " + groundDistance);
-        //    rb.velocity += Vector2.down * 2f * Time.deltaTime;
-        //}
-        RaycastHit2D hitBlock = Physics2D.Raycast(rayOrigin, direction, rayDistance);
-        if (hitBlock.collider != null)
-        {
-            if (hitBlock.collider.GetComponent<JumpBlock>() != null)
-            {
-                float blockHeight = hitBlock.collider.bounds.size.y;
-                if (blockHeight < jumpBlock)
-                {
-
-                    Goaltimer += Time.deltaTime;
-                    if (Goaltimer < jumpWait)
-                    {
-
-                        StopCharactor(Button);
-                        animationController.jumpAnimation = true;
-                    }
-                    else
-                    {
-                        Jump(JumpForce);
-                    }
-                }
-            }
-        }
-        else
-        {
-            animationController.jumpAnimation = false;
-        }
+  
 
         isjump = animationController.skyLeapBool;
         if (isjump)
@@ -332,5 +258,106 @@ public class PlayerController : MonoBehaviour
 
 
         rb.AddForce(Vector2.up * force, ForceMode2D.Impulse); // ジャンプ力を適用
+    }
+    void ray()
+    {
+        // 前方にものがあるかチェック
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, wallsRay);
+        if (hit.collider != null)
+        {
+            //Debug.Log(hit.collider.gameObject);
+            if (hit.collider is BoxCollider2D)
+            {
+                if (hit.collider.GetComponent<CheckLadder>() == null)
+                {
+                    if (hit.collider.GetComponent<LeverGimmick>() == null)
+                    {
+                        if (hit.collider.GetComponent<PickupableItem>() == null)
+                        {
+                            if (hit.collider.GetComponent<PickupableItem>() == null)
+                            {
+                                if (hit.collider.GetComponent<FailureTrigger>() == null)
+                                {
+                                    if (hit.collider.gameObject.name != "followcharactor")
+                                    {
+                                        if (hit.collider.name != "Goal")
+                                        {
+                                            // targetBlockCollider に当たったかチェック
+                                            if (hit.collider == targetBlockCollider)
+                                            {
+
+                                                hit.collider.enabled = false;  // スクリプト停止などの処理
+                                                return;
+                                            }
+
+                                            if (!animationController.ladder)
+                                            {
+                                            
+                                                //Debug.Log("真ん中" + hitwalls.collider.name);
+                                                playerDirection = !playerDirection;  // 反転
+                                            }
+
+                                            //// 名前が Goal のオブジェクトに当たったか
+                                            //if (hit.collider.name == "Goal")
+                                            //{
+
+                                            //    animationController.GoalBool();
+                                            //    hit.collider.enabled = false; // 当たり判定をオフにする
+                                            //    return;
+                                            //}
+                                            //else
+                                            //{
+                                            //    if (!animationController.ladder)
+                                            //    {
+                                            //        //Debug.Log("真ん中" + hitwalls.collider.name);
+                                            //        playerDirection = !playerDirection;  // 反転
+                                            //    }                            //}
+                                            //}
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        //RaycastHit2D hit = Physics2D.Raycast(rayOrigindown, Vector2.down, 10f);
+        //if (hit.collider != null)
+        // { // 最大10mの範囲で判定
+        //    float groundDistance = Mathf.Round(hit.distance * 10.0f);
+
+        //    //Debug.Log("床までの距離: " + groundDistance);
+        //    rb.velocity += Vector2.down * 2f * Time.deltaTime;
+        //}
+        RaycastHit2D hitBlock = Physics2D.Raycast(rayOrigin, direction, rayDistance);
+        if (hitBlock.collider != null)
+        {
+            if (hitBlock.collider.GetComponent<JumpBlock>() != null)
+            {
+                float blockHeight = hitBlock.collider.bounds.size.y;
+                if (blockHeight < jumpBlock)
+                {
+
+                    Goaltimer += Time.deltaTime;
+                    if (Goaltimer < jumpWait)
+                    {
+
+                        StopCharactor(Button);
+                        animationController.jumpAnimation = true;
+                    }
+                    else
+                    {
+                        Jump(JumpForce);
+                    }
+                }
+            }
+        }
+        else
+        {
+            animationController.jumpAnimation = false;
+        }
     }
 }
