@@ -100,8 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceDirection: {x: 0, y: 1}
-  forceStrength: 16
+  forceStrength: 0.3
   restrictHorizontalMovement: 1
+  isActiveAtStart: 1
   isTurn: 0
   effectManager: {fileID: 0}
 --- !u!61 &9091088265895217125
