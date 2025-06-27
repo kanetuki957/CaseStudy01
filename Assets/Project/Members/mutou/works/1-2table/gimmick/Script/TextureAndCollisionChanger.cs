@@ -5,18 +5,37 @@ using UnityEngine;
 // 指定のオブジェクトに近づくと、対象オブジェクトのスプライトを変更し、当たり判定を削除するクラス
 public class TextureAndCollisionChanger : MonoBehaviour
 {
-    public GameObject triggerObject;           // プレイヤーが接触する対象
-    public List<GameObject> targetObjects;     // スプライトと当たり判定を変更するオブジェクト
-    public Sprite newSprite;                   // 差し替えるスプライト画像
-    public float triggerRange = 0.5f;          // 発動判定となる距離
+    public GameObject triggerObject;           // スイッチ（触れるとドアが開く）
+    public List<GameObject> targetObjects;     // ドア（スプライト変更＆コライダー削除対象）
+    public Sprite newSprite;                   // 開いたドアのスプライト
 
     private bool triggered = false;
 
-    void Update()
+    void Start()
     {
-        // 指定距離内に triggerObject が入ったら1回だけ実行
-        if (!triggered && triggerObject != null &&
-            Vector3.Distance(transform.position, triggerObject.transform.position) <= triggerRange)
+        // スタート時にすべてのドアのColliderを有効化（子も含めて）
+        foreach (GameObject obj in targetObjects)
+        {
+            if (obj == null) continue;
+
+            Collider2D[] colliders = obj.GetComponentsInChildren<Collider2D>();
+            foreach (var col in colliders)
+            {
+                col.enabled = true;
+            }
+        }
+
+        Debug.Log("[TextureAndCollisionChanger] 全ドアのコライダーをONにしました");
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // 発動済みならスキップ
+        if (triggered) return;
+
+        // プレイヤー自身が triggerObject に触れたかどうか
+        if (triggerObject != null &&
+            other.gameObject == triggerObject)
         {
             triggered = true;
 
@@ -24,16 +43,16 @@ public class TextureAndCollisionChanger : MonoBehaviour
             {
                 if (obj == null) continue;
 
-                // スプライトを変更
-                SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
+                // スプライト変更（子も含めて探す）
+                SpriteRenderer sr = obj.GetComponentInChildren<SpriteRenderer>();
                 if (sr != null && newSprite != null)
                 {
                     sr.sprite = newSprite;
                 }
 
-                // 自身および子の Collider2D を全て削除（すり抜け可能にする）
-                Collider2D[] allCols = obj.GetComponentsInChildren<Collider2D>();
-                foreach (var col in allCols)
+                // コライダー削除（子も含めて）
+                Collider2D[] colliders = obj.GetComponentsInChildren<Collider2D>();
+                foreach (var col in colliders)
                 {
                     Destroy(col);
                 }

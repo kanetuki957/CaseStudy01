@@ -26,7 +26,7 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
 
-    private PlayerState playerState = PlayerState.Stay; // 主にアニメーション用
+    public PlayerState playerState = PlayerState.Stay; // 主にアニメーション用
 
     public LayerMask hitLayers; // 指定したレイヤーとぶつかる
 
@@ -37,15 +37,11 @@ public class PlayerMove : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb.freezeRotation = true;
+        GameManager.Instance.OnGameStateChanged += HandleGameStateChange;
     }
 
     void Update()
     {
-        if(GameManager.Instance.currentState == GameState.Playing)
-        {
-            playerState = PlayerState.Move;
-        }
-
         // Player動作(物理演算以外)
         switch (playerState)
         {
@@ -88,7 +84,7 @@ public class PlayerMove : MonoBehaviour
                 break;
 
             case PlayerState.Stay:
-
+                rb.velocity = new Vector2(0.0f, rb.velocity.y);
                 break;
 
             case PlayerState.Clime:
@@ -124,4 +120,19 @@ public class PlayerMove : MonoBehaviour
         // デバッグ可視化
         Debug.DrawRay(origin, new Vector2(moveDirection * rayLength, 0.0f), Color.red);
     }
+
+    // ゲームステートの変更を検知して処理を実行
+    void HandleGameStateChange(GameState prev, GameState curr)
+    {
+        if (curr == GameState.Playing && prev != GameState.Playing)
+        {
+            playerState = PlayerState.Move;
+        }
+    }
+
+    void OnDestroy()
+    {
+        GameManager.Instance.OnGameStateChanged -= HandleGameStateChange;
+    }
 }
+

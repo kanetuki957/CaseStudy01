@@ -11,14 +11,12 @@ public class FollowPlayer : MonoBehaviour
     public GameObject[] ignoredPlayers; // 通り抜けたいプレイヤーのリスト
     public float rayDistance = 0.0f;
 
-    private Vector3 startPostion;
-    private bool isTrapReset;
     private bool isgoal;
     private bool isgoalPerformance;
+    private bool button = false;
     private Rigidbody2D rb;
     private Collider2D myCollider;
     private SpriteRenderer spriteRenderer;
-    private PlayerController playerController;
     private AnimationController animationController;
     private float moveX;
     private Vector2 direction;
@@ -26,11 +24,11 @@ public class FollowPlayer : MonoBehaviour
 
     void Start()
     {
-        playerController = target.GetComponent<PlayerController>();
-        startPostion = transform.position;  // 初期位置を記録
+        
         animationController = target.GetComponent<AnimationController>();
         myCollider = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
+        rb.freezeRotation = true;
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         for (int i = 0; i < ignoredPlayers.Length; i++)
@@ -38,15 +36,15 @@ public class FollowPlayer : MonoBehaviour
             Collider2D playerCollider = ignoredPlayers[i].GetComponent<Collider2D>();
             if (playerCollider != null)
             {
-                Physics2D.IgnoreCollision(myCollider, playerCollider);
+                Physics2D.IgnoreCollision(playerCollider, myCollider);
             }
         }
-        rb.freezeRotation = true;
     }
 
 
     void FixedUpdate()
     {
+        button = animationController.Button; 
         jump = animationController.skyLeapBool;
         isgoal = animationController.GoalButton;
         if (!isgoal)
@@ -69,57 +67,59 @@ public class FollowPlayer : MonoBehaviour
             }
             if (distance > 4.0f)
             {
-                transform.position = target.position + new Vector3(-2.0f, 0, 0);  // 初期位置へ戻す
+                transform.position = target.position + new Vector3(-1.3f, 0, 0);  // 初期位置へ戻す
             }
         }
-
-
-        if (isgoalPerformance)
+     
+        if (button)
         {
-            // ゴール演出時：通常の動き（X方向のみ）
-            moveX = direction.x > 0 ? 1f : -1f;
 
-            Vector2 velocity = rb.velocity;
-            velocity.x = moveX * speed;
-            rb.velocity = velocity;
-
-        }
-        else
-        {
-            if (distance > desiredDistance)
+            if (isgoalPerformance)
             {
-                Vector2 targetVelocity = new Vector2(direction.x * speed, rb.velocity.y);
+                // ゴール演出時：通常の動き（X方向のみ）
+                moveX = direction.x > 0 ? 1f : -1f;
 
-                if (!jump)
-                {
-                    targetVelocity.y = direction.y * speed;
-                }
+                Vector2 velocity = rb.velocity;
+                velocity.x = moveX * speed;
+                rb.velocity = velocity;
 
-                // 今の速度から目標速度へ徐々に近づける（滑らかになる）
-                rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, 0.5f);  // 0.1fは調整可能
             }
             else
             {
-                Vector2 targetVelocity = new Vector2(0, rb.velocity.y);
-                rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, 0.5f);
+                if (distance > desiredDistance)
+                {
+                    Vector2 targetVelocity = new Vector2(direction.x * speed, rb.velocity.y);
+
+                    if (!jump)
+                    {
+                        targetVelocity.y = direction.y * speed;
+                    }
+
+                    // 今の速度から目標速度へ徐々に近づける（滑らかになる）
+                    rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, 0.5f);  // 0.1fは調整可能
+                }
+                else
+                {
+                    Vector2 targetVelocity = new Vector2(0, rb.velocity.y);
+                    rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, 0.5f);
+                }
+
+                //if (distance > desiredDistance)
+                //{
+                //    Vector2 velocity = rb.velocity;
+                //    velocity.x = direction.x * speed; // X軸のみ追従
+                //    if(!jump)
+                //    {
+                //        velocity.y = direction.y * speed;
+                //    }
+                //    rb.velocity = new Vector2(velocity.x, velocity.y); // Y軸はそのまま重力に任せる
+                //}
+                //else
+                //{
+                //    // 距離が近いときは横移動止めるが、落下などは許容
+                //    rb.velocity = new Vector2(0, rb.velocity.y);
+                //}
             }
-
-            //if (distance > desiredDistance)
-            //{
-            //    Vector2 velocity = rb.velocity;
-            //    velocity.x = direction.x * speed; // X軸のみ追従
-            //    if(!jump)
-            //    {
-            //        velocity.y = direction.y * speed;
-            //    }
-            //    rb.velocity = new Vector2(velocity.x, velocity.y); // Y軸はそのまま重力に任せる
-            //}
-            //else
-            //{
-            //    // 距離が近いときは横移動止めるが、落下などは許容
-            //    rb.velocity = new Vector2(0, rb.velocity.y);
-            //}
-
         }
 
     }

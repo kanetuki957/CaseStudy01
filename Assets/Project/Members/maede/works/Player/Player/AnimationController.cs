@@ -20,6 +20,7 @@ public class AnimationController : MonoBehaviour
 
     public float frameRate = 0.2f; 　// フレームの切り替え速度
     public float onlyFrameRate = 0.3f;
+    public float jumpFrameRate = 0.3f;
 
     public Button startButton;　　 　//ボタンの判定
     public Button resetButton;       //ボタンの判定
@@ -34,13 +35,15 @@ public class AnimationController : MonoBehaviour
     public bool framesAnimation = false;
     public bool jumpAnimation = false;
     public bool getItem = false;
+    public bool ladder = false;
+    public bool get = false;
 
     public float rayLength = 0f; // レイの長さ
     public int currentFrame;    //描写するフレーム
     public int currentOnlyFrame;
     public int currentJumpFrame;
 
-    private bool Button = false;     //スタートボタンの判定
+    public bool Button = false;     //スタートボタンの判定
     private PlayerLadder2 playerLadder;
     private SpriteRenderer spriteRenderer;　//
     private Rigidbody2D rb;
@@ -48,16 +51,18 @@ public class AnimationController : MonoBehaviour
     private float Goaltimer = 0;     //ゴールアニメションの表示時間
     public  bool groundCheck = false;
     public bool skyLeapBool = false;
-
+    private PlayerMove playerMove;
 
 
  
 
     void Start()
     {
+        
         playerLadder = GetComponent<PlayerLadder2>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerMove = GetComponent<PlayerMove>();
         startButton.onClick.AddListener(MoveButton);
         resetButton.onClick.AddListener(RestartButton);
        
@@ -99,14 +104,16 @@ public class AnimationController : MonoBehaviour
                 }
                 else
                 {
-                    if(getItem)
+                    if (get)
                     {
+                        
                         OnlyFrame(getItemFrames);
                         if(framesAnimation)
                         {
                             currentOnlyFrame = 0;
-                            getItem = false;
                             framesAnimation= false;
+                            get = false;
+                          
                         }
                     }
                     if (gimmick)
@@ -135,14 +142,16 @@ public class AnimationController : MonoBehaviour
                         }
                     }
 
-                    if(playerLadder.isOnLadder)
+                    ladder = playerLadder.isOnLadder;
+                    if (ladder)
                     {
                         Frame(ladderFrames);
                     }
 
 
-                    if (!trap && !gimmick && !playerLadder.isOnLadder)
+                    if (!trap && !gimmick && !playerLadder.isOnLadder && !get)
                     {
+                        playerMove.enabled = false;
                         Frame(moveFrames);
                         skyLeapBool = true;
                     }
@@ -155,32 +164,32 @@ public class AnimationController : MonoBehaviour
         }
         else
         {
-            if (!goalPerformance)
-            {
-                OnlyFrame(goalFrames);
-                if (framesAnimation) // 2秒後にfalseにする
-                {
-                    currentOnlyFrame = 0;
-                    goalPerformance = true;
-                    framesAnimation = false;
-                }
-            }
-            else
-            {
-                Goaltimer += Time.deltaTime;
-                Frame(goalPerformanceFrame);
-                if (Goaltimer > 5) 
-                {
+            //if (!goalPerformance)
+            //{
+            //    OnlyFrame(goalFrames);
+            //    if (framesAnimation) // 2秒後にfalseにする
+            //    {
+            //        currentOnlyFrame = 0;
+            //        goalPerformance = true;
+            //        framesAnimation = false;
+            //    }
+            //}
+            //else
+            //{
+            //    Goaltimer += Time.deltaTime;
+            //    Frame(goalPerformanceFrame);
+            //    if (Goaltimer > 5) 
+            //    {
 
-                    goalPerformance = false;
-                    Goaltimer = 0;
-                    spriteRenderer.sprite = idleFrames[0];
-                    Button = false;
-                    GoalButton = false;
-                    finish = true;
+            //        goalPerformance = false;
+            //        Goaltimer = 0;
+            //        spriteRenderer.sprite = idleFrames[0];
+            //        Button = false;
+            //        GoalButton = false;
+            //        finish = true;
 
-                }
-            }
+            //    }
+            //}
         }
     }
 
@@ -304,7 +313,6 @@ void MoveButton()
         if (hitGround.collider != null)
         {
            groundCheck = true;
-           
         }
         else
         {
@@ -327,5 +335,13 @@ void MoveButton()
             
         }
    
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.GetComponent<PickupableItem>())
+        {
+            get = true;
+
+        }
     }
 }

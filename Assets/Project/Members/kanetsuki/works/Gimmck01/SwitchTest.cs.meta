@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c903560bea243be49b92c6692a49a57b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - offSprite: {instanceID: 0}
+  - onSprite: {instanceID: 0}
+  - effectManager: {instanceID: 0}
+  - touchSE: {fileID: 8300000, guid: 90eed6c7f9e714d459cb54742476a020, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
