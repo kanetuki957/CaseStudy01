@@ -16,12 +16,12 @@ public class PlayerController : MonoBehaviour
     public GameObject[] ignoredPlayers; // 通り抜けたいプレイヤーのリスト
     public float JumpForce = 1.0f; //ジャンプ力
     public float rayDistance = 1.0f; // レイキャストの距離
-    public int   jumpBlock = 1;　//ジャンプできるブロックの高さ設定
+    public int jumpBlock = 1;　//ジャンプできるブロックの高さ設定
     public float jumpMoveDamping = 0.1f; // ジャンプ時の横移動の減速
     public float wallsRay = 0.0f;
     public float jumpWait = 0.1f;
-    public float moveX;                   //X軸のmove変数
-    public float Goaltimer = 0;     //ゴールアニメションの表示時間
+    private float moveX;                   //X軸のmove変数
+    private float Goaltimer = 0;     //ゴールアニメションの表示時間
 
     private Vector3 startPostion;
     private bool playerDirection = true;　//プレイヤーの向き
@@ -33,20 +33,18 @@ public class PlayerController : MonoBehaviour
     private bool isGoal;
     private bool isGoalPerformance;
     private bool isFinish;
-    public  bool isjump;
+    public bool isjump;
     public bool isget;
     public bool isladder = false;
-    public bool i = false;
-    public Vector3 move;                 //move変
+    private bool i = false;
+    private Vector3 move;                 //move変
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private AnimationController animationController;
-  
-  
 
     void Start()
     {
-        
+
         startPostion = transform.position;  // 初期位置を記録
         animationController = GetComponent<AnimationController>();
         rb = GetComponent<Rigidbody2D>();
@@ -80,7 +78,7 @@ public class PlayerController : MonoBehaviour
     void MoveButton()
     {
         Button = true;
-       
+
     }
 
     void RestartButton()
@@ -107,7 +105,7 @@ public class PlayerController : MonoBehaviour
         Vector2 rayOrigin = (Vector2)transform.position + direction * 0.4f; // 頭の位置から発射
 
         isladder = animationController.ladder;
-       
+
         if (isladder)
         {
             targetObject.SetActive(false);
@@ -117,7 +115,7 @@ public class PlayerController : MonoBehaviour
         {
             targetObject.SetActive(true);
         }
-        
+
 
 
         if (i && !isladder)
@@ -137,56 +135,45 @@ public class PlayerController : MonoBehaviour
         if (hit.collider != null)
         {
             //Debug.Log(hit.collider.gameObject);
-            if (hit.collider is BoxCollider2D)
+            if (hit.collider is BoxCollider2D && hit.collider.GetComponent<CheckLadder>() == null && hit.collider.GetComponent<LeverGimmick>() == null && hit.collider.GetComponent<PickupableItem>() == null && hit.collider.GetComponent<FailureTrigger>() == null)
             {
-                if (hit.collider.gameObject.name != "Ladder")
+                if (hit.collider.gameObject.name != "followcharactor" && hit.collider.name != "Goal")
                 {
-                    if (hit.collider.GetComponent<LeverGimmick>() == null)
+
+                    // targetBlockCollider に当たったかチェック
+                    if (hit.collider == targetBlockCollider)
                     {
-                        if (hit.collider.GetComponent<PickupableItem>() == null)
-                        {
-                            if (hit.collider.gameObject.name != "followcharactor")
-                            {
-                                if (hit.collider.name != "Goal")
-                                {
-                                    // targetBlockCollider に当たったかチェック
-                                    if (hit.collider == targetBlockCollider)
-                                    {
 
-                                        hit.collider.enabled = false;  // スクリプト停止などの処理
-                                        return;
-                                    }
-
-
-                                    if (!animationController.ladder)
-                                    {
-                                        //Debug.Log("真ん中" + hitwalls.collider.name);
-                                        playerDirection = !playerDirection;  // 反転
-                                    }
-
-                                    //// 名前が Goal のオブジェクトに当たったか
-                                    //if (hit.collider.name == "Goal")
-                                    //{
-
-                                    //    animationController.GoalBool();
-                                    //    hit.collider.enabled = false; // 当たり判定をオフにする
-                                    //    return;
-                                    //}
-                                    //else
-                                    //{
-                                    //    if (!animationController.ladder)
-                                    //    {
-                                    //        //Debug.Log("真ん中" + hitwalls.collider.name);
-                                    //        playerDirection = !playerDirection;  // 反転
-                                    //    }                            //}
-                                    //}
-                                }
-                            }
-                        }
+                        hit.collider.enabled = false;  // スクリプト停止などの処理
+                        return;
                     }
+
+                    if (!animationController.ladder )
+                    {
+                        //Debug.Log("真ん中" + hitwalls.collider.name);
+                        playerDirection = !playerDirection;  // 反転
+                    }
+
+                    //// 名前が Goal のオブジェクトに当たったか
+                    //if (hit.collider.name == "Goal")
+                    //{
+
+                    //    animationController.GoalBool();
+                    //    hit.collider.enabled = false; // 当たり判定をオフにする
+                    //    return;
+                    //}
+                    //else
+                    //{
+                    //    if (!animationController.ladder)
+                    //    {
+                    //        //Debug.Log("真ん中" + hitwalls.collider.name);
+                    //        playerDirection = !playerDirection;  // 反転
+                    //    }                            //}
+                    //}
                 }
             }
-        }
+        }        
+        
         //RaycastHit2D hit = Physics2D.Raycast(rayOrigindown, Vector2.down, 10f);
         //if (hit.collider != null)
         // { // 最大10mの範囲で判定
@@ -198,7 +185,6 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D hitBlock = Physics2D.Raycast(rayOrigin, direction, rayDistance);
         if (hitBlock.collider != null)
         {
-            Debug.Log(hitBlock.collider.name);
             if (hitBlock.collider.GetComponent<JumpBlock>() != null)
             {
                 float blockHeight = hitBlock.collider.bounds.size.y;
@@ -208,7 +194,7 @@ public class PlayerController : MonoBehaviour
                     Goaltimer += Time.deltaTime;
                     if (Goaltimer < jumpWait)
                     {
-                        
+
                         StopCharactor(Button);
                         animationController.jumpAnimation = true;
                     }
@@ -225,14 +211,14 @@ public class PlayerController : MonoBehaviour
         }
 
         isjump = animationController.skyLeapBool;
-        if(isjump)
+        if (isjump)
         {
-            Goaltimer = 0;          
+            Goaltimer = 0;
         }
 
         isget = animationController.get;
         StopCharactor(isget);
-     
+
         isGrounded = animationController.groundCheck;
 
         //ギミック時停止
@@ -252,9 +238,9 @@ public class PlayerController : MonoBehaviour
         if (isGoal)
         {
             StopCharactor(isGoal);
-            Debug.Log(isGoalPerformance);
+          
         }
-       
+
 
         float modifiedMoveX = moveX;
 
@@ -291,13 +277,13 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-              
-                rb.velocity = Vector2.Lerp(rb.velocity,new Vector2(0,rb.velocity.y), 0.5f);
+
+                rb.velocity = Vector2.Lerp(rb.velocity, new Vector2(0, rb.velocity.y), 0.5f);
             }
         }
         else
         {
-            
+
             //rb.velocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
             move = new Vector3(moveX, 0, 0) * moveSpeed * Time.deltaTime;
             if (moveX == 0)
@@ -305,7 +291,7 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector2(0, 0); // 横移動を完全に止める
             }
             transform.Translate(move, Space.World);
-            Debug.Log(move);
+           
         }
         isFinish = animationController.finish;
 
@@ -321,7 +307,7 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.flipX = !playerDirection;
     }
 
-  
+
     private void StopCharactor(bool isbool)
     {
         if (isbool)
@@ -330,23 +316,20 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(0, rb.velocity.y);  // ? 横移動を完全に止める ← ここが追加された変更ポイント
         }
     }
-    
+
     void Jump(float force)
     {
-      
-            // 現在の横移動速度を取得
-            Vector2 velocity = rb.velocity;
 
-            float horizontalDamping = 0.3f; // 0.5f = 速度を50%に減らす
-            velocity.x *= horizontalDamping; // X軸方向の速度を抑える
+        // 現在の横移動速度を取得
+        Vector2 velocity = rb.velocity;
 
-            // 変更した速度を適用
-            rb.velocity = velocity;
+        float horizontalDamping = 0.3f; // 0.5f = 速度を50%に減らす
+        velocity.x *= horizontalDamping; // X軸方向の速度を抑える
+
+        // 変更した速度を適用
+        rb.velocity = velocity;
 
 
-            rb.AddForce(Vector2.up * force, ForceMode2D.Impulse); // ジャンプ力を適用
+        rb.AddForce(Vector2.up * force, ForceMode2D.Impulse); // ジャンプ力を適用
     }
-   
-
-
 }
