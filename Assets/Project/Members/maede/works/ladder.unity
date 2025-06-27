@@ -153,8 +153,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a83e051eb2e5134e80292ca998e5ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ladderUpObjectName: Ladder
-  ladderDownObjectName: LadderDown
+  ladderUpObjectName:
+  - Ladder
+  - Ladder_copy (1)
+  - Ladder_copy (2)
+  ladderDownObjectName:
+  - ladderdown
   climbSpeed: 2
   topY: 0.9
   bottomY: 1
@@ -165,24 +169,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 276046773}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &111958729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 111958704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a83e051eb2e5134e80292ca998e5ce2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ladderUpObjectName: Ladder_copy (1)
-  ladderDownObjectName: LadderDown
-  climbSpeed: 2
-  topY: 0.9
-  bottomY: 1
-  isOnLadder: 0
 --- !u!1001 &276046773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -604,10 +590,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 111958706}
-    - targetCorrespondingSourceObject: {fileID: 8018664336490488306, guid: 23fc1749dc9603d42ab2dcf054f87b63,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 111958729}
   m_SourcePrefab: {fileID: 100100000, guid: 23fc1749dc9603d42ab2dcf054f87b63, type: 3}
 --- !u!1 &337727370
 GameObject:
@@ -2182,12 +2164,12 @@ PrefabInstance:
     - target: {fileID: 1271854969358642797, guid: 3d9ce5805bd6e05428f49473d8866647,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.65
+      value: 2.03
       objectReference: {fileID: 0}
     - target: {fileID: 1271854969358642797, guid: 3d9ce5805bd6e05428f49473d8866647,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.04
+      value: 7.58
       objectReference: {fileID: 0}
     - target: {fileID: 1271854969358642797, guid: 3d9ce5805bd6e05428f49473d8866647,
         type: 3}

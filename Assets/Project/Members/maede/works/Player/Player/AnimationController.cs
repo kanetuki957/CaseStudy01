@@ -144,7 +144,6 @@ public class AnimationController : MonoBehaviour
                             //trap = false;
                         }
                     }
-
                     ladder = playerLadder.isOnLadder;
                     if (ladder)
                     {
@@ -152,7 +151,7 @@ public class AnimationController : MonoBehaviour
                     }
 
 
-                    if (!trap && !gimmick && !playerLadder.isOnLadder && !get)
+                    if (!trap && !gimmick && !ladder  && !get)
                     {
                         playerMove.enabled = false;
                         Frame(moveFrames);
