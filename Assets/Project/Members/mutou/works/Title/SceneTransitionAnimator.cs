@@ -9,51 +9,48 @@ public class SceneTransitionAnimator : MonoBehaviour
 
     public float duration = 0.6f; // アニメーションの長さ
 
-    [Tooltip("スケールの変化カーブ")]
-    public AnimationCurve scaleCurve = AnimationCurve.EaseInOut(0, 1, 1, 0);
+    [Tooltip("フェードアウトカーブ")]
+    public AnimationCurve fadeOutCurve = AnimationCurve.EaseInOut(0, 1, 1, 0);
 
-    [Tooltip("Z軸回転の変化カーブ")]
-    public AnimationCurve rotateCurve = AnimationCurve.EaseInOut(0, 0, 1, 360);
+    [Tooltip("フェードインカーブ（戻し用）")]
+    public AnimationCurve fadeInCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
-    // シーン遷移前に演出を挟む（完了時にonCompleteを呼び出す）
+    // シーン遷移前にフェードアウト演出を挟む（完了時にonCompleteを呼び出す）
     public IEnumerator AnimateAndSwitch(System.Action onComplete)
     {
         float time = 0f;
 
-        // 対象オブジェクトの初期スケールと回転を保存
-        Dictionary<Transform, Vector3> startScales = new();
-        Dictionary<Transform, Quaternion> startRotations = new();
-        List<Transform> transforms = new();
+        // CanvasGroupによる透明度制御
+        List<CanvasGroup> canvasGroups = new();
 
         foreach (var go in targets)
         {
             if (go != null)
             {
-                var tf = go.transform;
-                transforms.Add(tf);
-                startScales[tf] = tf.localScale;
-                startRotations[tf] = tf.rotation;
+                var cg = go.GetComponent<CanvasGroup>();
+                if (cg == null)
+                {
+                    cg = go.AddComponent<CanvasGroup>();
+                }
+                canvasGroups.Add(cg);
             }
         }
 
-        // アニメーション処理
+        // フェードアウト
         while (time < duration)
         {
-            float tNorm = time / duration;
-            float scaleVal = scaleCurve.Evaluate(tNorm);
-            float rotZ = rotateCurve.Evaluate(tNorm);
+            float t = time / duration;
+            float alphaVal = fadeOutCurve.Evaluate(t);
 
-            foreach (var tf in transforms)
+            foreach (var cg in canvasGroups)
             {
-                tf.localScale = startScales[tf] * scaleVal;
-                tf.rotation = Quaternion.Euler(0, 0, rotZ); // Z回転だけ
+                cg.alpha = alphaVal;
             }
 
             time += Time.deltaTime;
             yield return null;
         }
 
-        // アニメーション完了時にコールバックを呼ぶ
         onComplete?.Invoke();
     }
 }
