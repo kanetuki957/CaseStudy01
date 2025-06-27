@@ -150,6 +150,7 @@ public class PlayerController : MonoBehaviour
 
                     if (!animationController.ladder )
                     {
+                        Debug.Log(hit.collider.name);
                         //Debug.Log("ê^ÇÒíÜ" + hitwalls.collider.name);
                         playerDirection = !playerDirection;  // îΩì]
                     }
