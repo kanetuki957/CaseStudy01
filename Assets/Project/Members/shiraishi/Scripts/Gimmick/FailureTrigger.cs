@@ -17,8 +17,9 @@ public class FailureTrigger : MonoBehaviour
     [SerializeField][Range(0f, 1f)] private float seVolume = 1f;
 
     private bool hasTriggered = false;
-    public Object obj;
+    public GameObject obj;
     private AnimationController controller;
+    public float delay = 0f;
 
     //-----------------------------------------
 
@@ -35,19 +36,19 @@ public class FailureTrigger : MonoBehaviour
             }
         }
 
-       
+       controller = obj.GetComponent<AnimationController>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        float delay = 0f;
+ 
         if (trapHitSE != null)
         {
-            Debug.Log(trapHitSE);
+            controller.TrapBool();
             AudioSource.PlayClipAtPoint(trapHitSE, Camera.main.transform.position, seVolume);
-            delay = trapHitSE.length;     // クリップ尺ぶん待つ
+            //delay = trapHitSE.length;     // クリップ尺ぶん待つ
         }
-
+        
         // ───── コルーチンをローカル関数で宣言 → その場で実行 ─────
         IEnumerator WaitAndLoad()
         {

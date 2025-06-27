@@ -17,7 +17,7 @@ public class FollowPlayer : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D myCollider;
     private SpriteRenderer spriteRenderer;
-    private CharactorAnimation animationController;
+    private AnimationController animationController;
     private float moveX;
     private Vector2 direction;
     private bool jump = false;
@@ -25,7 +25,7 @@ public class FollowPlayer : MonoBehaviour
     void Start()
     {
         
-        animationController = target.GetComponent<CharactorAnimation>();
+        animationController = target.GetComponent<AnimationController>();
         myCollider = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
