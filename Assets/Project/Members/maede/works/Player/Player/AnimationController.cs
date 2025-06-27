@@ -53,6 +53,12 @@ public class AnimationController : MonoBehaviour
     public bool skyLeapBool = false;
     private PlayerMove playerMove;
 
+    [SerializeField] float rayLength1      = 0.2f;   // 射程
+    [SerializeField] float stairMaxAngle  = 40f;    // 0?40° は階段扱い
+
+    public bool isSupported { get; private set; }   // ← 地面 or 階段なら true
+
+
 
  
 
@@ -74,7 +80,7 @@ public class AnimationController : MonoBehaviour
         {
             if (Button)
             {
-              
+                
                 GroundCheck();
                 if (jumpAnimation)
                 {
@@ -131,17 +137,13 @@ public class AnimationController : MonoBehaviour
                     if (trap)
                     {
                         OnlyFrame(trapFrames);
-                        if (framesAnimation) // 1秒後にfalseにする
+                        if (framesAnimation)
                         {
                             currentOnlyFrame = 0;
-                            trapReset = true;
-                            trap = false;
-                            spriteRenderer.sprite = idleFrames[0];
-                            Button = false;
-                            framesAnimation = false;
+                            //framesAnimation = false;
+                            //trap = false;
                         }
                     }
-
                     ladder = playerLadder.isOnLadder;
                     if (ladder)
                     {
@@ -149,7 +151,7 @@ public class AnimationController : MonoBehaviour
                     }
 
 
-                    if (!trap && !gimmick && !playerLadder.isOnLadder && !get)
+                    if (!trap && !gimmick && !ladder  && !get)
                     {
                         playerMove.enabled = false;
                         Frame(moveFrames);
@@ -202,12 +204,15 @@ void MoveButton()
         Button = true;
         trapReset = false;
         finish = false;
+        
     }
     //リセットボタンの処理
     void RestartButton()
     {
         spriteRenderer.sprite = idleFrames[0];
         Button = false;
+        framesAnimation = false;
+
     }
 
     //ギミックの当たり判定
@@ -306,36 +311,66 @@ void MoveButton()
 
     void GroundCheck()
     {
-       Vector2 rayOrigin = (Vector2)transform.position + Vector2.down; // 頭の位置から発射
-       
 
-       RaycastHit2D hitGround = Physics2D.Raycast(rayOrigin, Vector2.down, rayLength);
-        if (hitGround.collider != null)
+        // 足元の左右2点から Ray を撃つ
+        Vector2 basePos = transform.position;
+        Vector2 originR = basePos + Vector2.down + Vector2.right * 0.5f;
+        Vector2 originL = basePos + Vector2.down + Vector2.left * 0.5f;
+
+        // Raycast ?? 左右どちらか当たればOK
+        RaycastHit2D hitR = Physics2D.Raycast(originR, Vector2.down, rayLength1);
+        RaycastHit2D hitL = Physics2D.Raycast(originL, Vector2.down, rayLength1);
+
+        // デバッグ可視化（Sceneビュー）
+        Debug.DrawLine(originR, originR + Vector2.down * rayLength, Color.red);
+        Debug.DrawLine(originL, originL + Vector2.down * rayLength, Color.red);
+
+        // どちらか当たった側を使う
+        RaycastHit2D hit = hitR ? hitR : hitL;
+        if (hit.collider == null)
         {
-           groundCheck = true;
+            groundCheck = false;
+            return;
+        }
+
+        if (hit.collider.GetComponent<CheckLadder>() != null)
+        {
+            groundCheck = true;
+
         }
         else
         {
-          groundCheck= false;
-           
-        }
+            if (!hit)
+            {
+                groundCheck = false;                      // 空中
+                return;
+            }
 
-      
+        }
+          
+       
+
+        // 法線角で「壁」を除外
+        float angle = Vector2.Angle(hit.normal, Vector2.up);
+        groundCheck = angle <= stairMaxAngle;         // 地面 or 階段 ⇒ true
+
+
     }
-    void SkyLeap()
+    
+        void SkyLeap()
+{
+    if (rb.velocity.y > 0) // 正の速度ならジャンプ中
     {
-        if (rb.velocity.y > 0) // 正の速度ならジャンプ中
-        {
-            jump = true;
-           
-        }
-        else if (rb.velocity.y < 0) // 負の速度なら落下中
-        {
-            jump = false;
-            
-        }
-   
+        jump = true;
+
     }
+    else if (rb.velocity.y < 0) // 負の速度なら落下中
+    {
+        jump = false;
+
+    }
+
+}
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<PickupableItem>())
@@ -343,5 +378,6 @@ void MoveButton()
             get = true;
 
         }
+     
     }
 }
