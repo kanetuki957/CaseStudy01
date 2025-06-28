@@ -336,6 +336,7 @@ void MoveButton()
         if (hit.collider.GetComponent<CheckLadder>() != null)
         {
             groundCheck = true;
+            
 
         }
         else
