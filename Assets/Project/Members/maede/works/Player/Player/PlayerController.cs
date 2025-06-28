@@ -267,65 +267,36 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, wallsRay);
         if (hit.collider != null)
         {
-            if (hit.collider.name != "ClickHitbox")
+
+            // ① ClickHitbox は無視
+            if (hit.collider.name == "ClickHitbox") return;
+
+            // ② 無視したい名前の一覧
+            if (hit.collider.name is "followcharactor" or "Goal") return;
+
+            // ③ 無視したいコンポーネントをまとめて判定
+            if (hit.collider.TryGetComponent<CheckLadder>(out _) ||
+                hit.collider.TryGetComponent<LeverGimmick>(out _) ||
+                hit.collider.TryGetComponent<PickupableItem>(out _) ||
+                hit.collider.TryGetComponent<FailureTrigger>(out _) ||
+                hit.collider.TryGetComponent<ForceZone>(out _))
             {
-                //Debug.Log(hit.collider.gameObject);
-                if (hit.collider is BoxCollider2D)
-                {
-                    if (hit.collider.GetComponent<CheckLadder>() == null)
-                    {
-                        if (hit.collider.GetComponent<LeverGimmick>() == null)
-                        {
-                            if (hit.collider.GetComponent<PickupableItem>() == null)
-                            {
-                                if (hit.collider.GetComponent<PickupableItem>() == null)
-                                {
-                                    if (hit.collider.GetComponent<FailureTrigger>() == null)
-                                    {
-                                        if (hit.collider.gameObject.name != "followcharactor")
-                                        {
-                                            if (hit.collider.name != "Goal")
-                                            {
-                                                // targetBlockCollider に当たったかチェック
-                                                if (hit.collider == targetBlockCollider)
-                                                {
-
-                                                    hit.collider.enabled = false;  // スクリプト停止などの処理
-                                                    return;
-                                                }
-
-                                                if (!isladder)
-                                                {
-
-                                                    //Debug.Log("真ん中" + hitwalls.collider.name);
-                                                    playerDirection = !playerDirection;  // 反転
-                                                }
-
-                                                //// 名前が Goal のオブジェクトに当たったか
-                                                //if (hit.collider.name == "Goal")
-                                                //{
-
-                                                //    animationController.GoalBool();
-                                                //    hit.collider.enabled = false; // 当たり判定をオフにする
-                                                //    return;
-                                                //}
-                                                //else
-                                                //{
-                                                //    if (!animationController.ladder)
-                                                //    {
-                                                //        //Debug.Log("真ん中" + hitwalls.collider.name);
-                                                //        playerDirection = !playerDirection;  // 反転
-                                                //    }                            //}
-                                                //}
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                return;
             }
+
+            // ④ targetBlockCollider だったら当たり判定をオフにして終了
+            if (hit.collider == targetBlockCollider)
+            {
+                hit.collider.enabled = false;
+                return;
+            }
+
+            // ⑤ はしご中でないときだけ反転
+            if (!isladder)
+            {
+                playerDirection = !playerDirection;
+            }
+
         }
 
 

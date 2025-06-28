@@ -160,7 +160,7 @@ MonoBehaviour:
   ladderDownObjectName:
   - ladderdown
   climbSpeed: 2
-  topY: 0.9
+  topY: 0.8
   bottomY: 1
   isOnLadder: 0
 --- !u!4 &111958707 stripped
