@@ -134,8 +134,10 @@ public class PlayerController : MonoBehaviour
             }
         }
         i = isladder;
-        
-  
+
+
+        ray();
+
 
         isjump = animationController.skyLeapBool;
         if (isjump)
@@ -265,6 +267,7 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, wallsRay);
         if (hit.collider != null)
         {
+            Debug.Log("ê^ÇÒíÜ" + hit.collider.name);
             //Debug.Log(hit.collider.gameObject);
             if (hit.collider is BoxCollider2D)
             {
@@ -290,7 +293,7 @@ public class PlayerController : MonoBehaviour
                                                 return;
                                             }
 
-                                            if (!animationController.ladder)
+                                            if (!isladder)
                                             {
                                             
                                                 //Debug.Log("ê^ÇÒíÜ" + hitwalls.collider.name);
