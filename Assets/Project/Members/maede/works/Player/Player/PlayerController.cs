@@ -267,55 +267,57 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, wallsRay);
         if (hit.collider != null)
         {
-            Debug.Log("真ん中" + hit.collider.name);
-            //Debug.Log(hit.collider.gameObject);
-            if (hit.collider is BoxCollider2D)
+            if (hit.collider.name != "ClickHitbox")
             {
-                if (hit.collider.GetComponent<CheckLadder>() == null)
+                //Debug.Log(hit.collider.gameObject);
+                if (hit.collider is BoxCollider2D)
                 {
-                    if (hit.collider.GetComponent<LeverGimmick>() == null)
+                    if (hit.collider.GetComponent<CheckLadder>() == null)
                     {
-                        if (hit.collider.GetComponent<PickupableItem>() == null)
+                        if (hit.collider.GetComponent<LeverGimmick>() == null)
                         {
                             if (hit.collider.GetComponent<PickupableItem>() == null)
                             {
-                                if (hit.collider.GetComponent<FailureTrigger>() == null)
+                                if (hit.collider.GetComponent<PickupableItem>() == null)
                                 {
-                                    if (hit.collider.gameObject.name != "followcharactor")
+                                    if (hit.collider.GetComponent<FailureTrigger>() == null)
                                     {
-                                        if (hit.collider.name != "Goal")
+                                        if (hit.collider.gameObject.name != "followcharactor")
                                         {
-                                            // targetBlockCollider に当たったかチェック
-                                            if (hit.collider == targetBlockCollider)
+                                            if (hit.collider.name != "Goal")
                                             {
+                                                // targetBlockCollider に当たったかチェック
+                                                if (hit.collider == targetBlockCollider)
+                                                {
 
-                                                hit.collider.enabled = false;  // スクリプト停止などの処理
-                                                return;
+                                                    hit.collider.enabled = false;  // スクリプト停止などの処理
+                                                    return;
+                                                }
+
+                                                if (!isladder)
+                                                {
+
+                                                    //Debug.Log("真ん中" + hitwalls.collider.name);
+                                                    playerDirection = !playerDirection;  // 反転
+                                                }
+
+                                                //// 名前が Goal のオブジェクトに当たったか
+                                                //if (hit.collider.name == "Goal")
+                                                //{
+
+                                                //    animationController.GoalBool();
+                                                //    hit.collider.enabled = false; // 当たり判定をオフにする
+                                                //    return;
+                                                //}
+                                                //else
+                                                //{
+                                                //    if (!animationController.ladder)
+                                                //    {
+                                                //        //Debug.Log("真ん中" + hitwalls.collider.name);
+                                                //        playerDirection = !playerDirection;  // 反転
+                                                //    }                            //}
+                                                //}
                                             }
-
-                                            if (!isladder)
-                                            {
-                                            
-                                                //Debug.Log("真ん中" + hitwalls.collider.name);
-                                                playerDirection = !playerDirection;  // 反転
-                                            }
-
-                                            //// 名前が Goal のオブジェクトに当たったか
-                                            //if (hit.collider.name == "Goal")
-                                            //{
-
-                                            //    animationController.GoalBool();
-                                            //    hit.collider.enabled = false; // 当たり判定をオフにする
-                                            //    return;
-                                            //}
-                                            //else
-                                            //{
-                                            //    if (!animationController.ladder)
-                                            //    {
-                                            //        //Debug.Log("真ん中" + hitwalls.collider.name);
-                                            //        playerDirection = !playerDirection;  // 反転
-                                            //    }                            //}
-                                            //}
                                         }
                                     }
                                 }
