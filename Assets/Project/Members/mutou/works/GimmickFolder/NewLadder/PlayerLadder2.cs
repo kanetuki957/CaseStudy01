@@ -15,10 +15,10 @@ using UnityEngine;
 public class PlayerLadder2 : MonoBehaviour
 {
     // 登り用はしごのオブジェクト名
-    public string ladderUpObjectName = "LadderUp";
+    public string[] ladderUpObjectName = { "LadderUp" };
 
     // 下り用はしごのオブジェクト名
-    public string ladderDownObjectName = "LadderDown";
+    public string[] ladderDownObjectName = { "LadderDown" };
 
     // 登り・下りのスピード
     public float climbSpeed = 2f;
@@ -86,21 +86,40 @@ public class PlayerLadder2 : MonoBehaviour
         // すでに乗っている場合は何もしない（1回限り）
         if (isOnLadder) return;
 
-        // 登りはしごに触れた
-        if (other.name == ladderUpObjectName)
+        // ① 登りラダー判定
+        if (System.Array.Exists(ladderUpObjectName, name => name == other.name))
         {
             climbDirection = 1;
         }
-
-        // 下りはしごに触れた
-        else if (other.name == ladderDownObjectName)
+        // ② 下りラダー判定
+        else if (System.Array.Exists(ladderDownObjectName, name => name == other.name))
         {
             climbDirection = -1;
         }
+        // ③ どちらでもなければ無視
         else
         {
-            return; // それ以外のオブジェクトは無視
+            return;
         }
+        //for(int i = 0; i < ladderUpObjectName.Length; i++)
+        //{
+        //    // 登りはしごに触れた
+        //    if (other.name == ladderUpObjectName[i])
+        //    {
+        //        climbDirection = 1;
+        //    }
+        //    // 下りはしごに触れた
+        //    else if (other.name == ladderDownObjectName[i])
+        //    {
+        //        climbDirection = -1;
+        //    }
+        //    else
+        //    {
+        //        return; // それ以外のオブジェクトは無視
+        //    }
+
+        //}
+
 
         currentLadder = other.gameObject;
         isOnLadder = true;

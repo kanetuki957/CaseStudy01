@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4273324661778614302}
   - component: {fileID: 8403663222026965763}
   - component: {fileID: 6685049126850042045}
+  - component: {fileID: 6588733201674467635}
   m_Layer: 7
   m_Name: Ladder
   m_TagString: Untagged
@@ -130,3 +131,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 3}
   m_EdgeRadius: 0
+--- !u!114 &6588733201674467635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6157904867809710050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8825958c7154c3541be1844d6052d825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

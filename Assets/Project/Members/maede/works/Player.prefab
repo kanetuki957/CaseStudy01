@@ -182,11 +182,14 @@ MonoBehaviour:
   jumpMoveDamping: 0.5
   wallsRay: 0.1
   jumpWait: 0.1
+  moveX: 0
+  Goaltimer: 0
   isGrounded: 0
   isjump: 0
   isget: 0
-  moveX: 0
-  Goaltimer: 0
+  isladder: 0
+  i: 0
+  move: {x: 0, y: 0, z: 0}
 --- !u!95 &7635092613522918640
 Animator:
   serializedVersion: 5
@@ -275,7 +278,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: de4a9babf4b687542bb8eef2f1ff7c56, type: 3}
   - {fileID: 21300000, guid: fc7b8fcbf523d644caab40b3dfff0b0e, type: 3}
   trapFrames:
-  - {fileID: 21300000, guid: 368fe154b5115374b9bfe49b6afacae0, type: 3}
+  - {fileID: 21300000, guid: f78d736f59541854ebf508f6fe57ba7f, type: 3}
+  - {fileID: 21300000, guid: ba93355a06a2a504488603f114367272, type: 3}
+  - {fileID: 21300000, guid: de426129aa5f5274984ea155a7c20292, type: 3}
+  - {fileID: 21300000, guid: c322f1c74ac82eb44ba47836e1263932, type: 3}
+  - {fileID: 21300000, guid: f05857fd83ff89f46bb78c6c405f0e12, type: 3}
+  - {fileID: 21300000, guid: 4cbbdae2e50ecf44398f2c2780031085, type: 3}
+  - {fileID: 21300000, guid: e10061b03f9c033489aaa427c0f24e65, type: 3}
+  - {fileID: 21300000, guid: adeae980b0e05ec4cbf97bf92242456d, type: 3}
+  - {fileID: 21300000, guid: 575b088a5531a4140a0d63802e7903b5, type: 3}
+  - {fileID: 21300000, guid: 014499211b46c5c43996a39b18e33507, type: 3}
   getupFrames:
   - {fileID: 21300000, guid: 44b4f9eee088368439901c6e4dcd0d2b, type: 3}
   fallFrames:
@@ -315,6 +327,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7c389eac17c45e940963e83397c7f509, type: 3}
   frameRate: 0.1
   onlyFrameRate: 0.3
+  jumpFrameRate: 0.3
   startButton: {fileID: 0}
   resetButton: {fileID: 0}
   GoalButton: 0

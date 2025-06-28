@@ -163,34 +163,34 @@ public class CharactorAnimation : MonoBehaviour
         }
         else
         {
-            goalPerformance = scriptAni.goalPerformance;
+            //goalPerformance = scriptAni.goalPerformance;
 
-            if (!goalPerformance)
-            {
-                OnlyFrame(goalFrames);
-                if (framesAnimation) // 2•bŒã‚Éfalse‚É‚·‚é
-                {
-                    currentOnlyFrame = 0;
-                    goalPerformance = true;
-                    framesAnimation = false;
-                }
-            }
-            else
-            {
-                Goaltimer += Time.deltaTime;
-                Frame(goalPerformanceFrame);
-                if (Goaltimer > 5)
-                {
+            //if (!goalPerformance)
+            //{
+            //    OnlyFrame(goalFrames);
+            //    if (framesAnimation) // 2•bŒã‚Éfalse‚É‚·‚é
+            //    {
+            //        currentOnlyFrame = 0;
+            //        goalPerformance = true;
+            //        framesAnimation = false;
+            //    }
+            //}
+            //else
+            //{
+            //    Goaltimer += Time.deltaTime;
+            //    Frame(goalPerformanceFrame);
+            //    if (Goaltimer > 5)
+            //    {
 
-                    goalPerformance = false;
-                    Goaltimer = 0;
-                    spriteRenderer.sprite = idleFrames[0];
-                    Button = false;
-                    GoalButton = false;
-                    finish = true;
+            //        goalPerformance = false;
+            //        Goaltimer = 0;
+            //        spriteRenderer.sprite = idleFrames[0];
+            //        Button = false;
+            //        GoalButton = false;
+            //        finish = true;
 
-                }
-            }
+            //    }
+            //}
         }
     }
 
