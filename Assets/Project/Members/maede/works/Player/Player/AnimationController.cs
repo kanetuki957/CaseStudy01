@@ -80,11 +80,16 @@ public class AnimationController : MonoBehaviour
         {
             if (Button)
             {
-                
+                ladder = playerLadder.isOnLadder;
                 GroundCheck();
                 if (jumpAnimation)
                 {
                     JumpBool();
+                  
+                }
+                if (ladder)
+                {
+                    groundCheck = true;
                 }
 
                 if (!groundCheck)
@@ -105,7 +110,7 @@ public class AnimationController : MonoBehaviour
                     {
                         Frame(fallFrames);
                         skyLeapBool = true;
-
+                     
                     }
                 }
                 else
@@ -144,7 +149,8 @@ public class AnimationController : MonoBehaviour
                             //trap = false;
                         }
                     }
-                    ladder = playerLadder.isOnLadder;
+
+                  
                     if (ladder)
                     {
                         Frame(ladderFrames);
@@ -320,6 +326,7 @@ void MoveButton()
         // Raycast ?? 左右どちらか当たればOK
         RaycastHit2D hitR = Physics2D.Raycast(originR, Vector2.down, rayLength1);
         RaycastHit2D hitL = Physics2D.Raycast(originL, Vector2.down, rayLength1);
+        RaycastHit2D hitUnder =  Physics2D.Raycast(basePos, Vector2.down, rayLength1);
 
         // デバッグ可視化（Sceneビュー）
         Debug.DrawLine(originR, originR + Vector2.down * rayLength, Color.red);
@@ -332,12 +339,11 @@ void MoveButton()
             groundCheck = false;
             return;
         }
-
-        if (hit.collider.GetComponent<CheckLadder>() != null)
+        
+        if (hitUnder.collider.GetComponent<CheckLadder>() != null)
         {
             groundCheck = true;
             
-
         }
         else
         {
@@ -354,7 +360,6 @@ void MoveButton()
         // 法線角で「壁」を除外
         float angle = Vector2.Angle(hit.normal, Vector2.up);
         groundCheck = angle <= stairMaxAngle;         // 地面 or 階段 ⇒ true
-
 
     }
     
