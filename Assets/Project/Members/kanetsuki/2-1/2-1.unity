@@ -1977,7 +1977,7 @@ PrefabInstance:
         type: 3}
       propertyPath: copyableObjects.Array.data[0].prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 353877485}
     - target: {fileID: 37563313169614940, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: copyableObjects.Array.data[0].maxCopies
@@ -2147,6 +2147,11 @@ PrefabInstance:
         type: 3}
       propertyPath: hitLayers.m_Bits
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: ladder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
