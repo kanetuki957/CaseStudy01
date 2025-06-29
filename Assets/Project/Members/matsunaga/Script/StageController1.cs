@@ -48,6 +48,11 @@ public class StageController : MonoBehaviour
     {
         if (!Application.isPlaying) return;
 
+        if (StageManager.Instance != null)
+        {
+            StageManager.Instance.MarkPreviousStageAsCleared();
+        }
+
         if (targetButton == null)
         {
             Debug.LogError(" ターゲットボタンが設定されていません。");

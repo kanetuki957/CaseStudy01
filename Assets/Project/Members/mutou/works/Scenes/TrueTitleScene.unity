@@ -306,6 +306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickSound: {fileID: 8300000, guid: 1ea8a12dc30f1804b86ef62afbdbba91, type: 3}
   confirmSound: {fileID: 8300000, guid: 46acd165517b40a429b255d8332b5d15, type: 3}
+  seVolume: 1
 --- !u!1 &489194926
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,7 +496,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a6950022378c21b44ae43ddc1f54e8f9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.389
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -752,6 +753,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1831558263}
   - component: {fileID: 1831558262}
+  - component: {fileID: 1831558264}
   m_Layer: 0
   m_Name: TitleLogo
   m_TagString: Untagged
@@ -800,7 +802,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d7c2d92dabf6f4d4f8938e5b106faa7f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f02d22764386faa46a2448e359c548c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -826,6 +828,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1831558264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831558261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e5d52bebe94a54d913094a7f30b819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frames:
+  - {fileID: 21300000, guid: ace4115f0b657a84f87ff47354fb1cd2, type: 3}
+  - {fileID: 21300000, guid: b57bea4da5543be4fbc3eaf53c00a543, type: 3}
+  - {fileID: 21300000, guid: f0c4ac77c4676fd43be7fe52a62a5fbd, type: 3}
+  - {fileID: 21300000, guid: 8d48afd0fa846504ea2e6bff70fb97fe, type: 3}
+  - {fileID: 21300000, guid: 967e9e96d177f094fabc4ebf29eeb562, type: 3}
+  - {fileID: 21300000, guid: 6fd49a80bbce50341832cf28862df1ee, type: 3}
+  - {fileID: 21300000, guid: e7aa1fc5f41200742b2055f724750b49, type: 3}
+  - {fileID: 21300000, guid: fbef8e2c3b062f74eb158d36ec738335, type: 3}
+  - {fileID: 21300000, guid: 0e955265fb99d4f4d8c41d8abf7eb75b, type: 3}
+  - {fileID: 21300000, guid: fbdf06fe7c2611b4194920796b0bf0b5, type: 3}
+  - {fileID: 21300000, guid: 25a8402d874342b458b6d5cf4cb34447, type: 3}
+  - {fileID: 21300000, guid: c5eb443e52f6c7f4fa6486561fc6269f, type: 3}
+  - {fileID: 21300000, guid: cbdf23427cd09b34cb006e75a8ed5cae, type: 3}
+  - {fileID: 21300000, guid: 33b576c25333cc04eab48085c335ac1f, type: 3}
+  - {fileID: 21300000, guid: 6e6524954bdfc464c954098250ec07f6, type: 3}
+  - {fileID: 21300000, guid: 8b5cd940fa5eed848beab5d4e7224a70, type: 3}
+  - {fileID: 21300000, guid: 322489b01bdf1944a9fea254149df4b9, type: 3}
+  - {fileID: 21300000, guid: 9ec441ab7e8376e4ba2022ad5321e900, type: 3}
+  - {fileID: 21300000, guid: 359586ee1be6e754ea519000a8b0dc7e, type: 3}
+  - {fileID: 21300000, guid: 638a1cae65b49f748a84cbe1d8d9f3fb, type: 3}
+  - {fileID: 21300000, guid: 9e97f77bc8e98294792c56014b172f9d, type: 3}
+  - {fileID: 21300000, guid: b11f2a97eeaca1540912ebff0070111e, type: 3}
+  - {fileID: 21300000, guid: 06876b3ced18fe041a5162dba09339f2, type: 3}
+  - {fileID: 21300000, guid: f02d22764386faa46a2448e359c548c9, type: 3}
+  frameDuration: 0.08
 --- !u!1 &1929715753
 GameObject:
   m_ObjectHideFlags: 0
