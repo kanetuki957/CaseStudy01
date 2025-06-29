@@ -6297,12 +6297,12 @@ PrefabInstance:
     - target: {fileID: 37563313169614940, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: copyableObjects.Array.data[0].maxCopies
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 37563313169614940, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: copyableObjects.Array.data[1].maxCopies
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 915845567314380968, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
