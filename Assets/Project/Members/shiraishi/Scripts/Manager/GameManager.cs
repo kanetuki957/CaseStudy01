@@ -62,6 +62,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GoToScene("SelectScene");
+        }
+    }
+
 
     // 状態変更用メソッド（外部から状態を更新するために使用）
     public void SetGameState(GameState newState)
@@ -126,7 +134,7 @@ public class GameManager : MonoBehaviour
     {
         if (clickSE != null)
             AudioSource.PlayClipAtPoint(clickSE, Camera.main.transform.position, clickSEVolume);
-        SetGameState(GameState.Editing);
+        GoToScene("SelectScene");
     }
 
 
