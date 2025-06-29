@@ -111,9 +111,10 @@ public class PlayerController : MonoBehaviour
         rayOrigin = (Vector2)transform.position + direction * 0.4f; // 頭の位置から発射
 
         isladder = animationController.ladder;
-
+        StopCharactor(isladder);
         if (isladder)
         {
+
             targetObject.SetActive(false);
             target.position = transform.position; // 初期位置へ戻す
         }
@@ -152,7 +153,7 @@ public class PlayerController : MonoBehaviour
         StopCharactor(isget);
 
         isGrounded = animationController.groundCheck;
-
+        
         //ギミック時停止
         isGimmick = animationController.gimmick;
         StopCharactor(isGimmick);
@@ -176,6 +177,7 @@ public class PlayerController : MonoBehaviour
 
         float modifiedMoveX = moveX;
 
+       
         // 地面にいるときは通常の移動
         if (!isGrounded)
         {
