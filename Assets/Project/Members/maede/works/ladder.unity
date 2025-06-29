@@ -160,7 +160,7 @@ MonoBehaviour:
   ladderDownObjectName:
   - ladderdown
   climbSpeed: 2
-  topY: 0.9
+  topY: 0.8
   bottomY: 1
   isOnLadder: 0
 --- !u!4 &111958707 stripped
@@ -1522,7 +1522,7 @@ PrefabInstance:
     - target: {fileID: 1873375442508652900, guid: 3c7acdc58902f3d4686e1055bd0a3450,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.31
+      value: -1.4
       objectReference: {fileID: 0}
     - target: {fileID: 1873375442508652900, guid: 3c7acdc58902f3d4686e1055bd0a3450,
         type: 3}
@@ -1719,7 +1719,7 @@ PrefabInstance:
     - target: {fileID: 6059301086823146019, guid: bbeb018e0639ff4489148e7ea757ae92,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.36
+      value: 0.74
       objectReference: {fileID: 0}
     - target: {fileID: 6059301086823146019, guid: bbeb018e0639ff4489148e7ea757ae92,
         type: 3}

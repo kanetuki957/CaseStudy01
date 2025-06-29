@@ -277,7 +277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &54191435
 RectTransform:
   m_ObjectHideFlags: 0
@@ -352,7 +352,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &93528450
 RectTransform:
   m_ObjectHideFlags: 0
@@ -444,8 +444,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.000030517578}
-  m_SizeDelta: {x: 1920, y: 920}
+  m_AnchoredPosition: {x: 477.70923, y: 225}
+  m_SizeDelta: {x: 841.385, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &101364279
 MonoBehaviour:
@@ -467,7 +467,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2987037bf2e10244a830941000665d6d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 20f17e1e1fc7d034eb4b95b53e1539bd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -502,7 +502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &115176184
 RectTransform:
   m_ObjectHideFlags: 0
@@ -911,7 +911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeSceneButton: {fileID: 168601504}
-  sceneName: 1-2table
+  sceneName: 1-3
 --- !u!114 &168601501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1107,7 +1107,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 1-2table
+          m_StringArgument: 1-3
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &168601505
@@ -1165,8 +1165,7 @@ MonoBehaviour:
   lockIconImage: {fileID: 1327669248}
   lockedIcon: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
   unlockedIcon: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0, type: 3}
-  requiredStageNames:
-  - 1-1
+  requiredStageNames: []
 --- !u!1 &207290668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1225,7 +1224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeSceneButton: {fileID: 207290675}
-  sceneName: 2-1table
+  sceneName: 2-2
 --- !u!114 &207290672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1479,8 +1478,7 @@ MonoBehaviour:
   lockIconImage: {fileID: 54191436}
   lockedIcon: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
   unlockedIcon: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0, type: 3}
-  requiredStageNames:
-  - 2-1
+  requiredStageNames: []
 --- !u!1 &223240035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1539,7 +1537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeSceneButton: {fileID: 223240042}
-  sceneName: 4-1
+  sceneName: 1-2table
 --- !u!114 &223240039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1735,7 +1733,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 4-1
+          m_StringArgument: 1-2table
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &223240043
@@ -1793,9 +1791,7 @@ MonoBehaviour:
   lockIconImage: {fileID: 848563639}
   lockedIcon: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
   unlockedIcon: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0, type: 3}
-  requiredStageNames:
-  - 3-1
-  - 3-2
+  requiredStageNames: []
 --- !u!1 &416837235
 GameObject:
   m_ObjectHideFlags: 0
@@ -2457,7 +2453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &562415203
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2746,8 +2742,7 @@ MonoBehaviour:
   lockIconImage: {fileID: 93528451}
   lockedIcon: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
   unlockedIcon: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0, type: 3}
-  requiredStageNames:
-  - 4-1
+  requiredStageNames: []
 --- !u!1 &565637950
 GameObject:
   m_ObjectHideFlags: 0
@@ -3434,7 +3429,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &661981930
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3732,7 +3727,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 2-1
+          m_StringArgument: 1-5
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &671893024
@@ -3786,7 +3781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeSceneButton: {fileID: 671893023}
-  sceneName: 2-table
+  sceneName: 1-5
 --- !u!114 &671893027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3804,9 +3799,7 @@ MonoBehaviour:
   lockIconImage: {fileID: 936431463}
   lockedIcon: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
   unlockedIcon: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0, type: 3}
-  requiredStageNames:
-  - 1-1
-  - 1-2
+  requiredStageNames: []
 --- !u!1 &685704199
 GameObject:
   m_ObjectHideFlags: 0
@@ -4424,9 +4417,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '2-1
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5173,7 +5164,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &848563638
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5288,7 +5279,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '3-1
+  m_text: '
 
 '
   m_isRightToLeft: 0
@@ -5652,7 +5643,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &936431462
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5727,6 +5718,7 @@ GameObject:
   - component: {fileID: 936504794}
   - component: {fileID: 936504796}
   - component: {fileID: 936504797}
+  - component: {fileID: 936504798}
   m_Layer: 5
   m_Name: 1-1
   m_TagString: Untagged
@@ -6022,6 +6014,21 @@ MonoBehaviour:
   lockedIcon: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
   unlockedIcon: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0, type: 3}
   requiredStageNames: []
+--- !u!114 &936504798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936504788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc52b77e9dc717240aef05472fee5552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonImage: {fileID: 936504791}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &940965311
 GameObject:
   m_ObjectHideFlags: 0
@@ -6268,7 +6275,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '1-1
+  m_text: '
 
 '
   m_isRightToLeft: 0
@@ -6659,8 +6666,7 @@ MonoBehaviour:
   lockIconImage: {fileID: 1898582379}
   lockedIcon: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
   unlockedIcon: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0, type: 3}
-  requiredStageNames:
-  - 3-1
+  requiredStageNames: []
 --- !u!1 &1060902251
 GameObject:
   m_ObjectHideFlags: 0
@@ -6905,7 +6911,7 @@ MonoBehaviour:
   editButton: {fileID: 0}
   resetButtonCanvasGroup: {fileID: 0}
   editButtonCanvasGroup: {fileID: 0}
-  clickSE: {fileID: 0}
+  clickSE: {fileID: 8300000, guid: fe25a81e6f32757439528b7a82747328, type: 3}
   clickSEVolume: 1
   turnResetButtonDuration: 1
   sceneOrderList: {fileID: 11400000, guid: b2218eff379b22b4b9f9a9759cd3ecd0, type: 2}
@@ -6947,7 +6953,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1182469706
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7236,9 +7242,7 @@ MonoBehaviour:
   lockIconImage: {fileID: 115176185}
   lockedIcon: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
   unlockedIcon: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0, type: 3}
-  requiredStageNames:
-  - 4-1
-  - 4-2
+  requiredStageNames: []
 --- !u!1 &1199641706
 GameObject:
   m_ObjectHideFlags: 0
@@ -7502,7 +7506,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1296318116
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7885,7 +7889,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1327669247
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8381,8 +8385,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.000030517578}
-  m_SizeDelta: {x: 1920, y: 920}
+  m_AnchoredPosition: {x: -450, y: 0}
+  m_SizeDelta: {x: 964, y: 920}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1540981027
 MonoBehaviour:
@@ -8404,7 +8408,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3a400976a1bc98144bd070ed042d9730, type: 3}
+  m_Sprite: {fileID: 21300000, guid: df5c8dac27a67c74db3cc1439a400be1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8480,7 +8484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeSceneButton: {fileID: 1549361636}
-  sceneName: 3-table
+  sceneName: 2-2
 --- !u!114 &1549361633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8676,7 +8680,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 3-1
+          m_StringArgument: 2-2table
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1549361637
@@ -8734,9 +8738,7 @@ MonoBehaviour:
   lockIconImage: {fileID: 661981931}
   lockedIcon: {fileID: 21300000, guid: 3a5df5ef93ec46543a5cbf7523a7bd0e, type: 3}
   unlockedIcon: {fileID: 21300000, guid: 105b064c46941c340bc4ddb72baacfe0, type: 3}
-  requiredStageNames:
-  - 2-1
-  - 2-2
+  requiredStageNames: []
 --- !u!1 &1589600839
 GameObject:
   m_ObjectHideFlags: 0
@@ -8754,7 +8756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1589600840
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8869,7 +8871,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '2-1
+  m_text: '
 
 '
   m_isRightToLeft: 0
@@ -9449,7 +9451,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '3-1
+  m_text: '
 
 '
   m_isRightToLeft: 0
@@ -9954,7 +9956,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1898582378
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10664,7 +10666,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2000047206
 RectTransform:
   m_ObjectHideFlags: 0
