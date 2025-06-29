@@ -45,6 +45,9 @@ public class PlayerController : MonoBehaviour
     private Vector2 direction;
     private Vector2 rayOrigin;
 
+    [SerializeField] private MonoBehaviour[] ignoreScripts;  // Inspector で Size を増減
+
+
     void Start()
     {
 
@@ -274,15 +277,22 @@ public class PlayerController : MonoBehaviour
             // ② 無視したい名前の一覧
             if (hit.collider.name is "followcharactor" or "Goal") return;
 
+
             // ③ 無視したいコンポーネントをまとめて判定
-            if (hit.collider.TryGetComponent<CheckLadder>(out _) ||
-                hit.collider.TryGetComponent<LeverGimmick>(out _) ||
-                hit.collider.TryGetComponent<PickupableItem>(out _) ||
-                hit.collider.TryGetComponent<FailureTrigger>(out _) ||
-                hit.collider.TryGetComponent<ForceZone>(out _))
+            if(ShouldIgnore(hit.collider))
             {
                 return;
             }
+            //if (hit.collider.TryGetComponent<CheckLadder>(out _) ||
+            //    hit.collider.TryGetComponent<LeverGimmick>(out _) ||
+            //    hit.collider.TryGetComponent<PickupableItem>(out _) ||
+            //    hit.collider.TryGetComponent<FailureTrigger>(out _) ||
+            //    hit.collider.TryGetComponent<ForceZone>(out _) ||
+            //    hit.collider.TryGetComponent<coin>(out _))
+            //{
+            //    return;
+            //}
+
 
             // ④ targetBlockCollider だったら当たり判定をオフにして終了
             if (hit.collider == targetBlockCollider)
@@ -336,4 +346,20 @@ public class PlayerController : MonoBehaviour
             animationController.jumpAnimation = false;
         }
     }
+
+    bool ShouldIgnore(Collider2D col)
+    {
+        // ※ Unity 2020 以降なら TryGetComponent(Type, out Component) も使えます
+        for (int i = 0; i < ignoreScripts.Length; i++)
+        {
+            var mb = ignoreScripts[i];
+            if (mb == null) continue;                       // 空スロットは無視
+
+            var t = mb.GetType();                           // 型を取得
+            if (col.GetComponent(t) != null)                // その型を持っていれば終了
+                return true;
+        }
+        return false;                                       // どれにも当たらなかった
+    }
+
 }
