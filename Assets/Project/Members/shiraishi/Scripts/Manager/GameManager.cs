@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
     {
         if (clickSE != null)
             AudioSource.PlayClipAtPoint(clickSE, Camera.main.transform.position, clickSEVolume);
-        SetGameState(GameState.Editing);
+        GoToScene("SelectScene");
     }
 
 
