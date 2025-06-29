@@ -249,6 +249,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &274895737 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2303165065017041482, guid: 477c81df5701a5040844c2cffb2973b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1138376728}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 090d842e00136a2458cf01da7de83eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &395604893 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6757548551192842488, guid: d5990453c983df049b8d8aa7017daf75,
@@ -1871,12 +1883,12 @@ PrefabInstance:
     - target: {fileID: 37563313169614940, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: copyableObjects.Array.data[0].maxCopies
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 37563313169614940, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: copyableObjects.Array.data[1].maxCopies
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 915845567314380968, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
@@ -2071,6 +2083,11 @@ PrefabInstance:
       objectReference: {fileID: 892367876}
     - target: {fileID: 5907599467835336815, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
+      propertyPath: ignoreScripts.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907599467835336815, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
       propertyPath: ignoredPlayers.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -2079,6 +2096,11 @@ PrefabInstance:
       propertyPath: checkObjectnames.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5907599467835336815, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: ignoreScripts.Array.data[0]
+      value: 
+      objectReference: {fileID: 274895737}
     - target: {fileID: 5907599467835336815, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: ignoredPlayers.Array.data[0]
@@ -2926,7 +2948,7 @@ PrefabInstance:
     - target: {fileID: 8206269654934444379, guid: d5990453c983df049b8d8aa7017daf75,
         type: 3}
       propertyPath: forceStrength
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8206269654934444379, guid: d5990453c983df049b8d8aa7017daf75,
         type: 3}
