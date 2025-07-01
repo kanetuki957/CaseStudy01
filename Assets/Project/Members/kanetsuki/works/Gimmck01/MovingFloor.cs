@@ -2,37 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingFloor : MonoBehaviour,IActivatable
+public class MovingFloor : MonoBehaviour
 {
     [Header("移動の設定")]
-    public float moveDistance = 2f;  // 上下に動く距離
-    public float moveSpeed = 2f;     // 動くスピード
+    public float moveDistance = 2f;
+    public float moveSpeed = 2f;
+    public bool isActive = false;
 
-    public bool isActive=false;
+    private PlayerMove playerMoveScript;
+    public float activateHeight = 1.5f;
 
     private Vector3 startPos;
+    private bool hasActivatedPlayer = false;
 
     void Start()
     {
         startPos = transform.position;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerMoveScript = collision.gameObject.GetComponent<PlayerMove>();
+            if (playerMoveScript != null)
+            {
+                playerMoveScript.playerState = PlayerState.Stay;
+                hasActivatedPlayer = false;
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerMoveScript = null;
+            hasActivatedPlayer = false;
+        }
+    }
+
     void Update()
     {
         if (isActive)
         {
-        // Sin波を使って上下に移動
-        float newY = startPos.y + Mathf.Sin(Time.time * moveSpeed) * moveDistance;
-        transform.position = new Vector3(startPos.x, newY, startPos.z);
+            float newY = startPos.y + Mathf.Sin(Time.time * moveSpeed) * moveDistance;
+            transform.position = new Vector3(startPos.x, newY, startPos.z);
 
+            if (playerMoveScript != null &&
+                !hasActivatedPlayer &&
+                transform.position.y >= startPos.y + activateHeight)
+            {
+                playerMoveScript.playerState = PlayerState.Move;
+                hasActivatedPlayer = true;
+                playerMoveScript = null;
+            }
         }
     }
-    
-    public void Activate()
-    {
-        isActive = !isActive;
-
-    }
-
-
 }
