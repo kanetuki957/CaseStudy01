@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private AnimationController animationController;
 
-    private Vector2 direction;
+    public Vector2 direction;
     private Vector2 rayOrigin;
 
     [SerializeField] private MonoBehaviour[] ignoreScripts;  // Inspector Ç≈ Size Çëùå∏
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                transform.position = (Vector2)transform.position - direction * 0.5f;
+                transform.position = (Vector2)transform.position + direction * 0.5f;
             }
         }
         i = isladder;

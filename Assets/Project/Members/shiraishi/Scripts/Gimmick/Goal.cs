@@ -6,6 +6,13 @@ public class Goal : MonoBehaviour
 {
     private HashSet<GameObject> touchingPlayers = new HashSet<GameObject>();
 
+
+    [Header("ƒS[ƒ‹‚µ‚½‚ÌSE")]
+    [SerializeField] private AudioClip trapHitSE;        // •Ç‚É‰ƒqƒbƒg‚µ‚½‚Ì SE
+    [SerializeField][Range(0f, 1f)] private float seVolume = 1f;
+
+
+
     public bool IsPlayerTouching(GameObject player)
     {
         return touchingPlayers.Contains(player);
