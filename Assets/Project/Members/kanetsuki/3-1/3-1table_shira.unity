@@ -295,6 +295,7 @@ GameObject:
   - component: {fileID: 154744806}
   - component: {fileID: 154744805}
   - component: {fileID: 154744804}
+  - component: {fileID: 154744808}
   m_Layer: 0
   m_Name: key (1)
   m_TagString: Untagged
@@ -421,12 +422,32 @@ Transform:
   m_GameObject: {fileID: 154744803}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.44, y: -3.99, z: 0}
+  m_LocalPosition: {x: 6.44, y: -3.93, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &154744808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154744803}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc4fa69e78385b94b87b4dad69b3724e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targets:
+  - {fileID: 1210478238}
+  activateKey: 102
+  activateOnTouch: 0
+  offSprite: {fileID: 0}
+  onSprite: {fileID: 0}
+  isToggle: 0
+  effectManager: {fileID: 0}
 --- !u!1001 &182857600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1151,7 +1172,7 @@ PrefabInstance:
     - target: {fileID: 37563313169614940, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: copyableObjects.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 37563313169614940, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
@@ -1165,12 +1186,22 @@ PrefabInstance:
       objectReference: {fileID: 1188426526}
     - target: {fileID: 37563313169614940, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
+      propertyPath: copyableObjects.Array.data[2].prefab
+      value: 
+      objectReference: {fileID: 354385125}
+    - target: {fileID: 37563313169614940, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
       propertyPath: copyableObjects.Array.data[0].maxCopies
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 37563313169614940, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: copyableObjects.Array.data[1].maxCopies
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 37563313169614940, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: copyableObjects.Array.data[2].maxCopies
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 915845567314380968, guid: 23fc1749dc9603d42ab2dcf054f87b63,
@@ -1242,12 +1273,12 @@ PrefabInstance:
     - target: {fileID: 3324382691381197673, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.04
+      value: 8.76
       objectReference: {fileID: 0}
     - target: {fileID: 3324382691381197673, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.54
+      value: -5.51
       objectReference: {fileID: 0}
     - target: {fileID: 3324382691381197673, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
@@ -2339,7 +2370,7 @@ PrefabInstance:
     - target: {fileID: 6875489273755943826, guid: 06d4efa4631cc794ebbd1b0981f32618,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.84
+      value: -2.71
       objectReference: {fileID: 0}
     - target: {fileID: 6875489273755943826, guid: 06d4efa4631cc794ebbd1b0981f32618,
         type: 3}
@@ -3187,6 +3218,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4598507672918583312, guid: 134844e32b161cf4f8bd61823bc98052,
     type: 3}
   m_PrefabInstance: {fileID: 1208495678}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1210478238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8050031908381516292, guid: ea5cbea91a5cb3a4fa70ca6d320339c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 6882149834641322492}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1253672567
 PrefabInstance:
