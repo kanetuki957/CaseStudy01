@@ -26,6 +26,8 @@ public class StageManager : MonoBehaviour
         }
     }
 
+    public string previousStageName;
+
     private void Awake()
     {
         if (instance == null)
@@ -50,4 +52,16 @@ public class StageManager : MonoBehaviour
     {
         return PlayerPrefs.GetInt($"{stageName}_Cleared", 0) == 1;
     }
+
+
+    public void MarkPreviousStageAsCleared()
+    {
+        if (!string.IsNullOrEmpty(previousStageName))
+        {
+            ClearStage(previousStageName);
+            previousStageName = null; // 一度だけ保存
+        }
+    }
+
+
 }

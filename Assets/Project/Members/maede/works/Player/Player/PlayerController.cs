@@ -42,8 +42,11 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private AnimationController animationController;
 
-    private Vector2 direction;
+    public Vector2 direction;
     private Vector2 rayOrigin;
+
+    [SerializeField] private MonoBehaviour[] ignoreScripts;  // Inspector で Size を増減
+
 
     void Start()
     {
@@ -108,9 +111,10 @@ public class PlayerController : MonoBehaviour
         rayOrigin = (Vector2)transform.position + direction * 0.4f; // 頭の位置から発射
 
         isladder = animationController.ladder;
-
+        StopCharactor(isladder);
         if (isladder)
         {
+
             targetObject.SetActive(false);
             target.position = transform.position; // 初期位置へ戻す
         }
@@ -130,12 +134,14 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                transform.position = (Vector2)transform.position - direction * 0.5f;
+                transform.position = (Vector2)transform.position + direction * 0.5f;
             }
         }
         i = isladder;
-        
-  
+
+
+        ray();
+
 
         isjump = animationController.skyLeapBool;
         if (isjump)
@@ -147,7 +153,7 @@ public class PlayerController : MonoBehaviour
         StopCharactor(isget);
 
         isGrounded = animationController.groundCheck;
-
+        
         //ギミック時停止
         isGimmick = animationController.gimmick;
         StopCharactor(isGimmick);
@@ -171,6 +177,7 @@ public class PlayerController : MonoBehaviour
 
         float modifiedMoveX = moveX;
 
+       
         // 地面にいるときは通常の移動
         if (!isGrounded)
         {
@@ -265,62 +272,43 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, wallsRay);
         if (hit.collider != null)
         {
-            //Debug.Log(hit.collider.gameObject);
-            if (hit.collider is BoxCollider2D)
+
+            // ① ClickHitbox は無視
+            if (hit.collider.name == "ClickHitbox") return;
+
+            // ② 無視したい名前の一覧
+            if (hit.collider.name is "followcharactor" or "Goal") return;
+
+
+            // ③ 無視したいコンポーネントをまとめて判定
+            if(ShouldIgnore(hit.collider))
             {
-                if (hit.collider.GetComponent<CheckLadder>() == null)
-                {
-                    if (hit.collider.GetComponent<LeverGimmick>() == null)
-                    {
-                        if (hit.collider.GetComponent<PickupableItem>() == null)
-                        {
-                            if (hit.collider.GetComponent<PickupableItem>() == null)
-                            {
-                                if (hit.collider.GetComponent<FailureTrigger>() == null)
-                                {
-                                    if (hit.collider.gameObject.name != "followcharactor")
-                                    {
-                                        if (hit.collider.name != "Goal")
-                                        {
-                                            // targetBlockCollider に当たったかチェック
-                                            if (hit.collider == targetBlockCollider)
-                                            {
-
-                                                hit.collider.enabled = false;  // スクリプト停止などの処理
-                                                return;
-                                            }
-
-                                            if (!animationController.ladder)
-                                            {
-                                            
-                                                //Debug.Log("真ん中" + hitwalls.collider.name);
-                                                playerDirection = !playerDirection;  // 反転
-                                            }
-
-                                            //// 名前が Goal のオブジェクトに当たったか
-                                            //if (hit.collider.name == "Goal")
-                                            //{
-
-                                            //    animationController.GoalBool();
-                                            //    hit.collider.enabled = false; // 当たり判定をオフにする
-                                            //    return;
-                                            //}
-                                            //else
-                                            //{
-                                            //    if (!animationController.ladder)
-                                            //    {
-                                            //        //Debug.Log("真ん中" + hitwalls.collider.name);
-                                            //        playerDirection = !playerDirection;  // 反転
-                                            //    }                            //}
-                                            //}
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                return;
             }
+            //if (hit.collider.TryGetComponent<CheckLadder>(out _) ||
+            //    hit.collider.TryGetComponent<LeverGimmick>(out _) ||
+            //    hit.collider.TryGetComponent<PickupableItem>(out _) ||
+            //    hit.collider.TryGetComponent<FailureTrigger>(out _) ||
+            //    hit.collider.TryGetComponent<ForceZone>(out _) ||
+            //    hit.collider.TryGetComponent<coin>(out _))
+            //{
+            //    return;
+            //}
+
+
+            // ④ targetBlockCollider だったら当たり判定をオフにして終了
+            if (hit.collider == targetBlockCollider)
+            {
+                hit.collider.enabled = false;
+                return;
+            }
+
+            // ⑤ はしご中でないときだけ反転
+            if (!isladder)
+            {
+                playerDirection = !playerDirection;
+            }
+
         }
 
 
@@ -360,4 +348,20 @@ public class PlayerController : MonoBehaviour
             animationController.jumpAnimation = false;
         }
     }
+
+    bool ShouldIgnore(Collider2D col)
+    {
+        // ※ Unity 2020 以降なら TryGetComponent(Type, out Component) も使えます
+        for (int i = 0; i < ignoreScripts.Length; i++)
+        {
+            var mb = ignoreScripts[i];
+            if (mb == null) continue;                       // 空スロットは無視
+
+            var t = mb.GetType();                           // 型を取得
+            if (col.GetComponent(t) != null)                // その型を持っていれば終了
+                return true;
+        }
+        return false;                                       // どれにも当たらなかった
+    }
+
 }

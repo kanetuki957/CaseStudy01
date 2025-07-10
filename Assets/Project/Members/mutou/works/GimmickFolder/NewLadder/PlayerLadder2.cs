@@ -154,4 +154,6 @@ public class PlayerLadder2 : MonoBehaviour
         currentLadder = null;
         climbDirection = 0;
     }
+
+
 }

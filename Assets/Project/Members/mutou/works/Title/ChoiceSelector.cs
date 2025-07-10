@@ -12,6 +12,9 @@ public class ChoiceSelector : MonoBehaviour
     // 決定時に再生する確定音
     public AudioClip confirmSound;
 
+    // 効果音の音量（0.0?1.0）
+    [Range(0f, 1f)] public float seVolume = 1.0f;
+
     // 効果音再生用のAudioSource
     private AudioSource audioSource;
 
@@ -37,7 +40,7 @@ public class ChoiceSelector : MonoBehaviour
         // AudioSourceを生成し初期設定
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
-        audioSource.volume = 1.0f; // 音量を最大に設定
+        audioSource.volume = seVolume; // ユーザー設定音量
     }
 
     void Update()

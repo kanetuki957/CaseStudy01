@@ -40,7 +40,12 @@ public class CopyPaste_shira_test : MonoBehaviour
     public GameObject iconPrefab;
     public Sprite normalIconSprite;
     public Sprite limitIconSprite;
+    public static CopyPaste_shira_test Instance { get; private set; }
 
+    void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {

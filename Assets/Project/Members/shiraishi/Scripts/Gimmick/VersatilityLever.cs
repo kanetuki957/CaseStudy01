@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class VersatilityLever : MonoBehaviour
@@ -75,22 +76,54 @@ public class VersatilityLever : MonoBehaviour
         isOn = isToggle ? !isOn : true;
         UpdateSprite();
 
-        // 起動対象の処理実行
         foreach (var targetObj in targets)
         {
             if (targetObj == null) continue;
 
-            var direct = targetObj.GetComponents<IActivatable>();
-            foreach (var a in direct) a.Activate();
+            // 対象そのものを処理
+            ActivateAllIActivatablesIn(targetObj);
 
-            var children = targetObj.GetComponentsInChildren<IActivatable>(true);
-            foreach (var a in children)
+            // CopyableObjectInfo を元に、同じ originInfo を持つクローンも処理
+            var origin = targetObj.GetComponent<CopyOrigin>();
+            CopyableObjectInfo originInfo = null;
+
+            if (origin != null)
             {
-                if (System.Array.IndexOf(direct, a) == -1)
-                    a.Activate();
+                originInfo = origin.originInfo;
+            }
+            else
+            {
+                // プレハブそのものだった場合も含めて探す
+                originInfo = CopyPaste_shira_test.Instance.copyableObjects?.Find(x => x.prefab == targetObj);
+            }
+
+            if (originInfo != null)
+            {
+                // シーン上のクローン（コピー）すべてを検索して起動
+                var clones = FindObjectsOfType<CopyOrigin>()
+                             .Where(o => o.originInfo == originInfo)
+                             .Select(o => o.gameObject);
+
+                foreach (var clone in clones)
+                {
+                    ActivateAllIActivatablesIn(clone);
+                }
             }
         }
     }
+
+    // ヘルパーメソッド：対象オブジェクトにあるすべての IActivatable を実行
+    void ActivateAllIActivatablesIn(GameObject obj)
+    {
+        var list1 = obj.GetComponents<IActivatable>();
+        var list2 = obj.GetComponentsInChildren<IActivatable>(true);
+
+        foreach (var a in list1.Concat(list2).Distinct())
+        {
+            a.Activate();
+        }
+    }
+
 
     void UpdateSprite()
     {
