@@ -273,6 +273,9 @@ public class PlayerController : MonoBehaviour
         if (hit.collider != null)
         {
 
+            // 当たったオブジェクトの名前をログに出す
+            Debug.Log("Rayが当たったオブジェクト: " + hit.collider.name);
+
             // ① ClickHitbox は無視
             if (hit.collider.name == "ClickHitbox") return;
 
@@ -281,10 +284,12 @@ public class PlayerController : MonoBehaviour
 
 
             // ③ 無視したいコンポーネントをまとめて判定
-            if(ShouldIgnore(hit.collider))
+            if (ShouldIgnore(hit.collider))
             {
                 return;
             }
+
+           
             //if (hit.collider.TryGetComponent<CheckLadder>(out _) ||
             //    hit.collider.TryGetComponent<LeverGimmick>(out _) ||
             //    hit.collider.TryGetComponent<PickupableItem>(out _) ||
