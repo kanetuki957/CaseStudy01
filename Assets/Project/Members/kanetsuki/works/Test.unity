@@ -217,7 +217,7 @@ PrefabInstance:
     - target: {fileID: 3088797003771057879, guid: b963974f374186b47a83f5349cca5e77,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.45
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 3088797003771057879, guid: b963974f374186b47a83f5349cca5e77,
         type: 3}
@@ -432,6 +432,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageTemplate (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5188499268330954504, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: activeKey
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188499268330954504, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: ActivateObject
+      value: 
+      objectReference: {fileID: 159981552}
     - target: {fileID: 5907599467835336815, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: target
@@ -3058,7 +3068,7 @@ Transform:
   m_GameObject: {fileID: 968909124}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.65, y: 0.2, z: 0}
+  m_LocalPosition: {x: -26.65, y: -3.45, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

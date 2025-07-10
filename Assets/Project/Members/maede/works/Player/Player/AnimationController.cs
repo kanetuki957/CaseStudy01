@@ -172,6 +172,19 @@ public class AnimationController : MonoBehaviour
         }
         else
         {
+            Goaltimer += Time.deltaTime;
+                Frame(goalPerformanceFrame);
+            if (Goaltimer > 5)
+            {
+                goalPerformance = false;
+                Goaltimer = 0;
+                spriteRenderer.sprite = idleFrames[0];
+                Button = false;
+                GoalButton = false;
+                finish = true;
+            }
+
+
             //if (!goalPerformance)
             //{
             //    OnlyFrame(goalFrames);

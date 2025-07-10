@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,7 +9,6 @@ public class GoalManager : MonoBehaviour
     // すでにエラーを表示済みかどうかのフラグ（同じエラーを何度も出さないため）
     private bool hasShownError = false;
     private bool hasShownUnregisteredPlayerWarning = false;
-
     private bool wasKeyPresentAtStart = false;
 
     // プレイヤーと対応するゴールをセットで管理する構造体
@@ -18,6 +18,12 @@ public class GoalManager : MonoBehaviour
         public GameObject player; // ゴール判定対象のプレイヤー
         public Goal goal;         // 対応するゴール（Goal.csがアタッチされていること）
     }
+
+    [Header("トラップに当たった時のSE")]
+    [SerializeField] private AudioClip trapHitSE;        // 壁に初ヒットした時の SE
+    [SerializeField][Range(0f, 1f)] private float seVolume = 1f;
+    public float delay = 1.0f;
+    public bool hasTriggeredGoal = false;
 
     // インスペクターから設定できる、プレイヤーとゴールの対応リスト
     public List<GoalPair> goalPairs = new List<GoalPair>();
@@ -60,23 +66,50 @@ public class GoalManager : MonoBehaviour
             return;
         }
 
+
         if (AllPlayersOnGoals() && AllPlayersHaveKey())
         {
-
-            if (GameManager.Instance.GoToNextScene())
+            if(!hasTriggeredGoal)
             {
-                return;
+                AudioSource.PlayClipAtPoint(trapHitSE, Camera.main.transform.position, seVolume);
+                hasTriggeredGoal = true;
             }
-
-            // 失敗したらリロード
-            GameManager.Instance.GoToScene(SceneManager.GetActiveScene().name);
+            StartCoroutine(DelayedSceneTransition());
         }
 
+
+
+        //if (AllPlayersOnGoals() && AllPlayersHaveKey())
+        //{
+
+        //    if (GameManager.Instance.GoToNextScene())
+        //    {
+        //        return;
+        //    }
+
+        //    // 失敗したらリロード
+        //    GameManager.Instance.GoToScene(SceneManager.GetActiveScene().name);
+        //}
+
+    }
+    private IEnumerator DelayedSceneTransition()
+    {
+        yield return new WaitForSeconds(delay); // SEが鳴り終わるタイミングで
+
+        if (GameManager.Instance.GoToNextScene())
+        {
+            hasTriggeredGoal = false;
+            yield break;
+        }
+          
+        GameManager.Instance.GoToScene(SceneManager.GetActiveScene().name);
+        {
+            hasTriggeredGoal = false;
+        }
     }
 
-
-    // 全プレイヤーが対応するゴールに触れているかをチェック
-    private bool AllPlayersOnGoals()
+// 全プレイヤーが対応するゴールに触れているかをチェック
+private bool AllPlayersOnGoals()
     {
         foreach (var pair in goalPairs)
         {
