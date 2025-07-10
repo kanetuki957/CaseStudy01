@@ -273,18 +273,22 @@ public class PlayerController : MonoBehaviour
         if (hit.collider != null)
         {
 
+            // 当たったオブジェクトの名前をログに出す
+            Debug.Log("Rayが当たったオブジェクト: " + hit.collider.name);
+
             // ① ClickHitbox は無視
             if (hit.collider.name == "ClickHitbox") return;
 
             // ② 無視したい名前の一覧
             if (hit.collider.name is "followcharactor" or "Goal") return;
 
-
             // ③ 無視したいコンポーネントをまとめて判定
-            if(ShouldIgnore(hit.collider))
+            if (ShouldIgnore(hit.collider))
             {
                 return;
             }
+
+           
             //if (hit.collider.TryGetComponent<CheckLadder>(out _) ||
             //    hit.collider.TryGetComponent<LeverGimmick>(out _) ||
             //    hit.collider.TryGetComponent<PickupableItem>(out _) ||
@@ -364,4 +368,12 @@ public class PlayerController : MonoBehaviour
         return false;                                       // どれにも当たらなかった
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.GetComponent<Goal>() != null)
+        {
+            animationController.GoalBool();
+        }
+
+    }
 }
