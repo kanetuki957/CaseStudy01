@@ -282,7 +282,6 @@ public class PlayerController : MonoBehaviour
             // ② 無視したい名前の一覧
             if (hit.collider.name is "followcharactor" or "Goal") return;
 
-
             // ③ 無視したいコンポーネントをまとめて判定
             if (ShouldIgnore(hit.collider))
             {
@@ -369,4 +368,12 @@ public class PlayerController : MonoBehaviour
         return false;                                       // どれにも当たらなかった
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.GetComponent<Goal>() != null)
+        {
+            animationController.GoalBool();
+        }
+
+    }
 }
