@@ -2122,6 +2122,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: c78a90e772ab32541b971f442a345db6,
         type: 3}
+    - target: {fileID: 8152068048141484704, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: trapHitSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 89eea49d5e5aad74e8a62bcafcae3805, type: 3}
     - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: skyLeapBool
