@@ -3,7 +3,7 @@ using UnityEngine;
 public class CanvasManager : MonoBehaviour
 {
     public GameObject[] canvases; // Canvas1, Canvas2, Canvas3 など
-    public PageTurnCanvasTransitions canvasTransition; // 任意。未設定でも動作します。
+    public PageTurnCanvasTransitions canvasTransition;
 
     private int currentIndex = 0;
 
@@ -21,13 +21,24 @@ public class CanvasManager : MonoBehaviour
         if (targetCanvas == canvases[currentIndex])
             return;
 
-        // アニメーション中なら何もしない
         if (canvasTransition != null && canvasTransition.IsAnimating())
             return;
 
+        int targetIndex = System.Array.IndexOf(canvases, targetCanvas);
+        if (targetIndex == -1)
+        {
+            Debug.LogError("指定された Canvas が配列に存在しません。");
+            return;
+        }
+
+        // アニメーション方向を判定
+        var direction = targetIndex > currentIndex
+            ? PageTurnCanvasTransitions.PageTurnDirection.Forward
+            : PageTurnCanvasTransitions.PageTurnDirection.Backward;
+
         if (canvasTransition != null)
         {
-            canvasTransition.StartCanvasTransition(canvases[currentIndex], targetCanvas);
+            canvasTransition.StartCanvasTransition(canvases[currentIndex], targetCanvas, direction);
         }
         else
         {
@@ -35,9 +46,8 @@ public class CanvasManager : MonoBehaviour
             targetCanvas.SetActive(true);
         }
 
-        currentIndex = System.Array.IndexOf(canvases, targetCanvas);
+        currentIndex = targetIndex;
     }
-
 
     public void ShowNextCanvas()
     {
