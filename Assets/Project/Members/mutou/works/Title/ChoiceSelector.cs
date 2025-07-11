@@ -31,8 +31,8 @@ public class ChoiceSelector : MonoBehaviour
         float x = transform.position.x;
         float z = transform.position.z;
 
-        upperPosition = new Vector3(x, -1.1f, z); // ゲームスタート位置
-        lowerPosition = new Vector3(x, -3.4f, z); // ゲーム終了位置
+        upperPosition = new Vector3(x, -1.6f, z); // ゲームスタート位置
+        lowerPosition = new Vector3(x, -3.2f, z); // ゲーム終了位置
 
         // 初期位置を上に設定
         transform.position = upperPosition;
@@ -80,7 +80,7 @@ public class ChoiceSelector : MonoBehaviour
     void MoveToUpper()
     {
         var pos = transform.position;
-        transform.position = new Vector3(pos.x, -1.1f, pos.z);
+        transform.position = new Vector3(pos.x, -1.6f, pos.z);
         isUpper = true;
     }
 
@@ -88,7 +88,7 @@ public class ChoiceSelector : MonoBehaviour
     void MoveToLower()
     {
         var pos = transform.position;
-        transform.position = new Vector3(pos.x, -3.4f, pos.z);
+        transform.position = new Vector3(pos.x, -3.2f, pos.z);
         isUpper = false;
     }
 

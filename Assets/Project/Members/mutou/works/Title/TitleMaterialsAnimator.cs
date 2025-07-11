@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TitleBgAnimator : MonoBehaviour
+public class TitleMaterialsAnimator : MonoBehaviour
 {
     [Tooltip("アニメーションで使うスプライト（順番に並べる）")]
     public List<Sprite> frames = new List<Sprite>();
