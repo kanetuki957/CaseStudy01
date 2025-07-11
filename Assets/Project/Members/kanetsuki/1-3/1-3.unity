@@ -1184,7 +1184,7 @@ PrefabInstance:
     - target: {fileID: 3324382691381197673, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.06
+      value: -5.92
       objectReference: {fileID: 0}
     - target: {fileID: 3324382691381197673, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
@@ -2072,7 +2072,7 @@ PrefabInstance:
     - target: {fileID: 45903603988558986, guid: f737d67f1b123d54094cb59e5f9e544a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.54
+      value: -7.67
       objectReference: {fileID: 0}
     - target: {fileID: 45903603988558986, guid: f737d67f1b123d54094cb59e5f9e544a,
         type: 3}
@@ -3266,15 +3266,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a83e051eb2e5134e80292ca998e5ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ladderUpObjectName:
-  - Ladder2
-  - Ladder_copy (1)
-  - Ladder_copy (2)
+  ladderUpObjectName: []
   ladderDownObjectName:
   - Ladder
   climbSpeed: 2
   topY: 0.9
-  bottomY: 1
+  bottomY: -1.2
   isOnLadder: 0
 --- !u!1001 &1698323497
 PrefabInstance:
@@ -3366,7 +3363,7 @@ PrefabInstance:
     - target: {fileID: 4273324661778614302, guid: 95cd790ea6055d241aca4697e23e35a0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.34
+      value: 7.6
       objectReference: {fileID: 0}
     - target: {fileID: 4273324661778614302, guid: 95cd790ea6055d241aca4697e23e35a0,
         type: 3}
