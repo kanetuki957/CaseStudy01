@@ -306,7 +306,7 @@ PrefabInstance:
     - target: {fileID: 6875489273755943826, guid: 12618168f184e6f468cbce7ccf844687,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.4950953
+      value: -4.61
       objectReference: {fileID: 0}
     - target: {fileID: 6875489273755943826, guid: 12618168f184e6f468cbce7ccf844687,
         type: 3}
@@ -365,6 +365,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bridge 1_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030376052861146937, guid: 61941d34e17bbac439c6100734a4367c,
+        type: 3}
+      propertyPath: isOpen
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7030376052861146937, guid: 61941d34e17bbac439c6100734a4367c,
         type: 3}
@@ -542,7 +547,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444038455}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96f7dcab8b5bbf949bfc105e666177cc, type: 3}
   m_Name: 
@@ -4381,6 +4386,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553007215}
   m_CullTransparentMesh: 1
+--- !u!1 &1604267072 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 909225936334359512, guid: 61941d34e17bbac439c6100734a4367c,
+    type: 3}
+  m_PrefabInstance: {fileID: 289523808}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1629736192
 GameObject:
   m_ObjectHideFlags: 0
@@ -4945,6 +4956,7 @@ GameObject:
   - component: {fileID: 1789172333}
   - component: {fileID: 1789172332}
   - component: {fileID: 1789172331}
+  - component: {fileID: 1789172336}
   m_Layer: 0
   m_Name: key
   m_TagString: Untagged
@@ -5090,6 +5102,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1789172336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789172330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc4fa69e78385b94b87b4dad69b3724e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targets:
+  - {fileID: 1604267072}
+  activateKey: 102
+  activateOnTouch: 1
+  offSprite: {fileID: 21300000, guid: cd575e551d4867e42bb3739b84213382, type: 3}
+  onSprite: {fileID: 21300000, guid: 9fe34044a18177644866470380251a54, type: 3}
+  isToggle: 1
+  effectManager: {fileID: 0}
 --- !u!1001 &1797573183
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5894,7 +5926,7 @@ PrefabInstance:
     - target: {fileID: 3324382691381197673, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.14
+      value: 0.84
       objectReference: {fileID: 0}
     - target: {fileID: 3324382691381197673, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
@@ -5974,7 +6006,7 @@ PrefabInstance:
     - target: {fileID: 5188499268330954504, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
       propertyPath: activeKey
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5188499268330954504, guid: 23fc1749dc9603d42ab2dcf054f87b63,
         type: 3}
