@@ -1,0 +1,21 @@
+using UnityEngine;
+
+public class ButtonSoundPlayer : MonoBehaviour
+{
+    public AudioSource audioSource;
+
+    public void PlayButtonSound()
+    {
+        Debug.Log("PlayButtonSound Ç™åƒÇŒÇÍÇ‹ÇµÇΩ");
+
+        if (audioSource != null)
+        {
+            audioSource.Play();
+            Debug.Log("AudioSource.Play() é¿çs");
+        }
+        else
+        {
+            Debug.LogWarning("AudioSource Ç™ê›íËÇ≥ÇÍÇƒÇ¢Ç‹ÇπÇÒ");
+        }
+    }
+}
