@@ -1144,6 +1144,30 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: a66161e5c6adc34479f74ee13f4c187b,
         type: 3}
+    - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: goalPerformanceFrame.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: af723b436d6bca641a30a227f3430bca,
+        type: 3}
+    - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: goalPerformanceFrame.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: ba44e2b256ef9e6499c3c438cfb958d9,
+        type: 3}
+    - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: goalPerformanceFrame.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: c68dd37e2f0aa9247bd8c6c8054dab8e,
+        type: 3}
+    - target: {fileID: 8752187963414333798, guid: 23fc1749dc9603d42ab2dcf054f87b63,
+        type: 3}
+      propertyPath: goalPerformanceFrame.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: e3eb910fa325c3945ae8aaa1866b7a21,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
